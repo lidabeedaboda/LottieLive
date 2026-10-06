@@ -24,13 +24,13 @@
 
     :root {
       --pink: #ff78ad;
-      --pink-dark: #ec5c98;
-      --pink-light: #ffd9e8;
-      --pink-pale: #fff5f9;
-      --text: #4a3140;
-      --muted: #9c7889;
+      --pink-dark: #e95c94;
+      --pink-light: #ffd7e7;
+      --pink-pale: #fff6fa;
+      --text: #49313e;
+      --muted: #a47e90;
       --white: #ffffff;
-      --shadow: 0 20px 60px rgba(207, 95, 142, 0.18);
+      --shadow: 0 20px 60px rgba(214, 91, 140, 0.16);
     }
 
     body {
@@ -38,9 +38,9 @@
       font-family: "Fredoka", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 10% 10%, #ffd7e7 0, transparent 28%),
-        radial-gradient(circle at 90% 20%, #ffe9f2 0, transparent 30%),
-        radial-gradient(circle at 50% 100%, #ffd9e8 0, transparent 35%),
+        radial-gradient(circle at 8% 10%, #ffd8e8 0, transparent 28%),
+        radial-gradient(circle at 92% 15%, #ffe8f1 0, transparent 30%),
+        radial-gradient(circle at 50% 100%, #ffdce9 0, transparent 35%),
         #fff9fc;
       overflow-x: hidden;
     }
@@ -53,26 +53,26 @@
       background-image:
         radial-gradient(circle, rgba(255,120,173,.25) 1px, transparent 1px);
       background-size: 28px 28px;
-      opacity: .25;
+      opacity: .22;
     }
 
     .app {
       width: min(1100px, calc(100% - 28px));
-      margin: 0 auto;
+      margin: auto;
       padding: 25px 0 50px;
       position: relative;
       z-index: 1;
     }
 
-    /* HEADER */
+    /* ================= HEADER ================= */
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 18px 22px;
-      border: 1px solid rgba(255,255,255,.9);
-      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(255,255,255,.95);
+      background: rgba(255,255,255,.8);
       backdrop-filter: blur(18px);
       border-radius: 24px;
       box-shadow: var(--shadow);
@@ -91,7 +91,7 @@
       display: grid;
       place-items: center;
       border-radius: 18px;
-      background: linear-gradient(145deg, #ff9bc2, #ff6fa8);
+      background: linear-gradient(145deg, #ff9fc5, #ff70aa);
       box-shadow: 0 9px 25px rgba(255,111,168,.28);
       font-size: 28px;
     }
@@ -130,9 +130,20 @@
     .live-pill.live .live-dot {
       background: #43c77a;
       box-shadow: 0 0 0 5px rgba(67,199,122,.12);
+      animation: pulse 1.8s infinite;
     }
 
-    /* LOGIN */
+    @keyframes pulse {
+      0%,100% {
+        box-shadow: 0 0 0 4px rgba(67,199,122,.12);
+      }
+
+      50% {
+        box-shadow: 0 0 0 8px rgba(67,199,122,.03);
+      }
+    }
+
+    /* ================= LOGIN ================= */
 
     .login-screen {
       min-height: 70vh;
@@ -144,7 +155,7 @@
       width: min(460px, 100%);
       padding: 38px;
       border-radius: 32px;
-      background: rgba(255,255,255,.84);
+      background: rgba(255,255,255,.86);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,.95);
       box-shadow: var(--shadow);
@@ -153,14 +164,19 @@
 
     .axolotl {
       font-size: 72px;
-      animation: float 3s ease-in-out infinite;
       display: inline-block;
+      animation: float 3s ease-in-out infinite;
       margin-bottom: 8px;
     }
 
     @keyframes float {
-      0%,100% { transform: translateY(0) rotate(-2deg); }
-      50% { transform: translateY(-9px) rotate(2deg); }
+      0%,100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-9px) rotate(2deg);
+      }
     }
 
     .login-card h2 {
@@ -201,11 +217,6 @@
       box-shadow: 0 8px 20px rgba(255,120,173,.25);
     }
 
-    .password-wrap {
-      position: relative;
-      margin-bottom: 12px;
-    }
-
     input {
       width: 100%;
       padding: 15px 17px;
@@ -217,6 +228,7 @@
       color: var(--text);
       outline: none;
       transition: .2s;
+      margin-bottom: 12px;
     }
 
     input:focus {
@@ -247,7 +259,7 @@
       min-height: 18px;
     }
 
-    /* DASHBOARD */
+    /* ================= DASHBOARD ================= */
 
     .dashboard {
       display: none;
@@ -278,17 +290,19 @@
       transform: rotate(-8deg);
     }
 
-    .hero h2 {
-      font-size: 34px;
+    .hero h2,
+    .hero p {
       position: relative;
       z-index: 1;
+    }
+
+    .hero h2 {
+      font-size: 34px;
     }
 
     .hero p {
       margin-top: 7px;
       opacity: .9;
-      position: relative;
-      z-index: 1;
     }
 
     .grid {
@@ -298,7 +312,7 @@
     }
 
     .card {
-      background: rgba(255,255,255,.84);
+      background: rgba(255,255,255,.86);
       backdrop-filter: blur(18px);
       border: 1px solid rgba(255,255,255,.95);
       border-radius: 26px;
@@ -317,12 +331,150 @@
       font-size: 20px;
     }
 
+    /* ================= CAMERA FRAME ================= */
+
+    .camera-wrap {
+      position: relative;
+      padding: 17px;
+      margin: -2px;
+    }
+
+    /*
+      Decorative bubble layer
+    */
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 4;
+      background:
+        radial-gradient(
+          circle at 30% 25%,
+          rgba(255,255,255,.95),
+          rgba(255,183,215,.6) 35%,
+          rgba(255,126,177,.25) 70%,
+          rgba(255,255,255,0) 72%
+        );
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow:
+        inset 2px 2px 5px rgba(255,255,255,.8),
+        0 5px 15px rgba(255,111,168,.08);
+      opacity: .85;
+      animation: bubbleFloat linear infinite;
+    }
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      width: 22%;
+      height: 22%;
+      top: 18%;
+      left: 21%;
+      border-radius: 50%;
+      background: rgba(255,255,255,.85);
+    }
+
+    .b1 {
+      width: 28px;
+      height: 28px;
+      top: 4px;
+      left: 8%;
+      animation-duration: 5s;
+    }
+
+    .b2 {
+      width: 16px;
+      height: 16px;
+      top: 22px;
+      left: 28%;
+      animation-duration: 4s;
+      animation-delay: -1s;
+    }
+
+    .b3 {
+      width: 34px;
+      height: 34px;
+      top: 0;
+      right: 19%;
+      animation-duration: 6s;
+      animation-delay: -2s;
+    }
+
+    .b4 {
+      width: 20px;
+      height: 20px;
+      top: 24px;
+      right: 6%;
+      animation-duration: 4.5s;
+      animation-delay: -1.5s;
+    }
+
+    .b5 {
+      width: 24px;
+      height: 24px;
+      bottom: 8px;
+      left: 15%;
+      animation-duration: 5.5s;
+      animation-delay: -2.5s;
+    }
+
+    .b6 {
+      width: 14px;
+      height: 14px;
+      bottom: 2px;
+      left: 40%;
+      animation-duration: 4s;
+      animation-delay: -1s;
+    }
+
+    .b7 {
+      width: 30px;
+      height: 30px;
+      bottom: 3px;
+      right: 25%;
+      animation-duration: 5.5s;
+      animation-delay: -3s;
+    }
+
+    .b8 {
+      width: 18px;
+      height: 18px;
+      bottom: 18px;
+      right: 7%;
+      animation-duration: 4.2s;
+      animation-delay: -2s;
+    }
+
+    @keyframes bubbleFloat {
+      0%,100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-9px) scale(1.08);
+      }
+    }
+
     .video-container {
-      background: #271c22;
-      border-radius: 20px;
+      background: #281d23;
+      border-radius: 24px;
       overflow: hidden;
       aspect-ratio: 16 / 9;
       position: relative;
+      box-shadow:
+        0 0 0 5px rgba(255,216,232,.8),
+        0 15px 35px rgba(116,55,82,.13);
+    }
+
+    .video-container::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 2px solid rgba(255,255,255,.35);
+      border-radius: 24px;
+      pointer-events: none;
+      z-index: 5;
     }
 
     video {
@@ -330,7 +482,7 @@
       height: 100%;
       display: block;
       object-fit: cover;
-      background: #271c22;
+      background: #281d23;
     }
 
     .video-message {
@@ -341,7 +493,8 @@
       text-align: center;
       color: white;
       padding: 30px;
-      background: rgba(39,28,34,.7);
+      background: rgba(39,28,34,.72);
+      z-index: 3;
     }
 
     .video-message .big {
@@ -352,11 +505,14 @@
     .video-message p {
       opacity: .8;
       font-size: 14px;
+      margin-top: 5px;
     }
 
     .hidden {
       display: none !important;
     }
+
+    /* ================= STATUS ================= */
 
     .status-box {
       padding: 18px;
@@ -383,6 +539,8 @@
     .pink {
       color: var(--pink-dark);
     }
+
+    /* ================= CONTROLS ================= */
 
     .controls {
       display: grid;
@@ -414,6 +572,26 @@
       color: #d14e77;
     }
 
+    .control-btn.mic-muted {
+      background: #ffe2ec;
+      color: #d94e7e;
+    }
+
+    .mic-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 13px;
+      background: #fff5f9;
+      color: #a27187;
+      font-size: 13px;
+    }
+
+    /* ================= INFO ================= */
+
     .info-list {
       display: grid;
       gap: 11px;
@@ -436,15 +614,8 @@
       color: var(--muted);
     }
 
-    footer {
-      text-align: center;
-      color: #b895a5;
-      font-size: 12px;
-      padding-top: 25px;
-    }
-
     .connection {
-      margin-top: 14px;
+      margin-top: 16px;
       padding: 12px 15px;
       border-radius: 14px;
       background: #fff5f9;
@@ -453,9 +624,19 @@
       text-align: center;
     }
 
+    footer {
+      text-align: center;
+      color: #b895a5;
+      font-size: 12px;
+      padding-top: 25px;
+    }
+
+    /* ================= MOBILE ================= */
+
     @media (max-width: 760px) {
+
       .app {
-        width: min(100% - 18px, 1100px);
+        width: calc(100% - 18px);
         padding-top: 10px;
       }
 
@@ -502,6 +683,15 @@
       .axolotl {
         font-size: 60px;
       }
+
+      .camera-wrap {
+        padding: 10px;
+      }
+
+      .bubble {
+        transform: scale(.8);
+      }
+
     }
   </style>
 </head>
@@ -511,33 +701,49 @@
 <div class="app">
 
   <!-- HEADER -->
+
   <header>
+
     <div class="brand">
+
       <div class="logo">🦎</div>
 
       <div>
         <h1>Lottie's Little World</h1>
         <p>A tiny window into Lottie's world 🩷</p>
       </div>
+
     </div>
 
     <div id="headerLive" class="live-pill">
+
       <span class="live-dot"></span>
-      <span id="headerLiveText">Offline</span>
+
+      <span id="headerLiveText">
+        Offline
+      </span>
+
     </div>
+
   </header>
 
 
   <!-- LOGIN -->
+
   <section id="loginScreen" class="login-screen">
 
     <div class="login-card">
 
-      <div class="axolotl">🦎</div>
+      <div class="axolotl">
+        🦎
+      </div>
 
       <h2>Welcome!</h2>
 
-      <p>Enter your access details to visit Lottie's Little World.</p>
+      <p>
+        Enter your access details to visit
+        Lottie's Little World.
+      </p>
 
       <div class="mode-buttons">
 
@@ -545,32 +751,41 @@
           id="hostModeBtn"
           class="mode-btn active"
           onclick="setMode('host')">
+
           📹 Host
+
         </button>
 
         <button
           id="viewerModeBtn"
           class="mode-btn"
           onclick="setMode('viewer')">
+
           👀 Family
+
         </button>
 
       </div>
 
-      <div class="password-wrap">
-        <input
-          id="passwordInput"
-          type="password"
-          placeholder="Enter password"
-          autocomplete="off"
-          onkeydown="if(event.key==='Enter') login()">
-      </div>
+      <input
+        id="passwordInput"
+        type="password"
+        placeholder="Enter password"
+        autocomplete="off"
+        onkeydown="if(event.key==='Enter') login()">
 
-      <button class="login-btn" onclick="login()">
+      <button
+        class="login-btn"
+        onclick="login()">
+
         Enter Lottie's World
+
       </button>
 
-      <div id="loginError" class="login-error"></div>
+      <div
+        id="loginError"
+        class="login-error">
+      </div>
 
     </div>
 
@@ -578,11 +793,14 @@
 
 
   <!-- DASHBOARD -->
+
   <main id="dashboard" class="dashboard">
 
     <section class="hero">
 
-      <h2 id="welcomeTitle">Welcome to Lottie's Little World 🩷</h2>
+      <h2 id="welcomeTitle">
+        Welcome to Lottie's Little World 🩷
+      </h2>
 
       <p id="welcomeText">
         Keep an eye on our favourite little axolotl.
@@ -593,59 +811,102 @@
 
     <div class="grid">
 
-      <!-- VIDEO -->
+
+      <!-- CAMERA -->
+
       <section class="card">
 
         <div class="card-title">
 
-          <h3>📹 Lottie's Camera</h3>
+          <h3>
+            📹 Lottie's Camera
+          </h3>
 
-          <div id="cameraStatus" class="pink">
+          <div
+            id="cameraStatus"
+            class="pink">
+
             Offline
+
           </div>
 
         </div>
 
-        <div class="video-container">
 
-          <video
-            id="video"
-            autoplay
-            playsinline
-            muted>
-          </video>
+        <div class="camera-wrap">
 
-          <div id="videoMessage" class="video-message">
+          <!-- FLOATING BUBBLES -->
 
-            <div>
-              <div class="big">🦎</div>
+          <div class="bubble b1"></div>
+          <div class="bubble b2"></div>
+          <div class="bubble b3"></div>
+          <div class="bubble b4"></div>
+          <div class="bubble b5"></div>
+          <div class="bubble b6"></div>
+          <div class="bubble b7"></div>
+          <div class="bubble b8"></div>
 
-              <strong id="videoMessageTitle">
-                Lottie is offline
-              </strong>
 
-              <p id="videoMessageText">
-                The camera hasn't started yet.
-              </p>
+          <div class="video-container">
+
+            <video
+              id="video"
+              autoplay
+              playsinline
+              muted>
+            </video>
+
+
+            <div
+              id="videoMessage"
+              class="video-message">
+
+              <div>
+
+                <div class="big">
+                  🦎
+                </div>
+
+                <strong id="videoMessageTitle">
+                  Lottie is offline
+                </strong>
+
+                <p id="videoMessageText">
+                  The camera hasn't started yet.
+                </p>
+
+              </div>
+
             </div>
 
           </div>
 
         </div>
 
-        <div id="connectionStatus" class="connection">
+
+        <div
+          id="connectionStatus"
+          class="connection">
+
           Waiting for connection...
+
         </div>
 
       </section>
 
 
       <!-- SIDEBAR -->
+
       <aside class="card">
 
         <div class="card-title">
-          <h3>🩷 Status</h3>
+
+          <h3>
+            🩷 Status
+          </h3>
+
         </div>
+
 
         <div class="status-box">
 
@@ -653,8 +914,12 @@
             Camera
           </div>
 
-          <div id="cameraStatusBig" class="status-value">
+          <div
+            id="cameraStatusBig"
+            class="status-value">
+
             Offline
+
           </div>
 
         </div>
@@ -666,8 +931,12 @@
             Viewers
           </div>
 
-          <div id="viewerCount" class="status-value">
+          <div
+            id="viewerCount"
+            class="status-value">
+
             0
+
           </div>
 
         </div>
@@ -679,8 +948,12 @@
             Connection
           </div>
 
-          <div id="connectionBig" class="status-value">
+          <div
+            id="connectionBig"
+            class="status-value">
+
             Waiting
+
           </div>
 
         </div>
@@ -688,31 +961,66 @@
 
         <!-- HOST CONTROLS -->
 
-        <div id="hostControls" class="controls hidden">
+        <div
+          id="hostControls"
+          class="controls hidden">
+
 
           <button
             id="startCameraBtn"
             class="control-btn primary"
             onclick="startCamera()">
+
             📹 Start Camera
+
           </button>
+
 
           <button
             id="stopCameraBtn"
             class="control-btn danger hidden"
             onclick="stopCamera()">
+
             ⏹ Stop Camera
+
           </button>
+
+
+          <!-- MIC BUTTON -->
+
+          <button
+            id="muteMicBtn"
+            class="control-btn hidden"
+            onclick="toggleMicrophone()">
+
+            🎙️ Mute Microphone
+
+          </button>
+
+
+          <div
+            id="micIndicator"
+            class="mic-indicator hidden">
+
+            🎙️ Microphone is on
+
+          </div>
 
         </div>
 
 
-        <div id="viewerControls" class="controls hidden">
+        <!-- VIEWER CONTROLS -->
+
+        <div
+          id="viewerControls"
+          class="controls hidden">
 
           <button
             class="control-btn primary"
             onclick="connectToCamera(true)">
+
             🔄 Reconnect to Lottie
+
           </button>
 
         </div>
@@ -722,13 +1030,20 @@
     </div>
 
 
-    <!-- INFO -->
+    <!-- ABOUT -->
 
-    <section class="card" style="margin-top:20px;">
+    <section
+      class="card"
+      style="margin-top:20px;">
 
       <div class="card-title">
-        <h3>ℹ️ About Lottie's Little World</h3>
+
+        <h3>
+          ℹ️ About Lottie's Little World
+        </h3>
+
       </div>
+
 
       <div class="info-list">
 
@@ -748,7 +1063,7 @@
         </div>
 
         <div class="info-item">
-          <span>Website</span>
+          <span>Access</span>
           <strong>Private family access</strong>
         </div>
 
@@ -768,65 +1083,26 @@
 
 <script>
 
-  /*
-   * ============================================================
-   * LOTTIE'S LITTLE WORLD
-   * ============================================================
-   *
-   * HOST PASSWORD:
-   * stemp
-   *
-   * VIEWER PASSWORD:
-   * stempniak
-   *
-   * ============================================================
-   */
-
+  /* ============================================================
+     LOTTIE'S LITTLE WORLD
+     ============================================================ */
 
   const HOST_PASSWORD = "stemp";
   const VIEWER_PASSWORD = "stempniak";
-
-  /*
-   * IMPORTANT:
-   *
-   * This is a NEW peer ID.
-   *
-   * Close any old Lottie's Little World host tabs before
-   * starting the new version.
-   */
 
   const CAMERA_PEER_ID =
     "lotties-little-world-camera-v4";
 
 
-  /*
-   * ============================================================
-   * ICE CONFIG
-   * ============================================================
-   *
-   * STUN helps peers discover possible network paths.
-   *
-   * TURN is the relay fallback required by some networks.
-   *
-   * IMPORTANT:
-   * Replace the TURN placeholders with credentials from
-   * your TURN provider if your networks cannot connect
-   * directly.
-   */
+  /* ============================================================
+     PEER CONFIG
+     ============================================================ */
 
   const ICE_SERVERS = [
 
     {
       urls: "stun:stun.l.google.com:19302"
-    },
-
-    /*
-    {
-      urls: "turn:YOUR-TURN-SERVER:3478",
-      username: "YOUR-TURN-USERNAME",
-      credential: "YOUR-TURN-PASSWORD"
     }
-    */
 
   ];
 
@@ -843,6 +1119,10 @@
   };
 
 
+  /* ============================================================
+     VARIABLES
+     ============================================================ */
+
   let mode = "host";
 
   let peer = null;
@@ -857,12 +1137,12 @@
 
   let isConnecting = false;
 
+  let microphoneMuted = false;
 
-  /*
-   * ============================================================
-   * ELEMENTS
-   * ============================================================
-   */
+
+  /* ============================================================
+     ELEMENTS
+     ============================================================ */
 
   const loginScreen =
     document.getElementById("loginScreen");
@@ -921,12 +1201,16 @@
   const stopCameraBtn =
     document.getElementById("stopCameraBtn");
 
+  const muteMicBtn =
+    document.getElementById("muteMicBtn");
 
-  /*
-   * ============================================================
-   * MODE
-   * ============================================================
-   */
+  const micIndicator =
+    document.getElementById("micIndicator");
+
+
+  /* ============================================================
+     MODE
+     ============================================================ */
 
   function setMode(newMode) {
 
@@ -934,11 +1218,17 @@
 
     document
       .getElementById("hostModeBtn")
-      .classList.toggle("active", mode === "host");
+      .classList.toggle(
+        "active",
+        mode === "host"
+      );
 
     document
       .getElementById("viewerModeBtn")
-      .classList.toggle("active", mode === "viewer");
+      .classList.toggle(
+        "active",
+        mode === "viewer"
+      );
 
     passwordInput.value = "";
 
@@ -947,32 +1237,37 @@
   }
 
 
-  /*
-   * ============================================================
-   * LOGIN
-   * ============================================================
-   */
+  /* ============================================================
+     LOGIN
+     ============================================================ */
 
   function login() {
 
     const password =
       passwordInput.value.trim();
 
-    if (mode === "host" &&
-        password === HOST_PASSWORD) {
+
+    if (
+      mode === "host" &&
+      password === HOST_PASSWORD
+    ) {
 
       enterDashboard("host");
 
       return;
+
     }
 
 
-    if (mode === "viewer" &&
-        password === VIEWER_PASSWORD) {
+    if (
+      mode === "viewer" &&
+      password === VIEWER_PASSWORD
+    ) {
 
       enterDashboard("viewer");
 
       return;
+
     }
 
 
@@ -982,11 +1277,9 @@
   }
 
 
-  /*
-   * ============================================================
-   * ENTER DASHBOARD
-   * ============================================================
-   */
+  /* ============================================================
+     ENTER DASHBOARD
+     ============================================================ */
 
   function enterDashboard(selectedMode) {
 
@@ -996,31 +1289,54 @@
 
     dashboard.classList.add("show");
 
+
     if (mode === "host") {
 
-      document.getElementById("welcomeTitle").textContent =
+      document.getElementById(
+        "welcomeTitle"
+      ).textContent =
         "Lottie's Camera Control 🩷";
 
-      document.getElementById("welcomeText").textContent =
+
+      document.getElementById(
+        "welcomeText"
+      ).textContent =
         "Start the camera when you're ready to let the family visit Lottie.";
 
-      hostControls.classList.remove("hidden");
 
-      viewerControls.classList.add("hidden");
+      hostControls.classList.remove(
+        "hidden"
+      );
+
+      viewerControls.classList.add(
+        "hidden"
+      );
+
 
       initialiseHost();
 
     } else {
 
-      document.getElementById("welcomeTitle").textContent =
+      document.getElementById(
+        "welcomeTitle"
+      ).textContent =
         "Welcome to Lottie's World 🩷";
 
-      document.getElementById("welcomeText").textContent =
+
+      document.getElementById(
+        "welcomeText"
+      ).textContent =
         "You're visiting Lottie live.";
 
-      hostControls.classList.add("hidden");
 
-      viewerControls.classList.remove("hidden");
+      hostControls.classList.add(
+        "hidden"
+      );
+
+      viewerControls.classList.remove(
+        "hidden"
+      );
+
 
       initialiseViewer();
 
@@ -1029,11 +1345,9 @@
   }
 
 
-  /*
-   * ============================================================
-   * HOST
-   * ============================================================
-   */
+  /* ============================================================
+     HOST
+     ============================================================ */
 
   function initialiseHost() {
 
@@ -1056,6 +1370,7 @@
         id
       );
 
+
       setConnection(
         "Camera system ready.",
         "Ready"
@@ -1063,6 +1378,12 @@
 
     });
 
+
+    /*
+     * Family viewer calls the host.
+     *
+     * Host answers with Lottie's camera stream.
+     */
 
     peer.on("call", call => {
 
@@ -1087,31 +1408,37 @@
 
       call.answer(localStream);
 
+
       viewerCalls.set(
         call.peer,
         call
       );
+
 
       updateViewerCount();
 
 
       call.on("close", () => {
 
-        viewerCalls.delete(call.peer);
+        viewerCalls.delete(
+          call.peer
+        );
 
         updateViewerCount();
 
       });
 
 
-      call.on("error", err => {
+      call.on("error", error => {
 
         console.error(
           "Viewer call error:",
-          err
+          error
         );
 
-        viewerCalls.delete(call.peer);
+        viewerCalls.delete(
+          call.peer
+        );
 
         updateViewerCount();
 
@@ -1120,15 +1447,17 @@
     });
 
 
-    peer.on("error", err => {
+    peer.on("error", error => {
 
       console.error(
         "HOST PEER ERROR:",
-        err
+        error
       );
 
 
-      if (err.type === "unavailable-id") {
+      if (
+        error.type === "unavailable-id"
+      ) {
 
         setConnection(
           "Camera ID is already in use. Close the other host tab.",
@@ -1138,7 +1467,8 @@
       } else {
 
         setConnection(
-          "Peer connection error: " + err.type,
+          "Peer connection error: " +
+          error.type,
           "Error"
         );
 
@@ -1153,10 +1483,12 @@
         "Host disconnected from PeerJS."
       );
 
+
       setConnection(
         "Reconnecting to camera service...",
         "Reconnecting"
       );
+
 
       if (!peer.destroyed) {
         peer.reconnect();
@@ -1164,10 +1496,6 @@
 
     });
 
-
-    /*
-     * Start camera automatically.
-     */
 
     setTimeout(
       startCamera,
@@ -1177,11 +1505,9 @@
   }
 
 
-  /*
-   * ============================================================
-   * START CAMERA
-   * ============================================================
-   */
+  /* ============================================================
+     START CAMERA
+     ============================================================ */
 
   async function startCamera() {
 
@@ -1218,10 +1544,33 @@
         });
 
 
+      /*
+       * Make sure microphone starts ON.
+       */
+
+      const audioTracks =
+        localStream.getAudioTracks();
+
+
+      audioTracks.forEach(track => {
+
+        track.enabled = true;
+
+      });
+
+
+      microphoneMuted = false;
+
+
+      updateMicUI();
+
+
       video.srcObject =
         localStream;
 
+
       video.muted = true;
+
 
       videoMessage.classList.add(
         "hidden"
@@ -1235,7 +1584,18 @@
         "hidden"
       );
 
+
       stopCameraBtn.classList.remove(
+        "hidden"
+      );
+
+
+      muteMicBtn.classList.remove(
+        "hidden"
+      );
+
+
+      micIndicator.classList.remove(
         "hidden"
       );
 
@@ -1251,20 +1611,10 @@
       );
 
 
-      /*
-       * Existing waiting calls can now receive
-       * the stream.
-       */
+      console.log(
+        "🎙️ Microphone is ON"
+      );
 
-      for (const call of viewerCalls.values()) {
-
-        try {
-          call.answer(localStream);
-        } catch (error) {
-          console.error(error);
-        }
-
-      }
 
     } catch (error) {
 
@@ -1290,11 +1640,106 @@
   }
 
 
-  /*
-   * ============================================================
-   * STOP CAMERA
-   * ============================================================
-   */
+  /* ============================================================
+     MICROPHONE MUTE / UNMUTE
+     ============================================================ */
+
+  function toggleMicrophone() {
+
+    if (!localStream) {
+      return;
+    }
+
+
+    const audioTracks =
+      localStream.getAudioTracks();
+
+
+    if (audioTracks.length === 0) {
+
+      console.warn(
+        "No microphone track exists."
+      );
+
+      return;
+
+    }
+
+
+    microphoneMuted =
+      !microphoneMuted;
+
+
+    audioTracks.forEach(track => {
+
+      track.enabled =
+        !microphoneMuted;
+
+    });
+
+
+    updateMicUI();
+
+
+    console.log(
+      microphoneMuted
+        ? "🔇 Microphone MUTED"
+        : "🎙️ Microphone UNMUTED"
+    );
+
+  }
+
+
+  /* ============================================================
+     MICROPHONE UI
+     ============================================================ */
+
+  function updateMicUI() {
+
+    if (microphoneMuted) {
+
+      muteMicBtn.textContent =
+        "🔊 Unmute Microphone";
+
+
+      muteMicBtn.classList.add(
+        "mic-muted"
+      );
+
+
+      micIndicator.textContent =
+        "🔇 Microphone is muted";
+
+
+      micIndicator.style.color =
+        "#d94e7e";
+
+    } else {
+
+      muteMicBtn.textContent =
+        "🎙️ Mute Microphone";
+
+
+      muteMicBtn.classList.remove(
+        "mic-muted"
+      );
+
+
+      micIndicator.textContent =
+        "🎙️ Microphone is on";
+
+
+      micIndicator.style.color =
+        "#a27187";
+
+    }
+
+  }
+
+
+  /* ============================================================
+     STOP CAMERA
+     ============================================================ */
 
   function stopCamera() {
 
@@ -1311,7 +1756,12 @@
     localStream = null;
 
 
-    for (const call of viewerCalls.values()) {
+    microphoneMuted = false;
+
+
+    for (
+      const call of viewerCalls.values()
+    ) {
 
       try {
         call.close();
@@ -1325,12 +1775,15 @@
 
     video.srcObject = null;
 
+
     videoMessage.classList.remove(
       "hidden"
     );
 
+
     videoMessageTitle.textContent =
       "Lottie is offline";
+
 
     videoMessageText.textContent =
       "The camera has been stopped.";
@@ -1340,7 +1793,18 @@
       "hidden"
     );
 
+
     stopCameraBtn.classList.add(
+      "hidden"
+    );
+
+
+    muteMicBtn.classList.add(
+      "hidden"
+    );
+
+
+    micIndicator.classList.add(
       "hidden"
     );
 
@@ -1359,11 +1823,9 @@
   }
 
 
-  /*
-   * ============================================================
-   * VIEWER
-   * ============================================================
-   */
+  /* ============================================================
+     VIEWER
+     ============================================================ */
 
   function initialiseViewer() {
 
@@ -1398,24 +1860,29 @@
     });
 
 
-    peer.on("error", err => {
+    peer.on("error", error => {
 
       console.error(
         "VIEWER PEER ERROR:",
-        err
+        error
       );
 
 
-      if (err.type === "peer-unavailable") {
+      if (
+        error.type === "peer-unavailable"
+      ) {
 
         showOffline();
+
 
         setConnection(
           "Lottie's camera isn't reachable right now.",
           "Offline"
         );
 
-      } else if (err.type === "webrtc") {
+      } else if (
+        error.type === "webrtc"
+      ) {
 
         setConnection(
           "WebRTC couldn't establish the video connection.",
@@ -1425,7 +1892,8 @@
       } else {
 
         setConnection(
-          "Connection error: " + err.type,
+          "Connection error: " +
+          error.type,
           "Error"
         );
 
@@ -1441,6 +1909,7 @@
         "Reconnecting"
       );
 
+
       if (!peer.destroyed) {
         peer.reconnect();
       }
@@ -1450,22 +1919,15 @@
   }
 
 
-  /*
-   * ============================================================
-   * DUMMY VIEWER STREAM
-   * ============================================================
-   *
-   * PeerJS requires the caller to provide a MediaStream.
-   *
-   * The viewer doesn't need to actually send their camera.
-   *
-   * So we create a tiny silent local stream.
-   */
+  /* ============================================================
+     DUMMY VIEWER STREAM
+     ============================================================ */
 
   function createDummyStream() {
 
     const canvas =
       document.createElement("canvas");
+
 
     canvas.width = 2;
     canvas.height = 2;
@@ -1474,19 +1936,22 @@
     const ctx =
       canvas.getContext("2d");
 
+
     ctx.fillStyle = "#000";
-    ctx.fillRect(0, 0, 2, 2);
+    ctx.fillRect(
+      0,
+      0,
+      2,
+      2
+    );
 
 
     const videoStream =
       canvas.captureStream(1);
 
 
-    /*
-     * Silent audio track.
-     */
-
     let audioTrack = null;
+
 
     try {
 
@@ -1494,22 +1959,31 @@
         window.AudioContext ||
         window.webkitAudioContext;
 
+
       const audioContext =
         new AudioContext();
+
 
       const oscillator =
         audioContext.createOscillator();
 
+
       const destination =
         audioContext.createMediaStreamDestination();
 
-      oscillator.connect(destination);
+
+      oscillator.connect(
+        destination
+      );
+
 
       oscillator.start();
 
 
       audioTrack =
-        destination.stream.getAudioTracks()[0];
+        destination
+          .stream
+          .getAudioTracks()[0];
 
     } catch (error) {
 
@@ -1528,12 +2002,18 @@
     videoStream
       .getVideoTracks()
       .forEach(track => {
+
         stream.addTrack(track);
+
       });
 
 
     if (audioTrack) {
-      stream.addTrack(audioTrack);
+
+      stream.addTrack(
+        audioTrack
+      );
+
     }
 
 
@@ -1542,26 +2022,28 @@
   }
 
 
-  /*
-   * ============================================================
-   * CONNECT VIEWER
-   * ============================================================
-   */
+  /* ============================================================
+     CONNECT VIEWER
+     ============================================================ */
 
   function connectToCamera(force = false) {
 
-    if (!peer ||
-        peer.destroyed ||
-        isConnecting) {
+    if (
+      !peer ||
+      peer.destroyed ||
+      isConnecting
+    ) {
 
       return;
 
     }
 
 
-    if (currentCall &&
-        currentCall.open &&
-        !force) {
+    if (
+      currentCall &&
+      currentCall.open &&
+      !force
+    ) {
 
       return;
 
@@ -1571,7 +2053,10 @@
     isConnecting = true;
 
 
-    if (force && currentCall) {
+    if (
+      force &&
+      currentCall
+    ) {
 
       try {
         currentCall.close();
@@ -1615,9 +2100,15 @@
         error
       );
 
+
       dummyStream
         .getTracks()
-        .forEach(track => track.stop());
+        .forEach(track => {
+
+          track.stop();
+
+        });
+
 
       isConnecting = false;
 
@@ -1635,138 +2126,141 @@
     );
 
 
-    call.on("stream", remoteStream => {
+    call.on(
+      "stream",
+      remoteStream => {
 
-      console.log(
-        "🩷 REMOTE LOTTIE STREAM RECEIVED",
-        remoteStream
-      );
-
-
-      isConnecting = false;
-
-
-      video.srcObject =
-        remoteStream;
+        console.log(
+          "🩷 REMOTE LOTTIE STREAM RECEIVED",
+          remoteStream
+        );
 
 
-      video.muted = false;
+        isConnecting = false;
 
 
-      videoMessage.classList.add(
-        "hidden"
-      );
+        video.srcObject =
+          remoteStream;
 
 
-      setLiveState(true);
+        video.muted = false;
 
 
-      setConnection(
-        "🩷 Live connection to Lottie",
-        "Live"
-      );
+        videoMessage.classList.add(
+          "hidden"
+        );
 
 
-      connectionBig.textContent =
-        "Connected";
+        setLiveState(true);
 
 
-      /*
-       * Try autoplay.
-       */
-
-      video.play()
-        .catch(() => {
-
-          setConnection(
-            "Tap the video to start playback.",
-            "Ready"
-          );
-
-        });
-
-    });
+        setConnection(
+          "🩷 Live connection to Lottie",
+          "Live"
+        );
 
 
-    call.on("close", () => {
-
-      console.log(
-        "Lottie call closed."
-      );
+        connectionBig.textContent =
+          "Connected";
 
 
-      isConnecting = false;
+        video
+          .play()
+          .catch(() => {
 
-      currentCall = null;
+            setConnection(
+              "Tap the video to start playback.",
+              "Ready"
+            );
 
+          });
 
-      showOffline();
-
-
-      setConnection(
-        "The camera connection closed.",
-        "Offline"
-      );
-
-
-      scheduleReconnect();
-
-    });
+      }
+    );
 
 
-    call.on("error", error => {
+    call.on(
+      "close",
+      () => {
 
-      console.error(
-        "Lottie call error:",
-        error
-      );
-
-
-      isConnecting = false;
-
-      currentCall = null;
+        console.log(
+          "Lottie call closed."
+        );
 
 
-      showOffline();
+        isConnecting = false;
+
+        currentCall = null;
 
 
-      setConnection(
-        "Couldn't connect to Lottie's camera.",
-        "Error"
-      );
+        showOffline();
 
 
-      scheduleReconnect();
+        setConnection(
+          "The camera connection closed.",
+          "Offline"
+        );
 
-    });
+
+        scheduleReconnect();
+
+      }
+    );
 
 
-    /*
-     * Clean up our dummy stream.
-     */
+    call.on(
+      "error",
+      error => {
 
-    setTimeout(() => {
+        console.error(
+          "Lottie call error:",
+          error
+        );
 
-      dummyStream
-        .getTracks()
-        .forEach(track => {
 
-          try {
-            track.stop();
-          } catch (error) {}
+        isConnecting = false;
 
-        });
+        currentCall = null;
 
-    }, 10000);
+
+        showOffline();
+
+
+        setConnection(
+          "Couldn't connect to Lottie's camera.",
+          "Error"
+        );
+
+
+        scheduleReconnect();
+
+      }
+    );
+
+
+    setTimeout(
+      () => {
+
+        dummyStream
+          .getTracks()
+          .forEach(track => {
+
+            try {
+              track.stop();
+            } catch (error) {}
+
+          });
+
+      },
+      10000
+    );
 
   }
 
 
-  /*
-   * ============================================================
-   * RECONNECT
-   * ============================================================
-   */
+  /* ============================================================
+     RECONNECT
+     ============================================================ */
 
   function scheduleReconnect() {
 
@@ -1776,30 +2270,32 @@
 
 
     reconnectTimer =
-      setTimeout(() => {
+      setTimeout(
+        () => {
 
-        reconnectTimer = null;
+          reconnectTimer = null;
 
-        if (
-          mode === "viewer" &&
-          peer &&
-          !peer.destroyed
-        ) {
 
-          connectToCamera();
+          if (
+            mode === "viewer" &&
+            peer &&
+            !peer.destroyed
+          ) {
 
-        }
+            connectToCamera();
 
-      }, 4000);
+          }
+
+        },
+        4000
+      );
 
   }
 
 
-  /*
-   * ============================================================
-   * OFFLINE STATE
-   * ============================================================
-   */
+  /* ============================================================
+     OFFLINE
+     ============================================================ */
 
   function showOffline() {
 
@@ -1824,11 +2320,9 @@
   }
 
 
-  /*
-   * ============================================================
-   * LIVE STATE
-   * ============================================================
-   */
+  /* ============================================================
+     LIVE STATE
+     ============================================================ */
 
   function setLiveState(isLive) {
 
@@ -1838,17 +2332,22 @@
         "live"
       );
 
+
       headerLiveText.textContent =
         "LIVE";
+
 
       cameraStatus.textContent =
         "LIVE";
 
+
       cameraStatus.className =
         "green";
 
+
       cameraStatusBig.textContent =
         "LIVE";
+
 
       cameraStatusBig.className =
         "status-value green";
@@ -1859,17 +2358,22 @@
         "live"
       );
 
+
       headerLiveText.textContent =
         "Offline";
+
 
       cameraStatus.textContent =
         "Offline";
 
+
       cameraStatus.className =
         "pink";
 
+
       cameraStatusBig.textContent =
         "Offline";
+
 
       cameraStatusBig.className =
         "status-value";
@@ -1879,13 +2383,14 @@
   }
 
 
-  /*
-   * ============================================================
-   * CONNECTION STATUS
-   * ============================================================
-   */
+  /* ============================================================
+     CONNECTION STATUS
+     ============================================================ */
 
-  function setConnection(message, state) {
+  function setConnection(
+    message,
+    state
+  ) {
 
     connectionStatus.textContent =
       message;
@@ -1900,7 +2405,9 @@
       connectionBig.className =
         "status-value green";
 
-    } else if (state === "Error") {
+    } else if (
+      state === "Error"
+    ) {
 
       connectionBig.className =
         "status-value pink";
@@ -1915,11 +2422,9 @@
   }
 
 
-  /*
-   * ============================================================
-   * VIEWER COUNT
-   * ============================================================
-   */
+  /* ============================================================
+     VIEWER COUNT
+     ============================================================ */
 
   function updateViewerCount() {
 
@@ -1929,11 +2434,9 @@
   }
 
 
-  /*
-   * ============================================================
-   * MOBILE PLAYBACK
-   * ============================================================
-   */
+  /* ============================================================
+     VIDEO TAP FOR MOBILE
+     ============================================================ */
 
   video.addEventListener(
     "click",
@@ -1950,11 +2453,9 @@
   );
 
 
-  /*
-   * ============================================================
-   * CLEANUP
-   * ============================================================
-   */
+  /* ============================================================
+     CLEANUP
+     ============================================================ */
 
   window.addEventListener(
     "beforeunload",
@@ -1964,13 +2465,19 @@
 
         localStream
           .getTracks()
-          .forEach(track => track.stop());
+          .forEach(track => {
+
+            track.stop();
+
+          });
 
       }
 
 
-      if (peer &&
-          !peer.destroyed) {
+      if (
+        peer &&
+        !peer.destroyed
+      ) {
 
         peer.destroy();
 

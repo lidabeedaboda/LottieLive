@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lotties Little World 💗</title>
+<title>Lottie's Little World 🩷</title>
 
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 
@@ -19,16 +19,33 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background:
-        radial-gradient(circle at top left, #ffd9ed 0%, transparent 35%),
-        radial-gradient(circle at bottom right, #ffc2df 0%, transparent 40%),
-        linear-gradient(135deg, #fff7fb, #ffe7f2);
-    color: #6d3150;
 }
 
 body {
-    min-height: 100vh;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: #743752;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            #ffd4e8,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            #ffc0dc,
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #fff7fb,
+            #ffe7f2
+        );
 }
 
 /* =========================
@@ -38,55 +55,62 @@ body {
 .background {
     position: fixed;
     inset: 0;
-    pointer-events: none;
     overflow: hidden;
-    z-index: 0;
+    pointer-events: none;
 }
 
-.heart {
+.float {
     position: absolute;
-    color: rgba(255, 105, 170, 0.18);
-    font-size: 35px;
-    animation: floatHeart 12s linear infinite;
+    opacity: .2;
+    animation: float 12s linear infinite;
 }
 
-.heart:nth-child(1) {
+.float:nth-child(1) {
     left: 8%;
-    top: 90%;
-    animation-delay: 0s;
+    bottom: -50px;
+    font-size: 45px;
 }
 
-.heart:nth-child(2) {
-    left: 25%;
-    top: 100%;
+.float:nth-child(2) {
+    left: 30%;
+    bottom: -80px;
+    font-size: 30px;
     animation-delay: 3s;
 }
 
-.heart:nth-child(3) {
-    left: 55%;
-    top: 95%;
+.float:nth-child(3) {
+    left: 65%;
+    bottom: -60px;
+    font-size: 50px;
     animation-delay: 6s;
 }
 
-.heart:nth-child(4) {
-    left: 80%;
-    top: 100%;
+.float:nth-child(4) {
+    left: 88%;
+    bottom: -70px;
+    font-size: 35px;
     animation-delay: 1s;
 }
 
-@keyframes floatHeart {
+@keyframes float {
 
     0% {
-        transform: translateY(0) rotate(0deg);
+        transform:
+            translateY(0)
+            rotate(0deg);
+
         opacity: 0;
     }
 
     15% {
-        opacity: 1;
+        opacity: .25;
     }
 
     100% {
-        transform: translateY(-120vh) rotate(25deg);
+        transform:
+            translateY(-120vh)
+            rotate(20deg);
+
         opacity: 0;
     }
 }
@@ -98,9 +122,13 @@ body {
 .app {
     position: relative;
     z-index: 1;
-    width: 100%;
+
     min-height: 100vh;
-    padding: 25px;
+
+    padding:
+        25px
+        15px
+        50px;
 }
 
 .container {
@@ -118,71 +146,104 @@ body {
     margin-bottom: 25px;
 }
 
-.logo {
-    width: 82px;
-    height: 82px;
+.axolotl-logo {
+    width: 90px;
+    height: 90px;
+
     margin: auto;
-    border-radius: 28px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 42px;
+    border-radius: 30px;
 
-    background: linear-gradient(
-        135deg,
-        #ffb6d7,
-        #ff72ad
-    );
+    font-size: 52px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb7d7,
+            #ff72ae
+        );
 
     box-shadow:
-        0 15px 40px rgba(255, 105, 170, 0.3),
-        inset 0 1px 0 white;
+        0 18px 45px
+        rgba(239, 71, 137, .28),
+
+        inset
+        0 1px 0
+        rgba(255,255,255,.9);
 }
 
 .title {
-    margin-top: 15px;
-    font-size: clamp(30px, 6vw, 48px);
-    font-weight: 800;
-    color: #a83d70;
+    margin-top: 14px;
+
+    font-size:
+        clamp(
+            32px,
+            7vw,
+            52px
+        );
+
+    font-weight: 850;
+
+    color: #a53b6c;
 }
 
 .subtitle {
     margin-top: 5px;
-    color: #a96987;
+
+    color: #a66b85;
+
     font-size: 15px;
 }
 
 /* =========================
-   CARD
+   CARDS
 ========================= */
 
 .card {
-    background: rgba(255, 255, 255, 0.78);
-    border: 1px solid rgba(255, 143, 190, 0.35);
+    background:
+        rgba(255,255,255,.8);
+
+    border:
+        1px solid
+        rgba(255,117,169,.25);
+
     border-radius: 28px;
+
     padding: 25px;
+
     margin-bottom: 20px;
 
     box-shadow:
-        0 20px 60px rgba(170, 55, 105, 0.12),
-        inset 0 1px 0 rgba(255,255,255,0.9);
+        0 20px 60px
+        rgba(153,52,91,.1),
+
+        inset
+        0 1px 0
+        rgba(255,255,255,.9);
 
     backdrop-filter: blur(18px);
 }
 
 .card-title {
-    font-size: 21px;
-    font-weight: 750;
-    margin-bottom: 8px;
-    color: #8f315f;
+    font-size: 22px;
+    font-weight: 800;
+
+    color: #8f315c;
+
+    margin-bottom: 7px;
 }
 
 .card-description {
-    color: #a46b87;
+    color: #a46b84;
+
     font-size: 14px;
+
     line-height: 1.5;
+
     margin-bottom: 20px;
 }
 
@@ -192,33 +253,47 @@ body {
 
 #loginScreen {
     max-width: 600px;
-    margin: 50px auto;
+
+    margin:
+        45px
+        auto
+        0;
 }
 
 .mode-buttons {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
     gap: 12px;
 }
 
 .mode-button {
     border: none;
+
     padding: 18px;
+
     border-radius: 18px;
 
     background: #fff0f7;
-    color: #a23d6e;
+
+    color: #a13d69;
 
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 750;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition:
+        transform .2s,
+        background .2s;
 }
 
 .mode-button:hover {
     transform: translateY(-2px);
+
     background: #ffd8e9;
 }
 
@@ -228,12 +303,13 @@ body {
     background:
         linear-gradient(
             135deg,
-            #ff9ac6,
-            #ff5d9e
+            #ff9ac7,
+            #ff5c9f
         );
 
     box-shadow:
-        0 10px 25px rgba(255, 92, 157, 0.25);
+        0 12px 28px
+        rgba(255,92,159,.25);
 }
 
 .password-area {
@@ -242,48 +318,59 @@ body {
 
 label {
     display: block;
-    font-size: 13px;
-    font-weight: 700;
+
     margin-bottom: 8px;
-    color: #924266;
+
+    font-size: 13px;
+    font-weight: 750;
+
+    color: #8e3b5e;
 }
 
 input {
     width: 100%;
-    padding: 15px 16px;
+
+    padding: 15px;
+
+    border:
+        1px solid
+        #f0b5cd;
 
     border-radius: 15px;
-    border: 1px solid #f4b4cf;
 
     background: white;
 
-    font-size: 16px;
     outline: none;
 
-    color: #6d3150;
+    font-size: 16px;
 
-    transition: 0.2s;
+    color: #71364f;
 }
 
 input:focus {
-    border-color: #ff6eaa;
-    box-shadow: 0 0 0 4px rgba(255, 110, 170, 0.12);
+    border-color: #ff6ba8;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(255,107,168,.12);
 }
 
 .primary-button {
     width: 100%;
-    border: none;
 
     margin-top: 14px;
+
     padding: 16px;
+
+    border: none;
 
     border-radius: 16px;
 
     background:
         linear-gradient(
             135deg,
-            #ff9ac6,
-            #ff5c9f
+            #ff9bc7,
+            #ff579c
         );
 
     color: white;
@@ -294,20 +381,18 @@ input:focus {
     cursor: pointer;
 
     box-shadow:
-        0 10px 25px rgba(255, 92, 157, 0.25);
-
-    transition: 0.2s;
-}
-
-.primary-button:hover {
-    transform: translateY(-2px);
+        0 10px 28px
+        rgba(255,87,156,.25);
 }
 
 .error {
-    color: #d83b72;
-    font-size: 14px;
-    margin-top: 12px;
     display: none;
+
+    margin-top: 12px;
+
+    color: #d83c73;
+
+    font-size: 14px;
 }
 
 /* =========================
@@ -320,52 +405,72 @@ input:focus {
 
 .topbar {
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     align-items: center;
-    gap: 15px;
+
+    gap: 12px;
+
     margin-bottom: 20px;
+
     flex-wrap: wrap;
 }
 
 .status {
     display: inline-flex;
+
     align-items: center;
+
     gap: 8px;
 
-    padding: 9px 13px;
+    padding:
+        9px
+        14px;
+
     border-radius: 999px;
 
-    background: #fff1f7;
+    background: #fff0f7;
 
-    color: #9e3f6d;
+    color: #983b65;
 
     font-size: 13px;
-    font-weight: 750;
+    font-weight: 800;
 }
 
 .status-dot {
     width: 9px;
     height: 9px;
+
     border-radius: 50%;
+
     background: #aaa;
 }
 
 .status.live .status-dot {
-    background: #ff4f96;
-    box-shadow: 0 0 10px #ff4f96;
-}
+    background: #ff4f97;
 
-.status.offline .status-dot {
-    background: #aaa;
+    box-shadow:
+        0 0 10px
+        #ff4f97;
 }
 
 .logout {
     border: none;
-    background: #ffe3ef;
-    color: #9c3b69;
-    padding: 10px 15px;
+
+    padding:
+        10px
+        15px;
+
     border-radius: 13px;
-    font-weight: 700;
+
+    background: #ffe1ed;
+
+    color: #963a64;
+
+    font-weight: 750;
+
     cursor: pointer;
 }
 
@@ -377,16 +482,19 @@ input:focus {
     position: relative;
 
     width: 100%;
-    aspect-ratio: 16 / 9;
 
-    background: #29151f;
-
-    border-radius: 24px;
+    aspect-ratio:
+        16 / 9;
 
     overflow: hidden;
 
+    border-radius: 24px;
+
+    background: #24151c;
+
     box-shadow:
-        0 20px 50px rgba(120, 40, 75, 0.2);
+        0 20px 55px
+        rgba(100,30,60,.2);
 }
 
 video {
@@ -397,14 +505,16 @@ video {
 
     object-fit: contain;
 
-    background: #21131a;
+    background: #201219;
 }
 
 .video-message {
     position: absolute;
+
     inset: 0;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -415,73 +525,91 @@ video {
     background:
         linear-gradient(
             135deg,
-            #fff2f8,
-            #ffd9ea
+            #fff1f8,
+            #ffd8e9
         );
-
-    color: #8e3c62;
 }
 
 .video-message-content {
-    max-width: 400px;
+    max-width: 430px;
 }
 
-.video-message-icon {
-    font-size: 55px;
-    margin-bottom: 10px;
+.axolotl-big {
+    font-size: 70px;
+
+    margin-bottom: 8px;
 }
 
 .video-message h2 {
     margin: 0 0 8px;
+
+    color: #8d345d;
 }
 
 .video-message p {
     margin: 0;
+
     line-height: 1.5;
-    color: #a26984;
+
+    color: #a46a84;
 }
 
 /* =========================
-   HOST CONTROLS
+   CONTROLS
 ========================= */
 
 .controls {
     display: flex;
+
     gap: 10px;
+
     flex-wrap: wrap;
+
     margin-top: 15px;
 }
 
 .control-button {
     border: none;
 
-    padding: 13px 17px;
+    padding:
+        13px
+        17px;
 
     border-radius: 14px;
+
+    background: #ffe1ed;
+
+    color: #963963;
 
     font-weight: 750;
 
     cursor: pointer;
-
-    background: #ffe3ef;
-    color: #963a67;
 }
 
 .control-button.active {
-    background: #ff6eaa;
+    background: #ff6da9;
+
     color: white;
 }
 
 .control-button.danger {
-    background: #ff5b8f;
+    background: #ff578e;
+
     color: white;
 }
+
+/* =========================
+   INFO
+========================= */
 
 .info-grid {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(
+            3,
+            1fr
+        );
 
     gap: 12px;
 
@@ -495,36 +623,40 @@ video {
 
     background: #fff4f8;
 
-    border: 1px solid #ffd4e5;
+    border:
+        1px solid
+        #ffd4e5;
 }
 
 .info-label {
     font-size: 12px;
+
     color: #aa718b;
 }
 
 .info-value {
     margin-top: 5px;
+
     font-size: 20px;
-    font-weight: 800;
+
+    font-weight: 850;
+
     color: #92325f;
 }
 
-/* =========================
-   SMALL TEXT
-========================= */
-
 .note {
     margin-top: 15px;
+
     padding: 14px;
 
     border-radius: 15px;
 
-    background: #fff1f7;
+    background: #fff0f7;
 
-    color: #9b5a77;
+    color: #985a76;
 
     font-size: 13px;
+
     line-height: 1.5;
 }
 
@@ -551,14 +683,10 @@ video {
         grid-template-columns: 1fr;
     }
 
-    .logo {
-        width: 70px;
-        height: 70px;
-        font-size: 35px;
-    }
-
-    .title {
-        font-size: 31px;
+    .axolotl-logo {
+        width: 75px;
+        height: 75px;
+        font-size: 42px;
     }
 
 }
@@ -569,11 +697,14 @@ video {
 <body>
 
 <div class="background">
-    <div class="heart">♡</div>
-    <div class="heart">♡</div>
-    <div class="heart">♡</div>
-    <div class="heart">♡</div>
+
+    <div class="float">🩷</div>
+    <div class="float">🫧</div>
+    <div class="float">🩷</div>
+    <div class="float">🫧</div>
+
 </div>
+
 
 <div class="app">
 
@@ -583,16 +714,16 @@ video {
 
     <div class="header">
 
-        <div class="logo">
-            🐾
+        <div class="axolotl-logo">
+            🦎
         </div>
 
         <div class="title">
-            Lotties Little World
+            Lottie's Little World
         </div>
 
         <div class="subtitle">
-            A little window into Lottie's world 💗
+            A little window into Lottie's world 🩷
         </div>
 
     </div>
@@ -600,14 +731,17 @@ video {
 
     <!-- LOGIN -->
 
-    <div id="loginScreen" class="card">
+    <div
+        id="loginScreen"
+        class="card"
+    >
 
         <div class="card-title">
-            Welcome 💕
+            Welcome to Lottie's Little World 🩷
         </div>
 
         <div class="card-description">
-            Choose how you'd like to enter Lottie's Little World.
+            Watch Lottie the axolotl from wherever you are.
         </div>
 
 
@@ -626,7 +760,7 @@ video {
                 class="mode-button"
                 onclick="selectMode('viewer')"
             >
-                👀 Watch Lottie
+                🦎 Watch Lottie
             </button>
 
         </div>
@@ -634,7 +768,7 @@ video {
 
         <div class="password-area">
 
-            <label for="password">
+            <label>
                 Password
             </label>
 
@@ -643,21 +777,24 @@ video {
                 type="password"
                 placeholder="Enter password"
                 autocomplete="off"
-                onkeydown="if(event.key === 'Enter') login()"
+                onkeydown="
+                    if(event.key === 'Enter')
+                    login()
+                "
             >
 
             <button
                 class="primary-button"
                 onclick="login()"
             >
-                Enter Lottie's World 💗
+                Enter Lottie's World 🩷
             </button>
 
             <div
                 id="loginError"
                 class="error"
             >
-                Incorrect password. Please try again.
+                Incorrect password.
             </div>
 
         </div>
@@ -673,16 +810,20 @@ video {
 
             <div
                 id="status"
-                class="status offline"
+                class="status"
             >
 
-                <span class="status-dot"></span>
+                <span
+                    id="statusDot"
+                    class="status-dot"
+                ></span>
 
                 <span id="statusText">
                     Offline
                 </span>
 
             </div>
+
 
             <button
                 class="logout"
@@ -704,9 +845,9 @@ video {
                     id="video"
                     autoplay
                     playsinline
-                    muted
                     controls
                 ></video>
+
 
                 <div
                     id="videoMessage"
@@ -715,8 +856,8 @@ video {
 
                     <div class="video-message-content">
 
-                        <div class="video-message-icon">
-                            🐶
+                        <div class="axolotl-big">
+                            🦎🩷
                         </div>
 
                         <h2>
@@ -724,8 +865,9 @@ video {
                         </h2>
 
                         <p>
-                            The camera isn't currently streaming.
-                            Check back soon! 💗
+                            Lottie isn't live right now.
+                            When the camera starts,
+                            her little world will appear here.
                         </p>
 
                     </div>
@@ -749,16 +891,17 @@ video {
                         class="control-button active"
                         onclick="startCamera()"
                     >
-                        📹 Start Camera
+                        📹 Start Lottie's Camera
                     </button>
 
+
                     <button
-                        id="stopButton"
                         class="control-button danger"
                         onclick="stopCamera()"
                     >
                         ⏹ Stop Camera
                     </button>
+
 
                     <button
                         id="micButton"
@@ -773,14 +916,14 @@ video {
             </div>
 
 
-            <!-- INFORMATION -->
+            <!-- INFO -->
 
             <div class="info-grid">
 
                 <div class="info-box">
 
                     <div class="info-label">
-                        Status
+                        Live Status
                     </div>
 
                     <div
@@ -796,7 +939,7 @@ video {
                 <div class="info-box">
 
                     <div class="info-label">
-                        Viewers
+                        Family Viewers
                     </div>
 
                     <div
@@ -812,7 +955,7 @@ video {
                 <div class="info-box">
 
                     <div class="info-label">
-                        Camera
+                        Axolotl Camera
                     </div>
 
                     <div
@@ -832,8 +975,9 @@ video {
                 class="note"
                 style="display:none;"
             >
-                💗 Keep this page open on the Mac while you want family
-                members to watch Lottie.
+                🩷 Keep this page open on the Mac while Lottie is
+                streaming. Family members can then open the website
+                on their own phones, tablets or computers.
             </div>
 
         </div>
@@ -852,7 +996,7 @@ video {
 ============================================================ */
 
 const CAMERA_PEER_ID =
-    "lotties-little-world-camera-v2";
+    "lotties-little-world-camera-v3";
 
 const HOST_PASSWORD =
     "stemp";
@@ -861,23 +1005,54 @@ const VIEWER_PASSWORD =
     "stempniak";
 
 
+/*
+    STUN helps browsers discover a direct WebRTC route.
+
+    PeerJS documentation confirms its default configuration
+    uses Google's public STUN server.
+*/
+
+const RTC_CONFIG = {
+
+    iceServers: [
+
+        {
+            urls:
+                "stun:stun.l.google.com:19302"
+        }
+
+    ]
+
+};
+
+
 /* ============================================================
    VARIABLES
 ============================================================ */
 
-let selectedMode = "host";
+let selectedMode =
+    "host";
 
-let peer = null;
+let peer =
+    null;
 
-let localStream = null;
+let localStream =
+    null;
 
-let viewerCalls = new Map();
+let viewerConnections =
+    new Map();
 
-let viewerPeer = null;
+let viewerPeer =
+    null;
 
-let viewerCall = null;
+let viewerConnection =
+    null;
 
-let microphoneEnabled = true;
+let viewerRTC =
+    null;
+
+let microphoneEnabled =
+    true;
 
 
 /* ============================================================
@@ -885,75 +1060,114 @@ let microphoneEnabled = true;
 ============================================================ */
 
 const loginScreen =
-    document.getElementById("loginScreen");
+    document.getElementById(
+        "loginScreen"
+    );
 
 const dashboard =
-    document.getElementById("dashboard");
+    document.getElementById(
+        "dashboard"
+    );
 
 const passwordInput =
-    document.getElementById("password");
+    document.getElementById(
+        "password"
+    );
 
 const loginError =
-    document.getElementById("loginError");
+    document.getElementById(
+        "loginError"
+    );
 
 const video =
-    document.getElementById("video");
+    document.getElementById(
+        "video"
+    );
 
 const videoMessage =
-    document.getElementById("videoMessage");
+    document.getElementById(
+        "videoMessage"
+    );
 
 const status =
-    document.getElementById("status");
+    document.getElementById(
+        "status"
+    );
 
 const statusText =
-    document.getElementById("statusText");
+    document.getElementById(
+        "statusText"
+    );
 
 const infoStatus =
-    document.getElementById("infoStatus");
+    document.getElementById(
+        "infoStatus"
+    );
 
 const cameraInfo =
-    document.getElementById("cameraInfo");
+    document.getElementById(
+        "cameraInfo"
+    );
 
 const viewerCount =
-    document.getElementById("viewerCount");
+    document.getElementById(
+        "viewerCount"
+    );
 
 const hostControls =
-    document.getElementById("hostControls");
+    document.getElementById(
+        "hostControls"
+    );
 
 const hostNote =
-    document.getElementById("hostNote");
-
-const startButton =
-    document.getElementById("startButton");
-
-const stopButton =
-    document.getElementById("stopButton");
+    document.getElementById(
+        "hostNote"
+    );
 
 const micButton =
-    document.getElementById("micButton");
+    document.getElementById(
+        "micButton"
+    );
 
 
 /* ============================================================
-   MODE SELECTION
+   MODE
 ============================================================ */
 
 function selectMode(mode) {
 
-    selectedMode = mode;
+    selectedMode =
+        mode;
+
 
     document
-        .getElementById("hostModeButton")
+        .getElementById(
+            "hostModeButton"
+        )
         .classList
-        .toggle("active", mode === "host");
+        .toggle(
+            "active",
+            mode === "host"
+        );
+
 
     document
-        .getElementById("viewerModeButton")
+        .getElementById(
+            "viewerModeButton"
+        )
         .classList
-        .toggle("active", mode === "viewer");
+        .toggle(
+            "active",
+            mode === "viewer"
+        );
 
-    passwordInput.value = "";
 
-    loginError.style.display = "none";
+    passwordInput.value =
+        "";
+
+    loginError.style.display =
+        "none";
+
 }
 
 
@@ -961,12 +1175,14 @@ function selectMode(mode) {
    LOGIN
 ============================================================ */
 
-async function login() {
+function login() {
 
     const password =
         passwordInput.value.trim();
 
-    loginError.style.display = "none";
+
+    loginError.style.display =
+        "none";
 
 
     if (
@@ -974,7 +1190,9 @@ async function login() {
         password === HOST_PASSWORD
     ) {
 
-        enterDashboard("host");
+        enterDashboard(
+            "host"
+        );
 
         return;
     }
@@ -985,44 +1203,52 @@ async function login() {
         password === VIEWER_PASSWORD
     ) {
 
-        enterDashboard("viewer");
+        enterDashboard(
+            "viewer"
+        );
 
         return;
     }
 
 
-    loginError.style.display = "block";
+    loginError.style.display =
+        "block";
+
 }
 
 
 /* ============================================================
-   ENTER DASHBOARD
+   ENTER
 ============================================================ */
 
 function enterDashboard(mode) {
 
-    loginScreen.style.display = "none";
+    loginScreen.style.display =
+        "none";
 
-    dashboard.style.display = "block";
+    dashboard.style.display =
+        "block";
 
 
     if (mode === "host") {
 
-        hostControls.style.display = "block";
+        hostControls.style.display =
+            "block";
 
-        hostNote.style.display = "block";
-
-        video.muted = true;
+        hostNote.style.display =
+            "block";
 
         initializeHost();
 
-    } else {
+    }
 
-        hostControls.style.display = "none";
+    else {
 
-        hostNote.style.display = "none";
+        hostControls.style.display =
+            "none";
 
-        video.muted = false;
+        hostNote.style.display =
+            "none";
 
         initializeViewer();
 
@@ -1032,7 +1258,7 @@ function enterDashboard(mode) {
 
 
 /* ============================================================
-   HOST
+   HOST INITIALIZATION
 ============================================================ */
 
 function initializeHost() {
@@ -1042,8 +1268,10 @@ function initializeHost() {
         false
     );
 
+
     cameraInfo.textContent =
         "Connecting";
+
 
     createHostPeer();
 
@@ -1051,7 +1279,7 @@ function initializeHost() {
 
 
 /* ============================================================
-   CREATE HOST PEER
+   HOST PEER
 ============================================================ */
 
 function createHostPeer() {
@@ -1060,18 +1288,26 @@ function createHostPeer() {
 
         try {
             peer.destroy();
-        } catch (e) {}
+        }
 
-        peer = null;
+        catch (e) {}
+
     }
 
 
-    peer = new Peer(
-        CAMERA_PEER_ID,
-        {
-            debug: 1
-        }
-    );
+    /*
+        ICE configuration makes the WebRTC connection
+        more reliable between different networks.
+    */
+
+    peer =
+        new Peer(
+            CAMERA_PEER_ID,
+            {
+                debug: 2,
+                config: RTC_CONFIG
+            }
+        );
 
 
     peer.on(
@@ -1079,17 +1315,20 @@ function createHostPeer() {
         id => {
 
             console.log(
-                "Camera Peer connected:",
+                "Lottie camera online:",
                 id
             );
+
 
             setStatus(
                 "Offline",
                 false
             );
 
+
             infoStatus.textContent =
                 "Offline";
+
 
             cameraInfo.textContent =
                 "Ready";
@@ -1098,47 +1337,131 @@ function createHostPeer() {
     );
 
 
+    /*
+        A viewer first connects using PeerJS DATA.
+
+        The data connection is then used only for
+        WebRTC signaling.
+
+        The actual camera video never goes through PeerJS.
+    */
+
     peer.on(
-        "call",
-        call => {
+        "connection",
+        connection => {
 
             console.log(
-                "Incoming viewer:",
-                call.peer
+                "Viewer connected:",
+                connection.peer
             );
 
 
-            if (!localStream) {
-
-                console.log(
-                    "No camera stream yet."
-                );
-
-                call.close();
-
-                return;
-            }
-
-
-            call.answer(localStream);
-
-
-            viewerCalls.set(
-                call.peer,
-                call
+            viewerConnections.set(
+                connection.peer,
+                {
+                    connection: connection,
+                    rtc: null
+                }
             );
 
 
             updateViewerCount();
 
 
-            call.on(
+            connection.on(
+                "open",
+                () => {
+
+                    connection.send(
+                        {
+                            type: "camera-status",
+                            live:
+                                !!localStream
+                        }
+                    );
+
+                }
+            );
+
+
+            connection.on(
+                "data",
+                async data => {
+
+                    if (!data) {
+                        return;
+                    }
+
+
+                    if (
+                        data.type ===
+                        "viewer-ready"
+                    ) {
+
+                        await createViewerRTC(
+                            connection
+                        );
+
+                    }
+
+
+                    if (
+                        data.type ===
+                        "answer"
+                    ) {
+
+                        const viewer =
+                            viewerConnections.get(
+                                connection.peer
+                            );
+
+
+                        if (
+                            viewer &&
+                            viewer.rtc
+                        ) {
+
+                            await viewer.rtc
+                                .setRemoteDescription(
+                                    data.answer
+                                );
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+            connection.on(
                 "close",
                 () => {
 
-                    viewerCalls.delete(
-                        call.peer
+                    const viewer =
+                        viewerConnections.get(
+                            connection.peer
+                        );
+
+
+                    if (
+                        viewer &&
+                        viewer.rtc
+                    ) {
+
+                        try {
+                            viewer.rtc.close();
+                        }
+
+                        catch (e) {}
+
+                    }
+
+
+                    viewerConnections.delete(
+                        connection.peer
                     );
+
 
                     updateViewerCount();
 
@@ -1146,15 +1469,14 @@ function createHostPeer() {
             );
 
 
-            call.on(
+            connection.on(
                 "error",
-                () => {
+                error => {
 
-                    viewerCalls.delete(
-                        call.peer
+                    console.log(
+                        "Viewer connection error:",
+                        error
                     );
-
-                    updateViewerCount();
 
                 }
             );
@@ -1167,17 +1489,24 @@ function createHostPeer() {
         "disconnected",
         () => {
 
-            console.log(
-                "Host peer disconnected."
-            );
-
             setStatus(
                 "Disconnected",
                 false
             );
 
             setTimeout(
-                reconnectHost,
+                () => {
+
+                    if (
+                        peer &&
+                        peer.disconnected
+                    ) {
+
+                        peer.reconnect();
+
+                    }
+
+                },
                 3000
             );
 
@@ -1189,8 +1518,8 @@ function createHostPeer() {
         "error",
         error => {
 
-            console.log(
-                "Peer error:",
+            console.error(
+                "HOST PEER ERROR:",
                 error
             );
 
@@ -1200,27 +1529,19 @@ function createHostPeer() {
                 "unavailable-id"
             ) {
 
-                console.log(
-                    "Camera ID already exists. Retrying..."
-                );
-
                 try {
                     peer.destroy();
-                } catch (e) {}
+                }
+
+                catch (e) {}
+
 
                 setTimeout(
                     createHostPeer,
                     2000
                 );
 
-                return;
             }
-
-
-            setStatus(
-                "Connection error",
-                false
-            );
 
         }
     );
@@ -1229,31 +1550,201 @@ function createHostPeer() {
 
 
 /* ============================================================
-   RECONNECT HOST
+   CREATE WEBRTC CONNECTION FOR VIEWER
 ============================================================ */
 
-function reconnectHost() {
+async function createViewerRTC(
+    connection
+) {
 
-    if (!peer) {
+    if (!localStream) {
+
+        connection.send(
+            {
+                type:
+                    "camera-offline"
+            }
+        );
+
         return;
     }
 
-    if (peer.destroyed) {
 
-        createHostPeer();
+    const viewer =
+        viewerConnections.get(
+            connection.peer
+        );
 
+
+    if (!viewer) {
         return;
     }
 
-    try {
 
-        peer.reconnect();
+    /*
+        Create a dedicated WebRTC connection
+        for this individual viewer.
+    */
 
-    } catch (error) {
+    const rtc =
+        new RTCPeerConnection(
+            RTC_CONFIG
+        );
 
-        createHostPeer();
 
-    }
+    viewer.rtc =
+        rtc;
+
+
+    /*
+        Add Lottie's camera and microphone.
+    */
+
+    localStream
+        .getTracks()
+        .forEach(
+            track => {
+
+                rtc.addTrack(
+                    track,
+                    localStream
+                );
+
+            }
+        );
+
+
+    /*
+        Wait until ICE candidates have been
+        gathered before sending the offer.
+
+        This makes the simple one-file setup
+        easier and more reliable.
+    */
+
+    const offer =
+        await rtc.createOffer();
+
+
+    await rtc.setLocalDescription(
+        offer
+    );
+
+
+    await waitForIceGathering(
+        rtc
+    );
+
+
+    connection.send(
+        {
+            type:
+                "offer",
+
+            offer:
+                rtc.localDescription
+        }
+    );
+
+
+    rtc.onconnectionstatechange =
+        () => {
+
+            console.log(
+                "Viewer WebRTC state:",
+                connection.peer,
+                rtc.connectionState
+            );
+
+
+            if (
+                rtc.connectionState ===
+                "connected"
+            ) {
+
+                console.log(
+                    "🩷 Lottie is streaming to:",
+                    connection.peer
+                );
+
+            }
+
+
+            if (
+                rtc.connectionState ===
+                "failed"
+            ) {
+
+                console.log(
+                    "WebRTC connection failed:",
+                    connection.peer
+                );
+
+            }
+
+        };
+
+}
+
+
+/* ============================================================
+   WAIT FOR ICE
+============================================================ */
+
+function waitForIceGathering(
+    rtc
+) {
+
+    return new Promise(
+        resolve => {
+
+            if (
+                rtc.iceGatheringState ===
+                "complete"
+            ) {
+
+                resolve();
+
+                return;
+            }
+
+
+            function check() {
+
+                if (
+                    rtc.iceGatheringState ===
+                    "complete"
+                ) {
+
+                    rtc.removeEventListener(
+                        "icegatheringstatechange",
+                        check
+                    );
+
+                    resolve();
+
+                }
+
+            }
+
+
+            rtc.addEventListener(
+                "icegatheringstatechange",
+                check
+            );
+
+
+            /*
+                Safety timeout.
+            */
+
+            setTimeout(
+                resolve,
+                5000
+            );
+
+        }
+    );
 
 }
 
@@ -1266,49 +1757,60 @@ async function startCamera() {
 
     try {
 
-        startButton.disabled = true;
-
-
         localStream =
-            await navigator.mediaDevices.getUserMedia(
-                {
-                    video: {
-                        width: {
-                            ideal: 1280
+            await navigator.mediaDevices
+                .getUserMedia(
+                    {
+
+                        video: {
+
+                            width: {
+                                ideal: 1280
+                            },
+
+                            height: {
+                                ideal: 720
+                            },
+
+                            frameRate: {
+                                ideal: 30
+                            }
+
                         },
 
-                        height: {
-                            ideal: 720
-                        },
+                        audio: {
 
-                        frameRate: {
-                            ideal: 30
-                        },
+                            echoCancellation:
+                                true,
 
-                        facingMode: "user"
-                    },
+                            noiseSuppression:
+                                true,
 
-                    audio: {
-                        echoCancellation: true,
-                        noiseSuppression: true,
-                        autoGainControl: true
+                            autoGainControl:
+                                true
+
+                        }
+
                     }
-                }
-            );
+                );
 
 
         video.srcObject =
             localStream;
 
-        video.muted = true;
+
+        video.muted =
+            true;
 
 
-        await video.play().catch(
-            () => {}
-        );
+        await video.play()
+            .catch(
+                () => {}
+            );
 
 
-        microphoneEnabled = true;
+        microphoneEnabled =
+            true;
 
 
         updateMicrophoneButton();
@@ -1323,49 +1825,64 @@ async function startCamera() {
         infoStatus.textContent =
             "LIVE";
 
+
         cameraInfo.textContent =
             "Online";
+
 
         videoMessage.style.display =
             "none";
 
 
         /*
-            Existing viewers need to be called again
-            if the camera was restarted.
+            Tell all connected family devices
+            that Lottie is now live.
         */
 
         for (
-            const [viewerId, call]
-            of viewerCalls
+            const [
+                id,
+                viewer
+            ]
+            of viewerConnections
         ) {
 
             try {
-                call.close();
-            } catch (e) {}
 
-            viewerCalls.delete(
-                viewerId
-            );
+                viewer.connection.send(
+                    {
+                        type:
+                            "camera-status",
+
+                        live:
+                            true
+                    }
+                );
+
+            }
+
+            catch (e) {}
 
         }
 
 
-        updateViewerCount();
+        console.log(
+            "🩷 LOTTIE IS LIVE"
+        );
 
     }
 
     catch (error) {
 
         console.error(
-            "Camera error:",
+            "CAMERA ERROR:",
             error
         );
 
 
         alert(
-            "We couldn't access the camera or microphone.\n\n" +
-            "Make sure your browser has permission to use your camera and microphone."
+            "Camera access failed.\n\n" +
+            "On the Mac, allow this website to use your camera and microphone, then try again."
         );
 
 
@@ -1373,12 +1890,6 @@ async function startCamera() {
             "Camera unavailable",
             false
         );
-
-    }
-
-    finally {
-
-        startButton.disabled = false;
 
     }
 
@@ -1396,30 +1907,61 @@ function stopCamera() {
         localStream
             .getTracks()
             .forEach(
-                track => track.stop()
+                track =>
+                    track.stop()
             );
 
-        localStream = null;
+        localStream =
+            null;
 
     }
 
 
+    /*
+        Close every WebRTC viewer connection.
+    */
+
     for (
-        const [viewerId, call]
-        of viewerCalls
+        const [
+            id,
+            viewer
+        ]
+        of viewerConnections
     ) {
 
         try {
-            call.close();
-        } catch (e) {}
+
+            viewer.connection.send(
+                {
+                    type:
+                        "camera-status",
+
+                    live:
+                        false
+                }
+            );
+
+        }
+
+        catch (e) {}
+
+
+        if (viewer.rtc) {
+
+            try {
+                viewer.rtc.close();
+            }
+
+            catch (e) {}
+
+        }
 
     }
 
 
-    viewerCalls.clear();
+    video.srcObject =
+        null;
 
-
-    video.srcObject = null;
 
     videoMessage.style.display =
         "flex";
@@ -1434,11 +1976,9 @@ function stopCamera() {
     infoStatus.textContent =
         "Offline";
 
+
     cameraInfo.textContent =
         "Offline";
-
-
-    updateViewerCount();
 
 }
 
@@ -1454,11 +1994,12 @@ function toggleMicrophone() {
     }
 
 
-    const audioTracks =
-        localStream.getAudioTracks();
+    const tracks =
+        localStream
+            .getAudioTracks();
 
 
-    if (!audioTracks.length) {
+    if (!tracks.length) {
         return;
     }
 
@@ -1467,10 +2008,12 @@ function toggleMicrophone() {
         !microphoneEnabled;
 
 
-    audioTracks.forEach(
+    tracks.forEach(
         track => {
+
             track.enabled =
                 microphoneEnabled;
+
         }
     );
 
@@ -1486,7 +2029,9 @@ function toggleMicrophone() {
 
 function updateMicrophoneButton() {
 
-    if (microphoneEnabled) {
+    if (
+        microphoneEnabled
+    ) {
 
         micButton.textContent =
             "🎤 Microphone On";
@@ -1495,7 +2040,9 @@ function updateMicrophoneButton() {
             "active"
         );
 
-    } else {
+    }
+
+    else {
 
         micButton.textContent =
             "🔇 Microphone Off";
@@ -1510,7 +2057,7 @@ function updateMicrophoneButton() {
 
 
 /* ============================================================
-   VIEWER
+   VIEWER INITIALIZATION
 ============================================================ */
 
 function initializeViewer() {
@@ -1520,8 +2067,10 @@ function initializeViewer() {
         false
     );
 
+
     infoStatus.textContent =
         "Connecting";
+
 
     cameraInfo.textContent =
         "Checking";
@@ -1537,24 +2086,10 @@ function initializeViewer() {
 
 
 /* ============================================================
-   CREATE VIEWER PEER
+   VIEWER PEER
 ============================================================ */
 
 function createViewerPeer() {
-
-    if (viewerPeer) {
-
-        try {
-            viewerPeer.destroy();
-        } catch (e) {}
-
-        viewerPeer = null;
-    }
-
-
-    /*
-        Every viewer gets their own random PeerJS ID.
-    */
 
     const viewerId =
         "lottie-viewer-" +
@@ -1567,7 +2102,8 @@ function createViewerPeer() {
         new Peer(
             viewerId,
             {
-                debug: 1
+                debug: 2,
+                config: RTC_CONFIG
             }
         );
 
@@ -1577,116 +2113,12 @@ function createViewerPeer() {
         () => {
 
             console.log(
-                "Viewer connected to PeerJS."
+                "Viewer Peer ready:",
+                viewerPeer.id
             );
 
 
-            setStatus(
-                "Looking for Lottie...",
-                false
-            );
-
-
-            /*
-                Give the PeerJS call an empty MediaStream.
-
-                The camera sends the actual video/audio
-                back when it answers.
-            */
-
-            const emptyStream =
-                new MediaStream();
-
-
-            viewerCall =
-                viewerPeer.call(
-                    CAMERA_PEER_ID,
-                    emptyStream
-                );
-
-
-            if (!viewerCall) {
-
-                showOffline();
-
-                return;
-            }
-
-
-            viewerCall.on(
-                "stream",
-                remoteStream => {
-
-                    console.log(
-                        "Received Lottie stream!"
-                    );
-
-
-                    video.srcObject =
-                        remoteStream;
-
-                    video.muted = false;
-
-
-                    videoMessage.style.display =
-                        "none";
-
-
-                    setStatus(
-                        "LIVE",
-                        true
-                    );
-
-
-                    infoStatus.textContent =
-                        "LIVE";
-
-                    cameraInfo.textContent =
-                        "Online";
-
-
-                    video.play().catch(
-                        error => {
-
-                            console.log(
-                                "Autoplay blocked:",
-                                error
-                            );
-
-                        }
-                    );
-
-                }
-            );
-
-
-            viewerCall.on(
-                "close",
-                () => {
-
-                    console.log(
-                        "Camera call closed."
-                    );
-
-                    showOffline();
-
-                }
-            );
-
-
-            viewerCall.on(
-                "error",
-                error => {
-
-                    console.log(
-                        "Viewer call error:",
-                        error
-                    );
-
-                    showOffline();
-
-                }
-            );
+            connectViewerToCamera();
 
         }
     );
@@ -1696,8 +2128,8 @@ function createViewerPeer() {
         "error",
         error => {
 
-            console.log(
-                "Viewer Peer error:",
+            console.error(
+                "VIEWER PEER ERROR:",
                 error
             );
 
@@ -1709,26 +2141,23 @@ function createViewerPeer() {
 
                 showOffline();
 
+
                 setTimeout(
-                    retryViewer,
+                    () => {
+
+                        if (
+                            viewerPeer &&
+                            !viewerPeer.destroyed
+                        ) {
+
+                            connectViewerToCamera();
+
+                        }
+
+                    },
                     3000
                 );
 
-                return;
-            }
-
-
-            if (
-                error.type ===
-                "network"
-            ) {
-
-                setStatus(
-                    "Network error",
-                    false
-                );
-
-                return;
             }
 
         }
@@ -1739,18 +2168,9 @@ function createViewerPeer() {
         "disconnected",
         () => {
 
-            console.log(
-                "Viewer disconnected."
-            );
-
             setStatus(
                 "Disconnected",
                 false
-            );
-
-            setTimeout(
-                retryViewer,
-                3000
             );
 
         }
@@ -1760,29 +2180,376 @@ function createViewerPeer() {
 
 
 /* ============================================================
-   RETRY VIEWER
+   CONNECT VIEWER TO CAMERA
 ============================================================ */
 
-function retryViewer() {
+function connectViewerToCamera() {
 
-    if (!dashboard.style.display) {
-        return;
-    }
+    console.log(
+        "Connecting viewer to Lottie's camera..."
+    );
 
 
-    if (
-        viewerPeer &&
-        !viewerPeer.destroyed
-    ) {
+    viewerConnection =
+        viewerPeer.connect(
+            CAMERA_PEER_ID,
+            {
+                reliable: true
+            }
+        );
+
+
+    viewerConnection.on(
+        "open",
+        () => {
+
+            console.log(
+                "Connected to Lottie camera."
+            );
+
+
+            setStatus(
+                "Camera found...",
+                false
+            );
+
+
+            /*
+                Tell the Mac that this viewer
+                wants to receive the stream.
+            */
+
+            viewerConnection.send(
+                {
+                    type:
+                        "viewer-ready"
+                }
+            );
+
+        }
+    );
+
+
+    viewerConnection.on(
+        "data",
+        async data => {
+
+            if (!data) {
+                return;
+            }
+
+
+            console.log(
+                "Camera message:",
+                data
+            );
+
+
+            if (
+                data.type ===
+                "camera-offline"
+            ) {
+
+                showOffline();
+
+                return;
+            }
+
+
+            if (
+                data.type ===
+                "camera-status"
+            ) {
+
+                if (data.live) {
+
+                    setStatus(
+                        "Connecting to Lottie...",
+                        false
+                    );
+
+                }
+
+                else {
+
+                    showOffline();
+
+                }
+
+                return;
+            }
+
+
+            if (
+                data.type ===
+                "offer"
+            ) {
+
+                await receiveOffer(
+                    data.offer
+                );
+
+            }
+
+        }
+    );
+
+
+    viewerConnection.on(
+        "close",
+        () => {
+
+            console.log(
+                "Camera connection closed."
+            );
+
+
+            showOffline();
+
+
+            setTimeout(
+                () => {
+
+                    if (
+                        viewerPeer &&
+                        !viewerPeer.destroyed
+                    ) {
+
+                        connectViewerToCamera();
+
+                    }
+
+                },
+                3000
+            );
+
+        }
+    );
+
+
+    viewerConnection.on(
+        "error",
+        error => {
+
+            console.error(
+                "Viewer connection error:",
+                error
+            );
+
+            showOffline();
+
+        }
+    );
+
+}
+
+
+/* ============================================================
+   RECEIVE OFFER
+============================================================ */
+
+async function receiveOffer(
+    offer
+) {
+
+    console.log(
+        "Received WebRTC offer."
+    );
+
+
+    if (viewerRTC) {
 
         try {
-            viewerPeer.destroy();
-        } catch (e) {}
+            viewerRTC.close();
+        }
+
+        catch (e) {}
 
     }
 
 
-    createViewerPeer();
+    viewerRTC =
+        new RTCPeerConnection(
+            RTC_CONFIG
+        );
+
+
+    /*
+        IMPORTANT:
+
+        The viewer only receives.
+
+        No camera or microphone permission
+        is requested on the viewer device.
+    */
+
+    viewerRTC.addTransceiver(
+        "video",
+        {
+            direction:
+                "recvonly"
+        }
+    );
+
+
+    viewerRTC.addTransceiver(
+        "audio",
+        {
+            direction:
+                "recvonly"
+        }
+    );
+
+
+    viewerRTC.ontrack =
+        event => {
+
+            console.log(
+                "🩷 RECEIVED LOTTIE STREAM!"
+            );
+
+
+            const stream =
+                event.streams[0];
+
+
+            if (!stream) {
+                return;
+            }
+
+
+            video.srcObject =
+                stream;
+
+
+            video.muted =
+                false;
+
+
+            videoMessage.style.display =
+                "none";
+
+
+            setStatus(
+                "LIVE",
+                true
+            );
+
+
+            infoStatus.textContent =
+                "LIVE";
+
+
+            cameraInfo.textContent =
+                "Online";
+
+
+            video.play()
+                .then(
+                    () => {
+
+                        console.log(
+                            "Lottie video playing."
+                        );
+
+                    }
+                )
+                .catch(
+                    error => {
+
+                        console.log(
+                            "Browser blocked autoplay:",
+                            error
+                        );
+
+                        /*
+                            Some mobile browsers require
+                            the user to tap the video.
+                        */
+
+                    }
+                );
+
+        };
+
+
+    viewerRTC.onconnectionstatechange =
+        () => {
+
+            console.log(
+                "Viewer WebRTC:",
+                viewerRTC.connectionState
+            );
+
+
+            if (
+                viewerRTC.connectionState ===
+                "connected"
+            ) {
+
+                setStatus(
+                    "LIVE",
+                    true
+                );
+
+            }
+
+
+            if (
+                viewerRTC.connectionState ===
+                "failed"
+            ) {
+
+                showOffline();
+
+            }
+
+
+            if (
+                viewerRTC.connectionState ===
+                "disconnected"
+            ) {
+
+                showOffline();
+
+            }
+
+        };
+
+
+    await viewerRTC.setRemoteDescription(
+        offer
+    );
+
+
+    const answer =
+        await viewerRTC.createAnswer();
+
+
+    await viewerRTC.setLocalDescription(
+        answer
+    );
+
+
+    await waitForIceGathering(
+        viewerRTC
+    );
+
+
+    viewerConnection.send(
+        {
+            type:
+                "answer",
+
+            answer:
+                viewerRTC.localDescription
+        }
+    );
+
+
+    console.log(
+        "WebRTC answer sent."
+    );
 
 }
 
@@ -1793,7 +2560,8 @@ function retryViewer() {
 
 function showOffline() {
 
-    video.srcObject = null;
+    video.srcObject =
+        null;
 
 
     videoMessage.style.display =
@@ -1808,6 +2576,7 @@ function showOffline() {
 
     infoStatus.textContent =
         "Offline";
+
 
     cameraInfo.textContent =
         "Offline";
@@ -1828,25 +2597,10 @@ function setStatus(
         text;
 
 
-    status.classList.remove(
+    status.classList.toggle(
         "live",
-        "offline"
+        live
     );
-
-
-    if (live) {
-
-        status.classList.add(
-            "live"
-        );
-
-    } else {
-
-        status.classList.add(
-            "offline"
-        );
-
-    }
 
 }
 
@@ -1858,7 +2612,7 @@ function setStatus(
 function updateViewerCount() {
 
     viewerCount.textContent =
-        viewerCalls.size;
+        viewerConnections.size;
 
 }
 
@@ -1872,13 +2626,30 @@ function logout() {
     stopCamera();
 
 
-    if (viewerCall) {
+    if (viewerRTC) {
 
         try {
-            viewerCall.close();
-        } catch (e) {}
+            viewerRTC.close();
+        }
 
-        viewerCall = null;
+        catch (e) {}
+
+        viewerRTC =
+            null;
+
+    }
+
+
+    if (viewerConnection) {
+
+        try {
+            viewerConnection.close();
+        }
+
+        catch (e) {}
+
+        viewerConnection =
+            null;
 
     }
 
@@ -1887,9 +2658,12 @@ function logout() {
 
         try {
             viewerPeer.destroy();
-        } catch (e) {}
+        }
 
-        viewerPeer = null;
+        catch (e) {}
+
+        viewerPeer =
+            null;
 
     }
 
@@ -1898,15 +2672,22 @@ function logout() {
 
         try {
             peer.destroy();
-        } catch (e) {}
+        }
 
-        peer = null;
+        catch (e) {}
+
+        peer =
+            null;
 
     }
 
 
+    viewerConnections.clear();
+
+
     dashboard.style.display =
         "none";
+
 
     loginScreen.style.display =
         "block";
@@ -1914,9 +2695,6 @@ function logout() {
 
     passwordInput.value =
         "";
-
-    loginError.style.display =
-        "none";
 
 
     video.srcObject =
@@ -1931,10 +2709,12 @@ function logout() {
 
 
 /* ============================================================
-   INITIAL STATE
+   START
 ============================================================ */
 
-selectMode("host");
+selectMode(
+    "host"
+);
 
 </script>
 

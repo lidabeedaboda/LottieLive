@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lotties Little World</title>
+
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #1683ff;
+    --blue-dark: #0865cc;
+    --bg: #f5f9ff;
+    --card: rgba(255,255,255,0.82);
+    --text: #152238;
+    --muted: #718096;
+    --border: rgba(30,100,180,0.12);
+    --green: #19b96b;
+    --red: #ef4444;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(circle at 10% 10%, #dff2ff 0, transparent 30%),
+        radial-gradient(circle at 90% 90%, #dcecff 0, transparent 30%),
+        var(--bg);
+
+    color: var(--text);
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Header */
+
+header {
+    width: 100%;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 21px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+    background: #1683ff;
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 21px;
+    box-shadow: 0 8px 22px rgba(22,131,255,.22);
+}
+
+.live-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 13px;
+    border-radius: 999px;
+    background: white;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.live-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #aeb8c5;
+}
+
+.live-pill.live .live-dot {
+    background: #18c76f;
+    box-shadow: 0 0 0 5px rgba(24,199,111,.12);
+}
+
+/* Main */
+
+main {
+    width: min(1050px, calc(100% - 30px));
+    margin: 20px auto 60px;
+}
+
+.hero {
+    text-align: center;
+    margin: 20px 0 28px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(32px, 6vw, 56px);
+    letter-spacing: -2px;
+}
+
+.hero p {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+/* Mode selector */
+
+.mode-selector {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.mode-btn {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.7);
+    color: var(--text);
+    padding: 11px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.mode-btn:hover {
+    transform: translateY(-1px);
+}
+
+.mode-btn.active {
+    background: var(--blue);
+    color: white;
+    border-color: var(--blue);
+    box-shadow: 0 7px 18px rgba(22,131,255,.2);
+}
+
+/* Cards */
+
+.card {
+    background: var(--card);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: 0 18px 60px rgba(30,70,110,.08);
+    padding: 22px;
+}
+
+/* Video */
+
+.video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #09121d;
+    border-radius: 17px;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    background: #09121d;
+}
+
+.video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
+
+.video-placeholder .paw {
+    font-size: 60px;
+    margin-bottom: 12px;
+}
+
+.video-placeholder h2 {
+    margin: 0 0 7px;
+}
+
+.video-placeholder p {
+    margin: 0;
+    color: #aeb9c7;
+}
+
+/* Live badge */
+
+.video-live {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    padding: 7px 11px;
+    border-radius: 9px;
+    background: rgba(0,0,0,.68);
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.video-live span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ff3045;
+}
+
+/* Viewer count */
+
+.viewer-count {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 7px 11px;
+    border-radius: 9px;
+    background: rgba(0,0,0,.68);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Controls */
+
+.controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+button.primary {
+    background: var(--blue);
+    color: white;
+    border: 0;
+    padding: 13px 18px;
+    border-radius: 12px;
+    font-weight: 800;
+    box-shadow: 0 7px 18px rgba(22,131,255,.2);
+}
+
+button.primary:hover {
+    background: var(--blue-dark);
+}
+
+button.secondary {
+    background: white;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 13px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+button.danger {
+    background: #fff0f0;
+    color: #d93232;
+    border: 1px solid #ffd4d4;
+    padding: 13px 18px;
+    border-radius: 12px;
+    font-weight: 800;
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* Forms */
+
+label {
+    display: block;
+    font-weight: 800;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.input-row {
+    display: flex;
+    gap: 9px;
+}
+
+input,
+select {
+    width: 100%;
+    border: 1px solid #dce5ef;
+    background: white;
+    border-radius: 12px;
+    padding: 13px 14px;
+    outline: none;
+    color: var(--text);
+}
+
+input:focus,
+select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(22,131,255,.09);
+}
+
+/* Information */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.info-box {
+    background: rgba(255,255,255,.65);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.info-box small {
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.info-box strong {
+    font-size: 15px;
+}
+
+/* Status */
+
+.status {
+    margin-top: 14px;
+    border-radius: 13px;
+    padding: 12px 14px;
+    background: #edf6ff;
+    color: #216399;
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.status.success {
+    background: #eafaf2;
+    color: #137444;
+}
+
+.status.error {
+    background: #fff0f0;
+    color: #b42323;
+}
+
+/* Instructions */
+
+.instructions {
+    margin-top: 15px;
+}
+
+.instructions h3 {
+    margin: 0 0 10px;
+}
+
+.instructions ol {
+    margin: 0;
+    padding-left: 21px;
+    color: #526173;
+    line-height: 1.8;
+}
+
+/* Viewer layout */
+
+.viewer-heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.viewer-heading h2 {
+    margin: 0 0 7px;
+}
+
+.viewer-heading p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    color: #8a98a8;
+    font-size: 12px;
+    padding: 15px;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+    header {
+        padding: 15px;
+    }
+
+    main {
+        width: calc(100% - 20px);
+        margin-top: 10px;
+    }
+
+    .card {
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .input-row {
+        flex-direction: column;
+    }
+
+    .controls button {
+        width: 100%;
+    }
+
+    .mode-selector {
+        width: 100%;
+    }
+
+    .mode-btn {
+        flex: 1;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <div class="logo-icon">🐾</div>
+        <span>Pet Cam</span>
+    </div>
+
+```
+<div class="live-pill" id="headerLive">
+    <span class="live-dot"></span>
+    <span id="headerLiveText">Offline</span>
+</div>
+```
+
+</header>
+
+<main>
+
+```
+<section class="hero">
+    <h1>🐶 Pet Cam</h1>
+    <p>Keep an eye on your favourite furry friend.</p>
+</section>
+
+<div class="mode-selector">
+    <button class="mode-btn active" id="cameraModeBtn">
+        🎥 Camera
+    </button>
+
+    <button class="mode-btn" id="viewerModeBtn">
+        👀 Watch
+    </button>
+</div>
+
+<!-- CAMERA -->
+
+<section id="cameraSection">
+
+    <div class="card">
+
+        <div class="video-container">
+
+            <video
+                id="cameraVideo"
+                autoplay
+                muted
+                playsinline>
+            </video>
+
+            <div class="video-placeholder" id="cameraPlaceholder">
+                <div>
+                    <div class="paw">🐾</div>
+                    <h2>Camera Offline</h2>
+                    <p>Connect your webcam and start the live stream.</p>
+                </div>
+            </div>
+
+            <div class="video-live hidden" id="cameraLiveBadge">
+                <span></span>
+                LIVE
+            </div>
+
+            <div class="viewer-count hidden" id="cameraViewerCount">
+                👀 0 watching
+            </div>
+
+        </div>
+
+        <div class="controls">
+
+            <button
+                class="primary"
+                id="startCameraBtn">
+                🎥 Start Camera
+            </button>
+
+            <button
+                class="danger"
+                id="stopCameraBtn"
+                disabled>
+                ■ Stop Live
+            </button>
+
+        </div>
+
+        <div class="status" id="cameraStatus">
+            Camera is currently offline.
+        </div>
+
+    </div>
+
+    <div class="card instructions">
+
+        <h3>🔑 Your Family Room</h3>
+
+        <label for="roomCodeCamera">
+            Room Code
+        </label>
+
+        <div class="input-row">
+
+            <input
+                id="roomCodeCamera"
+                type="text"
+                maxlength="30"
+                placeholder="e.g. MILO2026">
+
+            <button
+                class="secondary"
+                id="generateRoomBtn">
+                Generate
+            </button>
+
+        </div>
+
+        <div class="info-grid">
+
+            <div class="info-box">
+                <small>Status</small>
+                <strong id="cameraConnectionStatus">
+                    Not connected
+                </strong>
+            </div>
+
+            <div class="info-box">
+                <small>Viewers</small>
+                <strong id="viewerNumber">
+                    0
+                </strong>
+            </div>
+
+            <div class="info-box">
+                <small>Room</small>
+                <strong id="roomDisplay">
+                    —
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card instructions">
+
+        <h3>📖 How to use the camera</h3>
+
+        <ol>
+            <li>Plug your USB webcam into your Mac.</li>
+            <li>Enter a family room code.</li>
+            <li>Click <b>Start Camera</b>.</li>
+            <li>Allow camera and microphone access.</li>
+            <li>Give your family the same room code.</li>
+            <li>They open this website and select <b>Watch</b>.</li>
+        </ol>
+
+    </div>
+
+</section>
+
+
+<!-- VIEWER -->
+
+<section id="viewerSection" class="hidden">
+
+    <div class="card">
+
+        <div class="viewer-heading">
+            <h2>👀 Watch Pet Cam</h2>
+            <p>Enter your family's room code to connect.</p>
+        </div>
+
+        <label for="roomCodeViewer">
+            Family Room Code
+        </label>
+
+        <div class="input-row">
+
+            <input
+                id="roomCodeViewer"
+                type="text"
+                maxlength="30"
+                placeholder="Enter room code">
+
+            <button
+                class="primary"
+                id="connectViewerBtn">
+                Watch Live
+            </button>
+
+        </div>
+
+        <div class="status" id="viewerStatus">
+            Enter the room code to connect.
+        </div>
+
+    </div>
+
+    <div class="card" style="margin-top:15px;">
+
+        <div class="video-container">
+
+            <video
+                id="viewerVideo"
+                autoplay
+                playsinline
+                controls>
+            </video>
+
+            <div class="video-placeholder" id="viewerPlaceholder">
+                <div>
+                    <div class="paw">🐾</div>
+                    <h2>Waiting for Pet Cam</h2>
+                    <p>The camera will appear here when it is live.</p>
+                </div>
+            </div>
+
+            <div class="video-live hidden" id="viewerLiveBadge">
+                <span></span>
+                LIVE
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card instructions" style="margin-top:15px;">
+
+        <h3>ℹ️ Watching</h3>
+
+        <p style="color:#657386;line-height:1.7;margin-bottom:0;">
+            Keep this page open while watching. If the camera goes
+            offline, the video will stop automatically.
+        </p>
+
+    </div>
+
+</section>
+```
+
+</main>
+
+<footer>
+    Pet Cam • Private family viewing
+</footer>
+
+<script>
+/* ============================================================
+   PET CAM
+   GitHub + Vercel + PeerJS + WebRTC
+   ============================================================ */
+
+let peer = null;
+let localStream = null;
+
+let currentRoom = null;
+let isBroadcasting = false;
+
+let activeCalls = new Map();
+
+
+/* ------------------------------------------------------------
+   ELEMENTS
+------------------------------------------------------------ */
+
+const cameraModeBtn = document.getElementById("cameraModeBtn");
+const viewerModeBtn = document.getElementById("viewerModeBtn");
+
+const cameraSection = document.getElementById("cameraSection");
+const viewerSection = document.getElementById("viewerSection");
+
+const cameraVideo = document.getElementById("cameraVideo");
+const viewerVideo = document.getElementById("viewerVideo");
+
+const cameraPlaceholder =
+    document.getElementById("cameraPlaceholder");
+
+const viewerPlaceholder =
+    document.getElementById("viewerPlaceholder");
+
+const startCameraBtn =
+    document.getElementById("startCameraBtn");
+
+const stopCameraBtn =
+    document.getElementById("stopCameraBtn");
+
+const roomCodeCamera =
+    document.getElementById("roomCodeCamera");
+
+const roomCodeViewer =
+    document.getElementById("roomCodeViewer");
+
+const generateRoomBtn =
+    document.getElementById("generateRoomBtn");
+
+const connectViewerBtn =
+    document.getElementById("connectViewerBtn");
+
+const cameraStatus =
+    document.getElementById("cameraStatus");
+
+const viewerStatus =
+    document.getElementById("viewerStatus");
+
+const cameraLiveBadge =
+    document.getElementById("cameraLiveBadge");
+
+const viewerLiveBadge =
+    document.getElementById("viewerLiveBadge");
+
+const cameraViewerCount =
+    document.getElementById("cameraViewerCount");
+
+const viewerNumber =
+    document.getElementById("viewerNumber");
+
+const cameraConnectionStatus =
+    document.getElementById("cameraConnectionStatus");
+
+const roomDisplay =
+    document.getElementById("roomDisplay");
+
+const headerLive =
+    document.getElementById("headerLive");
+
+const headerLiveText =
+    document.getElementById("headerLiveText");
+
+
+/* ------------------------------------------------------------
+   MODE SWITCHING
+------------------------------------------------------------ */
+
+cameraModeBtn.addEventListener("click", () => {
+
+    cameraModeBtn.classList.add("active");
+    viewerModeBtn.classList.remove("active");
+
+    cameraSection.classList.remove("hidden");
+    viewerSection.classList.add("hidden");
+
+});
+
+
+viewerModeBtn.addEventListener("click", () => {
+
+    viewerModeBtn.classList.add("active");
+    cameraModeBtn.classList.remove("active");
+
+    viewerSection.classList.remove("hidden");
+    cameraSection.classList.add("hidden");
+
+});
+
+
+/* ------------------------------------------------------------
+   ROOM CODE
+------------------------------------------------------------ */
+
+function cleanRoomCode(code) {
+
+    return code
+        .trim()
+        .toUpperCase()
+        .replace(/[^A-Z0-9-]/g, "");
+
+}
+
+
+function generateRoomCode() {
+
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    let result = "";
+
+    for (let i = 0; i < 8; i++) {
+        result += chars[
+            Math.floor(Math.random() * chars.length)
+        ];
+    }
+
+    return result;
+
+}
+
+
+generateRoomBtn.addEventListener("click", () => {
+
+    const code = generateRoomCode();
+
+    roomCodeCamera.value = code;
+    roomDisplay.textContent = code;
+
+});
+
+
+roomCodeCamera.addEventListener("input", () => {
+
+    roomCodeCamera.value =
+        cleanRoomCode(roomCodeCamera.value);
+
+    roomDisplay.textContent =
+        roomCodeCamera.value || "—";
+
+});
+
+
+/* ------------------------------------------------------------
+   PEER ID
+------------------------------------------------------------ */
+
+function getPeerId(roomCode) {
+
+    /*
+       Room code becomes the PeerJS ID.
+
+       Prefix keeps this separate from other PeerJS apps.
+    */
+
+    return "petcam-" + roomCode.toLowerCase();
+
+}
+
+
+/* ------------------------------------------------------------
+   CAMERA START
+------------------------------------------------------------ */
+
+startCameraBtn.addEventListener("click", async () => {
+
+    const room = cleanRoomCode(roomCodeCamera.value);
+
+    if (!room) {
+
+        showCameraStatus(
+            "Please enter a room code first.",
+            "error"
+        );
+
+        roomCodeCamera.focus();
+
+        return;
+
+    }
+
+    if (room.length < 4) {
+
+        showCameraStatus(
+            "Your room code needs at least 4 characters.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        startCameraBtn.disabled = true;
+
+        showCameraStatus(
+            "Requesting access to your webcam...",
+            ""
+        );
+
+
+        /* Get USB webcam + microphone */
+
+        localStream =
+            await navigator.mediaDevices.getUserMedia({
+
+                video: {
+                    width: {
+                        ideal: 1920
+                    },
+                    height: {
+                        ideal: 1080
+                    },
+                    frameRate: {
+                        ideal: 30
+                    }
+                },
+
+                audio: true
+
+            });
+
+
+        cameraVideo.srcObject = localStream;
+
+        cameraPlaceholder.classList.add("hidden");
+
+
+        showCameraStatus(
+            "Camera connected. Connecting to the family room...",
+            ""
+        );
+
+
+        currentRoom = room;
+
+
+        /* Create PeerJS peer */
+
+        peer = new Peer(
+            getPeerId(room),
+            {
+                debug: 1
+            }
+        );
+
+
+        peer.on("open", (id) => {
+
+            isBroadcasting = true;
+
+            startCameraBtn.disabled = true;
+            stopCameraBtn.disabled = false;
+
+            cameraLiveBadge.classList.remove("hidden");
+            cameraViewerCount.classList.remove("hidden");
+
+            headerLive.classList.add("live");
+            headerLiveText.textContent = "LIVE";
+
+            cameraConnectionStatus.textContent =
+                "Broadcasting";
+
+            roomDisplay.textContent =
+                room;
+
+            showCameraStatus(
+                "🔴 Your Pet Cam is LIVE. Family members can now watch.",
+                "success"
+            );
+
+        });
+
+
+        /*
+           Every viewer calls the camera peer.
+           Answer every call with our webcam stream.
+        */
+
+        peer.on("call", (call) => {
+
+            if (!localStream) {
+                return;
+            }
+
+
+            call.answer(localStream);
+
+            activeCalls.set(call.peer, call);
+
+            updateViewerCount();
+
+
+            call.on("close", () => {
+
+                activeCalls.delete(call.peer);
+
+                updateViewerCount();
+
+            });
+
+
+            call.on("error", () => {
+
+                activeCalls.delete(call.peer);
+
+                updateViewerCount();
+
+            });
+
+        });
+
+
+        peer.on("error", (error) => {
+
+            console.error("PeerJS error:", error);
+
+
+            if (error.type === "unavailable-id") {
+
+                showCameraStatus(
+                    "This room is already being used. Choose another room code.",
+                    "error"
+                );
+
+            } else {
+
+                showCameraStatus(
+                    "Connection error: " +
+                    (error.message || error.type),
+                    "error"
+                );
+
+            }
+
+
+            stopCamera();
+
+        });
+
+
+        peer.on("disconnected", () => {
+
+            cameraConnectionStatus.textContent =
+                "Disconnected";
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        startCameraBtn.disabled = false;
+
+        if (error.name === "NotAllowedError") {
+
+            showCameraStatus(
+                "Camera permission was denied. Allow camera and microphone access in your browser.",
+                "error"
+            );
+
+        } else if (error.name === "NotFoundError") {
+
+            showCameraStatus(
+                "No webcam was found. Make sure your USB webcam is plugged in.",
+                "error"
+            );
+
+        } else {
+
+            showCameraStatus(
+                "Could not start the camera: " +
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+
+});
+
+
+/* ------------------------------------------------------------
+   STOP CAMERA
+------------------------------------------------------------ */
+
+stopCameraBtn.addEventListener("click", () => {
+
+    stopCamera();
+
+});
+
+
+function stopCamera() {
+
+    isBroadcasting = false;
+
+
+    activeCalls.forEach(call => {
+
+        try {
+            call.close();
+        } catch (_) {}
+
+    });
+
+    activeCalls.clear();
+
+
+    if (localStream) {
+
+        localStream.getTracks().forEach(track => {
+            track.stop();
+        });
+
+        localStream = null;
+
+    }
+
+
+    cameraVideo.srcObject = null;
+
+
+    if (peer) {
+
+        try {
+            peer.destroy();
+        } catch (_) {}
+
+        peer = null;
+
+    }
+
+
+    startCameraBtn.disabled = false;
+    stopCameraBtn.disabled = true;
+
+    cameraPlaceholder.classList.remove("hidden");
+    cameraLiveBadge.classList.add("hidden");
+    cameraViewerCount.classList.add("hidden");
+
+    headerLive.classList.remove("live");
+    headerLiveText.textContent = "Offline";
+
+    cameraConnectionStatus.textContent =
+        "Not connected";
+
+    viewerNumber.textContent =
+        "0";
+
+    showCameraStatus(
+        "Camera is currently offline.",
+        ""
+    );
+
+}
+
+
+/* ------------------------------------------------------------
+   VIEWER COUNT
+------------------------------------------------------------ */
+
+function updateViewerCount() {
+
+    const count = activeCalls.size;
+
+    viewerNumber.textContent =
+        count;
+
+    cameraViewerCount.textContent =
+        "👀 " +
+        count +
+        " watching";
+
+}
+
+
+/* ------------------------------------------------------------
+   VIEWER CONNECT
+------------------------------------------------------------ */
+
+connectViewerBtn.addEventListener("click", async () => {
+
+    const room =
+        cleanRoomCode(roomCodeViewer.value);
+
+
+    if (!room) {
+
+        showViewerStatus(
+            "Enter your family's room code.",
+            "error"
+        );
+
+        roomCodeViewer.focus();
+
+        return;
+
+    }
+
+
+    try {
+
+        connectViewerBtn.disabled = true;
+
+        showViewerStatus(
+            "Connecting to Pet Cam...",
+            ""
+        );
+
+
+        /*
+           Viewer needs a PeerJS identity.
+           Generate a random ID.
+        */
+
+        const viewerId =
+            "viewer-" +
+            Math.random()
+                .toString(36)
+                .substring(2, 12);
+
+
+        const viewerPeer =
+            new Peer(viewerId, {
+                debug: 1
+            });
+
+
+        viewerPeer.on("open", () => {
+
+            const cameraPeerId =
+                getPeerId(room);
+
+
+            /*
+               Viewer does not send camera/microphone.
+               It simply calls the broadcaster.
+            */
+
+            const call =
+                viewerPeer.call(
+                    cameraPeerId,
+                    new MediaStream()
+                );
+
+
+            if (!call) {
+
+                showViewerStatus(
+                    "Could not connect to the camera.",
+                    "error"
+                );
+
+                connectViewerBtn.disabled = false;
+
+                return;
+
+            }
+
+
+            call.on("stream", (remoteStream) => {
+
+                viewerVideo.srcObject =
+                    remoteStream;
+
+                viewerPlaceholder.classList.add("hidden");
+
+                viewerLiveBadge.classList.remove("hidden");
+
+                headerLive.classList.add("live");
+                headerLiveText.textContent = "LIVE";
+
+                showViewerStatus(
+                    "🔴 Connected — watching live.",
+                    "success"
+                );
+
+                connectViewerBtn.disabled = false;
+
+            });
+
+
+            call.on("close", () => {
+
+                viewerPlaceholder.classList.remove("hidden");
+
+                viewerLiveBadge.classList.add("hidden");
+
+                headerLive.classList.remove("live");
+                headerLiveText.textContent = "Offline";
+
+                showViewerStatus(
+                    "The camera has gone offline.",
+                    "error"
+                );
+
+                connectViewerBtn.disabled = false;
+
+            });
+
+
+            call.on("error", (error) => {
+
+                console.error(error);
+
+                showViewerStatus(
+                    "Unable to connect. Check that the camera is live and your room code is correct.",
+                    "error"
+                );
+
+                connectViewerBtn.disabled = false;
+
+            });
+
+        });
+
+
+        viewerPeer.on("error", (error) => {
+
+            console.error(error);
+
+            let message =
+                "Unable to connect to Pet Cam.";
+
+            if (error.type === "peer-unavailable") {
+
+                message =
+                    "Pet Cam is offline or the room code is incorrect.";
+
+            }
+
+            showViewerStatus(
+                message,
+                "error"
+            );
+
+            connectViewerBtn.disabled = false;
+
+        });
+
+
+        /*
+           Keep PeerJS alive while the viewer watches.
+        */
+
+        window.currentViewerPeer =
+            viewerPeer;
+
+    } catch (error) {
+
+        console.error(error);
+
+        showViewerStatus(
+            "Something went wrong while connecting.",
+            "error"
+        );
+
+        connectViewerBtn.disabled = false;
+
+    }
+
+});
+
+
+/* ------------------------------------------------------------
+   STATUS HELPERS
+------------------------------------------------------------ */
+
+function showCameraStatus(message, type) {
+
+    cameraStatus.textContent =
+        message;
+
+    cameraStatus.className =
+        "status";
+
+    if (type) {
+        cameraStatus.classList.add(type);
+    }
+
+}
+
+
+function showViewerStatus(message, type) {
+
+    viewerStatus.textContent =
+        message;
+
+    viewerStatus.className =
+        "status";
+
+    if (type) {
+        viewerStatus.classList.add(type);
+    }
+
+}
+
+
+/* ------------------------------------------------------------
+   ENTER KEY SUPPORT
+------------------------------------------------------------ */
+
+roomCodeCamera.addEventListener("keydown", (event) => {
+
+    if (event.key === "Enter") {
+        startCameraBtn.click();
+    }
+
+});
+
+
+roomCodeViewer.addEventListener("keydown", (event) => {
+
+    if (event.key === "Enter") {
+        connectViewerBtn.click();
+    }
+
+});
+
+
+/* ------------------------------------------------------------
+   CAMERA DEVICE HELPER
+------------------------------------------------------------ */
+
+async function checkCameras() {
+
+    try {
+
+        const devices =
+            await navigator.mediaDevices.enumerateDevices();
+
+        const cameras =
+            devices.filter(
+                device => device.kind === "videoinput"
+            );
+
+        console.log(
+            "Available cameras:",
+            cameras
+        );
+
+    } catch (error) {
+
+        console.log(
+            "Camera enumeration unavailable."
+        );
+
+    }
+
+}
+
+
+/* ------------------------------------------------------------
+   PAGE STARTUP
+------------------------------------------------------------ */
+
+checkCameras();
+
+
+/*
+   Prevent accidental navigation while broadcasting.
+*/
+
+window.addEventListener("beforeunload", (event) => {
+
+    if (isBroadcasting) {
+
+        event.preventDefault();
+
+        event.returnValue =
+            "Your Pet Cam is currently live.";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

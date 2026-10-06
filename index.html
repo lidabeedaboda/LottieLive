@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Axolottie 💛</title>
+  <title>Axlottie 💛</title>
 
-  <meta name="app-version" content="2.0.0">
+  <meta name="app-version" content="3.0.0">
 
   <link rel="icon" href="data:image/svg+xml,
   <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
@@ -941,6 +941,186 @@
     }
 
 
+
+    /* =========================================================
+       AXLLOTTIE PUBLIC LANDING + HOST ACCESS
+       ========================================================= */
+
+    .host-access-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.9);
+      color: #6d5a22;
+      border: 1px solid #ead99a;
+      font-weight: 600;
+      font-size: 12px;
+      box-shadow: 0 8px 20px rgba(170,130,20,.08);
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .host-access-button:hover {
+      transform: translateY(-2px);
+      background: #fffdf3;
+      box-shadow: 0 12px 25px rgba(170,130,20,.14);
+    }
+    .host-access-button .lock-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 0 4px rgba(246,200,74,.14);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .login-screen {
+      position: fixed !important;
+      inset: 0;
+      z-index: 5000;
+      min-height: 100vh !important;
+      padding: 24px;
+      background: rgba(83,69,30,.16);
+      backdrop-filter: blur(13px);
+      display: none !important;
+    }
+    .login-screen.open {
+      display: grid !important;
+    }
+
+    .login-card {
+      position: relative;
+      width: min(430px, 100%);
+      padding: 34px 32px 30px;
+      border: 1px solid rgba(255,255,255,.96);
+      box-shadow: 0 30px 90px rgba(92,73,18,.22);
+      animation: hostModalIn .28s ease-out;
+    }
+
+    @keyframes hostModalIn {
+      from { opacity: 0; transform: translateY(12px) scale(.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .host-modal-close {
+      position: absolute;
+      top: 13px;
+      right: 14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #fff8dd;
+      color: #8d7734;
+      font-size: 18px;
+      display: grid;
+      place-items: center;
+      transition: .2s;
+    }
+    .host-modal-close:hover {
+      transform: rotate(8deg) scale(1.06);
+      background: #ffefb0;
+    }
+
+    .login-axo {
+      filter: drop-shadow(0 10px 15px rgba(218,169,0,.18));
+    }
+
+    .public-note {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      align-items: center;
+      color: #9c8a55;
+      font-size: 12px;
+    }
+    .public-note span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--yellow);
+    }
+
+    /* Softer, prettier public hero while preserving the existing layout. */
+    .hero {
+      box-shadow: 0 24px 65px rgba(183,140,24,.15), inset 0 1px 0 rgba(255,255,255,.25);
+    }
+    .hero::after {
+      content: "💛";
+      position: absolute;
+      right: 28px;
+      bottom: -7px;
+      font-size: 76px;
+      opacity: .13;
+      transform: rotate(10deg);
+      pointer-events: none;
+    }
+
+    .camera-wrap {
+      box-shadow: 0 25px 70px rgba(177,136,22,.15);
+    }
+
+    @media (max-width: 700px) {
+      .header-actions {
+        gap: 6px;
+      }
+      .host-access-button {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+      .live-pill {
+        padding: 8px 10px;
+      }
+    }
+
+    .public-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 14px 0 20px;
+    }
+    .public-strip-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+      padding: 14px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(255,255,255,.95);
+      box-shadow: 0 12px 35px rgba(175,137,28,.08);
+      backdrop-filter: blur(14px);
+    }
+    .public-strip-icon {
+      width: 37px;
+      height: 37px;
+      flex: 0 0 37px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: #fff3b9;
+      font-size: 18px;
+    }
+    .public-strip strong {
+      display: block;
+      font-size: 13px;
+      color: #5d4f2a;
+    }
+    .public-strip small {
+      display: block;
+      margin-top: 2px;
+      font-size: 11px;
+      color: #a0926c;
+    }
+    @media (max-width: 760px) {
+      .public-strip { grid-template-columns: 1fr; }
+    }
+
     /* =========================================================
        VERSION UPDATE BANNER
        ========================================================= */
@@ -1162,11 +1342,11 @@
       <div>
 
         <h1>
-          Axolottie
+          Axlottie
         </h1>
 
         <p>
-          A tiny window into Axolottie's world 💛
+          A tiny window into Lottie's world 💛
         </p>
 
       </div>
@@ -1174,15 +1354,29 @@
     </div>
 
 
-    <div
-      id="headerLive"
-      class="live-pill">
+    <div class="header-actions">
 
-      <span class="live-dot"></span>
+      <button
+        class="host-access-button"
+        onclick="openHostLogin()"
+        title="Host access">
 
-      <span id="headerLiveText">
-        Offline
-      </span>
+        <span class="lock-dot"></span>
+        Host
+
+      </button>
+
+      <div
+        id="headerLive"
+        class="live-pill">
+
+        <span class="live-dot"></span>
+
+        <span id="headerLiveText">
+          Offline
+        </span>
+
+      </div>
 
     </div>
 
@@ -1195,46 +1389,45 @@
 
   <section
     id="loginScreen"
-    class="login-screen">
+    class="login-screen"
+    onclick="if(event.target===this) closeHostLogin()">
 
     <div class="login-card">
+
+      <button
+        class="host-modal-close"
+        onclick="closeHostLogin()"
+        aria-label="Close host login">
+        ×
+      </button>
 
       <div class="login-axo">
         💛
       </div>
 
       <h2>
-        Welcome!
+        Host Access
       </h2>
 
       <p>
-        Visit Axolottie in her little underwater world.
+        Manage Lottie's live camera and messages.
       </p>
 
-
       <div class="login-modes">
-
         <button
           id="hostModeButton"
           class="mode-button active"
           onclick="setMode('host')">
-
           📹 Host
-
         </button>
-
 
         <button
           id="viewerModeButton"
           class="mode-button"
           onclick="setMode('viewer')">
-
           👀 Family
-
         </button>
-
       </div>
-
 
       <input
         id="passwordInput"
@@ -1244,32 +1437,29 @@
         autocomplete="off"
         onkeydown="if(event.key==='Enter') login()">
 
-
       <button
         class="login-button"
         onclick="login()">
-
-        Enter Axolottie's World
-
+        Open Host Dashboard
       </button>
-
 
       <div
         id="loginNote"
         class="login-note">
-
         Host access requires a password.
-
       </div>
-
 
       <div
         id="loginError"
         class="login-error">
       </div>
 
-    </div>
+      <div class="public-note">
+        <span></span>
+        Lottie's public camera is open to viewers
+      </div>
 
+    </div>
   </section>
 
 
@@ -1285,15 +1475,39 @@
     <section class="hero">
 
       <h2 id="welcomeTitle">
-        Welcome to Axolottie 💛
+        Welcome to Axlottie 💛
       </h2>
 
       <p id="welcomeText">
-        Keep an eye on our favourite little axolotl.
+        See what Lottie is up to right now.
       </p>
 
     </section>
 
+
+    <div class="public-strip">
+      <div class="public-strip-item">
+        <span class="public-strip-icon">💛</span>
+        <div>
+          <strong>Lottie's Little World</strong>
+          <small>Live from her home</small>
+        </div>
+      </div>
+      <div class="public-strip-item">
+        <span class="public-strip-icon">🫧</span>
+        <div>
+          <strong>Live viewing</strong>
+          <small>No viewer password needed</small>
+        </div>
+      </div>
+      <div class="public-strip-item">
+        <span class="public-strip-icon">✨</span>
+        <div>
+          <strong>Say hello</strong>
+          <small>Watch Lottie whenever you like</small>
+        </div>
+      </div>
+    </div>
 
     <div class="main-grid">
 
@@ -1307,7 +1521,7 @@
         <div class="card-header">
 
           <h3>
-            📹 Axolottie's Camera
+            📹 Lottie's Camera
           </h3>
 
           <div
@@ -1362,7 +1576,7 @@
                   id="messageTitle"
                   class="message-title">
 
-                  Axolottie is offline
+                  Axlottie is offline
 
                 </span>
 
@@ -1381,7 +1595,7 @@
                   🫧 We'll be right back!
 
                 </div>
-                <span id="messageVersion" class="message-version">Axolottie</span>
+                <span id="messageVersion" class="message-version">Axlottie</span>
 
               </div>
 
@@ -1530,21 +1744,21 @@
               type="text"
               maxlength="140"
               placeholder="BRB message"
-              value="Axolottie is having a little break. We'll be back soon!">
+              value="Axlottie is having a little break. We'll be back soon!">
 
             <input
               id="offlineTitleInput"
               type="text"
               maxlength="70"
               placeholder="Offline title"
-              value="Axolottie is offline">
+              value="Axlottie is offline">
 
             <input
               id="offlineSubtitleInput"
               type="text"
               maxlength="140"
               placeholder="Offline message"
-              value="Waiting for Axolottie's camera to come online.">
+              value="Waiting for Lottie's camera to come online.">
           </div>
 
 
@@ -1570,7 +1784,7 @@
             class="control-button primary"
             onclick="connectToCamera(true)">
 
-            🔄 Reconnect to Axolottie
+            🔄 Reconnect to Axlottie
 
           </button>
 
@@ -1591,7 +1805,7 @@
       <div class="card-header">
 
         <h3>
-          ℹ️ About Axolottie
+          ℹ️ About Axlottie
         </h3>
 
       </div>
@@ -1601,7 +1815,7 @@
 
         <div class="info-item">
           <span>Pet</span>
-          <strong>Axolottie 💛</strong>
+          <strong>Axlottie 💛</strong>
         </div>
 
         <div class="info-item">
@@ -1625,7 +1839,7 @@
 
 
     <footer>
-      Made with 💛 for Axolottie · Axolottie
+      Made with 💛 for Axlottie · Axlottie
     </footer>
 
   </main>
@@ -1644,7 +1858,7 @@
   const CAMERA_PEER_ID =
     "lotties-little-world-camera-v4";
 
-  const APP_VERSION = "2.0.0";
+  const APP_VERSION = "3.0.0";
 
   /*
    * Keep a tiny version.json beside this HTML file.
@@ -1658,9 +1872,9 @@
 
   const DEFAULT_MESSAGES = {
     brbTitle: "We'll Be Right Back! 💛",
-    brbSubtitle: "Axolottie is having a little break. We'll be back soon!",
-    offlineTitle: "Axolottie is offline",
-    offlineSubtitle: "Waiting for Axolottie's camera to come online."
+    brbSubtitle: "Axlottie is having a little break. We'll be back soon!",
+    offlineTitle: "Axlottie is offline",
+    offlineSubtitle: "Waiting for Lottie's camera to come online."
   };
 
 
@@ -1995,7 +2209,7 @@
 
     ctx.font = "600 20px Fredoka, Arial, sans-serif";
     ctx.fillStyle = "#a18b42";
-    ctx.fillText("Axolottie", w / 2, h - 45);
+    ctx.fillText("Axlottie", w / 2, h - 45);
   }
 
   function startBRBAnimation() {
@@ -2085,6 +2299,24 @@
 
   setInterval(checkForUpdates, 60000);
 
+
+  /* ==========================================================
+     HOST LOGIN MODAL
+     ========================================================== */
+
+  function openHostLogin() {
+    loginScreen.style.display = "";
+    loginScreen.classList.add("open");
+    setMode("host");
+    setTimeout(() => passwordInput.focus(), 80);
+  }
+
+  function closeHostLogin() {
+    loginScreen.classList.remove("open");
+    passwordInput.value = "";
+    loginError.textContent = "";
+  }
+
   /* ==========================================================
      LOGIN MODE
      ========================================================== */
@@ -2155,6 +2387,7 @@
 
     if (mode === "viewer") {
 
+      closeHostLogin();
       enterDashboard("viewer");
 
       return;
@@ -2170,6 +2403,7 @@
       password === HOST_PASSWORD
     ) {
 
+      closeHostLogin();
       enterDashboard("host");
 
     } else {
@@ -2192,8 +2426,8 @@
 
     mode = selectedMode;
 
-    loginScreen.style.display =
-      "none";
+    loginScreen.classList.remove("open");
+    loginScreen.style.display = "none";
 
     dashboard.classList.add(
       "show"
@@ -2205,13 +2439,13 @@
       document.getElementById(
         "welcomeTitle"
       ).textContent =
-        "Axolottie's Camera Control 💛";
+        "Lottie's Camera Control 💛";
 
 
       document.getElementById(
         "welcomeText"
       ).textContent =
-        "Manage Axolottie's live camera and family viewing.";
+        "Manage Lottie's camera, BRB screen and viewer messages.";
 
 
       hostControls.classList.remove(
@@ -2230,13 +2464,13 @@
       document.getElementById(
         "welcomeTitle"
       ).textContent =
-        "Welcome to Axolottie's World 💛";
+        "Welcome to Lottie's World 💛";
 
 
       document.getElementById(
         "welcomeText"
       ).textContent =
-        "You're visiting Axolottie live 💛";
+        "You're visiting Axlottie live 💛";
 
 
       hostControls.classList.add(
@@ -2278,7 +2512,7 @@
       id => {
 
         console.log(
-          "Axolottie camera online:",
+          "Axlottie camera online:",
           id
         );
 
@@ -2543,7 +2777,7 @@
 
 
       setConnection(
-        "💛 Axolottie is live!",
+        "💛 Axlottie is live!",
         "Live"
       );
 
@@ -2568,7 +2802,7 @@
 
 
       alert(
-        "Axolottie's camera couldn't start.\n\n" +
+        "Lottie's camera couldn't start.\n\n" +
         "Make sure Chrome has permission to use the camera and microphone."
       );
 
@@ -2739,7 +2973,7 @@
       setLiveState(true);
 
       setConnection(
-        "💛 Axolottie is live!",
+        "💛 Axlottie is live!",
         "Live"
       );
 
@@ -2892,7 +3126,7 @@
   function initialiseViewer() {
 
     setConnection(
-      "Connecting to Axolottie's camera...",
+      "Connecting to Lottie's camera...",
       "Connecting"
     );
 
@@ -2915,7 +3149,7 @@
 
 
         setConnection(
-          "Finding Axolottie's camera...",
+          "Finding Lottie's camera...",
           "Connecting"
         );
 
@@ -2945,7 +3179,7 @@
 
 
           setConnection(
-            "Axolottie's camera isn't reachable right now.",
+            "Lottie's camera isn't reachable right now.",
             "Offline"
           );
 
@@ -3157,12 +3391,12 @@
 
 
     console.log(
-      "Connecting to Axolottie's camera..."
+      "Connecting to Lottie's camera..."
     );
 
 
     setConnection(
-      "Connecting to Axolottie's camera...",
+      "Connecting to Lottie's camera...",
       "Connecting"
     );
 
@@ -3246,7 +3480,7 @@
 
 
         setConnection(
-          "💛 Live connection to Axolottie",
+          "💛 Live connection to Axlottie",
           "Live"
         );
 
@@ -3270,7 +3504,7 @@
       () => {
 
         console.log(
-          "Axolottie call closed."
+          "Axlottie call closed."
         );
 
 
@@ -3302,7 +3536,7 @@
       error => {
 
         console.error(
-          "Axolottie call error:",
+          "Axlottie call error:",
           error
         );
 
@@ -3319,7 +3553,7 @@
 
 
         setConnection(
-          "Couldn't connect to Axolottie's camera.",
+          "Couldn't connect to Lottie's camera.",
           "Error"
         );
 
@@ -3608,7 +3842,14 @@
      ========================================================== */
 
   loadCustomMessages();
-  setMode("host");
+  setMode("viewer");
+
+  /*
+   * Public visitors go straight to Lottie's page.
+   * Host access is tucked into the top-right corner.
+   */
+  enterDashboard("viewer");
+
   checkForUpdates();
 
 </script>

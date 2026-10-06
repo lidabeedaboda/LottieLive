@@ -2096,11 +2096,10 @@ function connectViewer() {
              */
 
             const call =
-                viewerPeer.call(
-                    CAMERA_PEER_ID,
-                    undefined
-                );
-
+    viewerPeer.call(
+        CAMERA_PEER_ID,
+        new MediaStream()
+    );
 
             if (!call) {
 

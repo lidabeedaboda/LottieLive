@@ -1,257 +1,3858 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lottie's Little World</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
-<style>
-:root{--pink:#f38caf;--pink2:#ffd7e5;--pale:#fff4f8;--ink:#30262d;--muted:#897b84;--line:#f0dce4;--green:#3db875;--shadow:0 20px 60px rgba(83,42,61,.10)}
-*{box-sizing:border-box}body{margin:0;background:#fffafd;color:var(--ink);font-family:Fredoka,system-ui,sans-serif}
-button,input{font:inherit}button{cursor:pointer}.page{max-width:1180px;margin:auto;padding:20px}
-.nav{height:70px;border:1px solid var(--line);background:#fff;border-radius:22px;padding:0 14px 0 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow)}
-.brand{display:flex;gap:11px;align-items:center;font-weight:700;font-size:19px}.logo{width:43px;height:43px;border-radius:14px;background:var(--pale);display:grid;place-items:center;font-size:24px}
-.navright{display:flex;gap:8px;align-items:center}.live{font-size:12px;font-weight:600;padding:9px 12px;border-radius:999px;background:#f3edf0;color:#887b83}.live.on{background:#eaf9f0;color:#299a5c}.live.offline-text{background:#fff0f2;color:#d94b5f}.dot{width:7px;height:7px;border-radius:50%;display:inline-block;background:#aaa;margin-right:6px}.on .dot{background:var(--green)}
-.host-button{border:0;background:var(--ink);color:#fff;border-radius:12px;padding:10px 14px;font-weight:600}
-.hero{padding:48px 6px 28px;display:grid;grid-template-columns:1fr 330px;gap:25px;align-items:center}.kicker{color:#c75d86;font-weight:600;font-size:13px}.hero h1{font-size:clamp(43px,6vw,72px);line-height:.98;letter-spacing:-2px;margin:10px 0 16px}.hero h1 span{color:var(--pink)}.hero p{max-width:650px;color:var(--muted);font-size:17px;line-height:1.55;margin:0}
-.profile{background:#fff;border:1px solid var(--line);border-radius:25px;padding:22px;box-shadow:var(--shadow)}.profile-top{display:flex;align-items:center;gap:13px}.avatar{width:52px;height:52px;border-radius:18px;background:var(--pale);display:grid;place-items:center;font-size:28px}.profile strong{display:block;font-size:21px}.profile small{color:var(--muted)}
-.layout{display:grid;grid-template-columns:minmax(0,1.5fr) 330px;gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:27px;box-shadow:var(--shadow)}
-.camera{padding:11px}.screen{position:relative;aspect-ratio:16/10;background:#211b20;border-radius:20px;overflow:hidden}video{width:100%;height:100%;object-fit:cover;display:block}.overlay{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:25px;background:rgba(34,23,29,.38);color:#fff}.overlay.hidden{display:none}.overlay h2{margin:8px 0 4px;font-size:29px}.overlay p{margin:0;opacity:.85}.bubble{font-size:42px}.badge{display:inline-block;background:#fff;color:#b64d78;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700}.badge.hidden{display:none}
-.camera-foot{display:flex;justify-content:space-between;gap:15px;padding:17px 7px 6px}.camera-name{font-size:21px;font-weight:700}.sub{font-size:13px;color:var(--muted);margin-top:4px}.green-text{color:var(--green);font-weight:600}.offline-text{color:#d94b5f!important;font-weight:700}
-.sidebar{display:flex;flex-direction:column;gap:14px}.side{padding:21px}.side h3{margin:0 0 15px;font-size:19px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{background:#fff6f9;border:1px solid #f5e0e8;border-radius:16px;padding:13px}.stat small{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}.stat strong{font-size:18px}.fed{background:var(--pale);border:1px solid var(--line);border-radius:18px;padding:17px}.fed-icon{font-size:29px}.fed-title{font-weight:700;font-size:18px;margin-top:6px}.fed-time{color:#bd567f;font-size:14px;margin-top:3px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.mini{padding:20px}.mini-icon{font-size:25px}.mini h3{margin:8px 0 5px}.mini p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}.footer{text-align:center;color:#9c8e96;font-size:12px;padding:27px 0 8px}
-.modal{position:fixed;inset:0;background:rgba(43,29,37,.45);display:none;place-items:center;padding:18px;z-index:50;backdrop-filter:blur(8px)}.modal.open{display:grid}.modal-box{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;padding:26px;box-shadow:0 25px 80px rgba(40,25,34,.2)}.modal-box h2{margin:0 0 6px;font-size:28px}.modal-box p{color:var(--muted);margin:0 0 18px}.input{width:100%;padding:14px;border:1px solid var(--line);border-radius:14px;outline:0}.input:focus{border-color:var(--pink);box-shadow:0 0 0 4px #fff0f6}.actions{display:flex;gap:9px;margin-top:11px}.primary,.secondary{border:0;border-radius:13px;padding:12px 15px;font-weight:600}.primary{background:var(--pink);color:#fff;flex:1}.secondary{background:#f4eef1;color:var(--ink)}.error{color:#c14d73;font-size:13px;min-height:18px;margin-top:9px}
-#hostPage{display:none;min-height:100vh;background:radial-gradient(circle at 15% 15%,#ffe5ee 0,transparent 28%),radial-gradient(circle at 85% 20%,#ffd8e7 0,transparent 25%),#fff8fb;padding:22px;overflow:hidden}.host-wrap{max-width:900px;margin:auto}.host-login{max-width:420px;margin:90px auto;background:#fff;border:1px solid var(--line);border-radius:30px;padding:29px;text-align:center;box-shadow:var(--shadow)}.host-login .logo-big{font-size:48px}.host-login h1{margin:8px 0 5px}.host-login p{color:var(--muted);margin:0 0 20px}.host-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 3px 18px}.host-brand{display:flex;align-items:center;gap:12px}.host-brand-icon{width:50px;height:50px;border-radius:18px;background:#fff;display:grid;place-items:center;font-size:27px;box-shadow:0 8px 25px rgba(83,42,61,.08);border:1px solid var(--line)}.host-brand h1{margin:0;font-size:27px}.host-brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.host-view{border:0;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:13px;padding:10px 14px;font-weight:600}.host-main{background:#fff;border:1px solid var(--line);border-radius:30px;padding:13px;box-shadow:0 24px 70px rgba(83,42,61,.12)}.host-preview{position:relative;aspect-ratio:16/9;background:#241d22;border-radius:23px;overflow:hidden}.host-preview video{width:100%;height:100%;object-fit:cover}.host-preview-empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(135deg,#49323d,#241d22)}.host-preview-empty div{padding:25px}.host-heart{font-size:58px}.host-preview-empty h2{font-size:28px;margin:8px 0 4px}.host-preview-empty p{margin:0;color:#dbcfd4}.host-livebar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 8px 8px}.host-live-status{display:flex;align-items:center;gap:8px;font-weight:600}.host-dot{width:9px;height:9px;border-radius:50%;background:#bbb}.host-dot.live{background:var(--green)}.host-muted{color:var(--muted);font-size:13px}.host-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:9px 2px 2px}.host-action{border:1px solid var(--line);background:#fff8fa;border-radius:17px;padding:14px 12px;text-align:left;transition:.15s}.host-action:hover{transform:translateY(-1px);background:#fff3f7}.host-action strong{display:block;font-size:15px}.host-action span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.host-action button{margin-top:10px;width:100%;border:0;border-radius:11px;padding:10px;background:#fff;font-weight:600;color:var(--ink);box-shadow:0 3px 10px rgba(80,40,60,.06)}.host-action.main button{background:var(--pink);color:#fff}.host-status{margin:12px 2px 2px;padding:11px 13px;border-radius:13px;background:#f7f0f3;color:var(--muted);font-size:12px;text-align:center}.host-footer{text-align:center;color:#aa9aa2;font-size:11px;padding:17px}.error{color:#c14d73;font-size:13px;min-height:18px;margin-top:9px}.input{width:100%;padding:14px;border:1px solid var(--line);border-radius:14px;outline:0}.input:focus{border-color:var(--pink);box-shadow:0 0 0 4px #fff0f6}.actions{display:flex;gap:9px;margin-top:11px}.primary,.secondary{border:0;border-radius:13px;padding:12px 15px;font-weight:600}.primary{background:var(--pink);color:#fff;flex:1}.secondary{background:#f4eef1;color:var(--ink)}
-@media(max-width:700px){.host-actions{grid-template-columns:1fr 1fr}.host-top{align-items:flex-start}.host-brand h1{font-size:23px}}@media(max-width:480px){#hostPage{padding:12px}.host-top{padding-bottom:12px}.host-brand-icon{width:43px;height:43px}.host-brand h1{font-size:20px}.host-brand p{font-size:11px}.host-actions{grid-template-columns:1fr}.host-livebar{align-items:flex-start;flex-direction:column;gap:4px}.host-main{border-radius:23px}.host-preview{border-radius:17px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lottie's Little World 💗</title>
+
+  <meta name="app-version" content="3.0.0">
+
+  <link rel="icon" href="data:image/svg+xml,
+  <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
+  <text y=%22.9em%22 font-size=%2290%22>💗</text>
+  </svg>">
+
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --yellow: #f3a6c8;
+      --yellow-dark: #d66f9f;
+      --yellow-deep: #b94f82;
+      --yellow-light: #ffddeb;
+      --yellow-soft: #fff0f7;
+      --yellow-pale: #fff8fc;
+      --text: #573b4a;
+      --muted: #9f7f90;
+      --white: #ffffff;
+      --green: #45b982;
+      --red: #d95b78;
+      --shadow: 0 24px 70px rgba(190, 105, 150, .16);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Fredoka", sans-serif;
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at 8% 8%,
+          rgba(255, 210, 230, .70),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 92% 12%,
+          rgba(255, 231, 242, .85),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(255, 200, 222, .55),
+          transparent 34%
+        ),
+        #fff8fc;
+
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+
+      background-image:
+        radial-gradient(
+          circle,
+          rgba(243, 166, 200, .22) 1px,
+          transparent 1px
+        );
+
+      background-size: 30px 30px;
+      opacity: .25;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .app {
+      width: min(1120px, calc(100% - 28px));
+      margin: auto;
+      padding: 24px 0 55px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 17px 21px;
+
+      border-radius: 26px;
+
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(255,255,255,.95);
+
+      backdrop-filter: blur(20px);
+
+      box-shadow: var(--shadow);
+
+      margin-bottom: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .logo {
+      width: 53px;
+      height: 53px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 19px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #f3a6c8,
+          #f3a6c8
+        );
+
+      box-shadow:
+        0 10px 25px rgba(214,111,159,.24);
+
+      font-size: 29px;
+    }
+
+    .brand h1 {
+      font-size: 25px;
+      line-height: 1;
+      color: #573b4a;
+    }
+
+    .brand p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .live-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 9px 14px;
+
+      border-radius: 999px;
+
+      background: #fff7d6;
+      color: var(--yellow-dark);
+
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .live-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #aaa;
+    }
+
+    .live-pill.live .live-dot {
+      background: var(--green);
+
+      animation: livePulse 1.8s infinite;
+    }
+
+    @keyframes livePulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(54,185,120,.35);
+      }
+
+      70% {
+        box-shadow: 0 0 0 8px rgba(54,185,120,0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(54,185,120,0);
+      }
+    }
+
+    /* =========================================================
+       LOGIN
+       ========================================================= */
+
+    .login-screen {
+      min-height: 72vh;
+      display: grid;
+      place-items: center;
+    }
+
+    .login-card {
+      width: min(470px, 100%);
+      padding: 40px 38px;
+
+      text-align: center;
+
+      border-radius: 34px;
+
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(255,255,255,.95);
+
+      backdrop-filter: blur(22px);
+
+      box-shadow: var(--shadow);
+    }
+
+    .login-axo {
+      font-size: 75px;
+      display: inline-block;
+
+      filter:
+        drop-shadow(
+          0 10px 10px rgba(255, 110, 167, .18)
+        );
+
+      animation: axoFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes axoFloat {
+      0%,100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(2deg);
+      }
+    }
+
+    .login-card h2 {
+      font-size: 33px;
+      margin-top: 5px;
+    }
+
+    .login-card > p {
+      color: var(--muted);
+      margin-top: 7px;
+      margin-bottom: 27px;
+    }
+
+    .login-modes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-bottom: 15px;
+    }
+
+    .mode-button {
+      padding: 13px;
+      border-radius: 15px;
+
+      background: #fff0f7;
+      color: #a4778f;
+
+      font-weight: 600;
+
+      transition: .2s;
+    }
+
+    .mode-button.active {
+      background: var(--yellow);
+      color: white;
+
+      box-shadow:
+        0 9px 23px rgba(243,166,200,.24);
+    }
+
+    .login-input {
+      width: 100%;
+
+      padding: 15px 17px;
+
+      border-radius: 15px;
+
+      border: 1px solid #ead4df;
+
+      background: #fffef7;
+
+      color: var(--text);
+
+      outline: none;
+
+      font-size: 16px;
+
+      transition: .2s;
+    }
+
+    .login-input:focus {
+      border-color: var(--yellow);
+
+      box-shadow:
+        0 0 0 4px rgba(243,166,200,.12);
+    }
+
+    .login-button {
+      width: 100%;
+
+      margin-top: 11px;
+
+      padding: 15px;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f7b8d3,
+          #d66f9f
+        );
+
+      color: white;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      box-shadow:
+        0 11px 27px rgba(214,111,159,.22);
+
+      transition: .2s;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .login-note {
+      margin-top: 13px;
+      color: #a9899a;
+      font-size: 12px;
+    }
+
+    .login-error {
+      min-height: 18px;
+      margin-top: 10px;
+
+      color: #c85f83;
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       DASHBOARD
+       ========================================================= */
+
+    .dashboard {
+      display: none;
+    }
+
+    .dashboard.show {
+      display: block;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+
+      padding: 31px;
+
+      border-radius: 31px;
+
+      color: white;
+
+      background:
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(255,255,255,.2),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #f6d56b,
+          #e7b92f
+        );
+
+      box-shadow:
+        0 23px 55px rgba(220,120,165,.22);
+
+      margin-bottom: 20px;
+    }
+
+    .hero::after {
+      content: "💗";
+
+      position: absolute;
+      right: 30px;
+      bottom: -22px;
+
+      font-size: 125px;
+
+      opacity: .17;
+
+      transform: rotate(-8deg);
+    }
+
+    .hero h2,
+    .hero p {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h2 {
+      font-size: 35px;
+    }
+
+    .hero p {
+      margin-top: 7px;
+      opacity: .9;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(270px, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 22px;
+
+      border-radius: 28px;
+
+      background: rgba(255,255,255,.85);
+
+      border: 1px solid rgba(255,255,255,.95);
+
+      backdrop-filter: blur(20px);
+
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 17px;
+    }
+
+    .card-header h3 {
+      font-size: 20px;
+    }
+
+    /* =========================================================
+       CAMERA
+       ========================================================= */
+
+    .camera-shell {
+      position: relative;
+      padding: 17px;
+    }
+
+    .video-container {
+      position: relative;
+
+      aspect-ratio: 16 / 9;
+
+      overflow: hidden;
+
+      border-radius: 25px;
+
+      background: #281c23;
+
+      box-shadow:
+        0 0 0 5px rgba(255,220,235,.9),
+        0 18px 38px rgba(104,49,74,.12);
+    }
+
+    .video-container::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      border:
+        2px solid rgba(255,255,255,.28);
+
+      border-radius: 25px;
+
+      pointer-events: none;
+      z-index: 8;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      background: #281c23;
+    }
+
+    /* =========================================================
+       BUBBLES
+       ========================================================= */
+
+    .bubble {
+      position: absolute;
+
+      border-radius: 50%;
+
+      pointer-events: none;
+
+      z-index: 10;
+
+      background:
+        radial-gradient(
+          circle at 30% 25%,
+          rgba(255,255,255,.98),
+          rgba(255,220,90,.72) 33%,
+          rgba(243,166,200,.30) 67%,
+          transparent 72%
+        );
+
+      border: 1px solid rgba(255,255,255,.75);
+
+      box-shadow:
+        inset 2px 2px 5px rgba(255,255,255,.9),
+        0 6px 16px rgba(214,111,159,.12);
+
+      animation:
+        bubbleMove
+        var(--speed)
+        ease-in-out
+        infinite;
+
+      opacity: .9;
+    }
+
+    .bubble::after {
+      content: "";
+
+      position: absolute;
+
+      width: 22%;
+      height: 22%;
+
+      left: 20%;
+      top: 17%;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,.9);
+    }
+
+    .bubble1 {
+      width: 27px;
+      height: 27px;
+      left: 7%;
+      top: 2px;
+      --speed: 5s;
+    }
+
+    .bubble2 {
+      width: 15px;
+      height: 15px;
+      left: 25%;
+      top: 20px;
+      --speed: 4s;
+      animation-delay: -1s;
+    }
+
+    .bubble3 {
+      width: 35px;
+      height: 35px;
+      right: 20%;
+      top: -1px;
+      --speed: 6s;
+      animation-delay: -2s;
+    }
+
+    .bubble4 {
+      width: 19px;
+      height: 19px;
+      right: 7%;
+      top: 24px;
+      --speed: 4.5s;
+      animation-delay: -1.4s;
+    }
+
+    .bubble5 {
+      width: 24px;
+      height: 24px;
+      left: 13%;
+      bottom: 6px;
+      --speed: 5.5s;
+      animation-delay: -2s;
+    }
+
+    .bubble6 {
+      width: 14px;
+      height: 14px;
+      left: 42%;
+      bottom: 0;
+      --speed: 4s;
+      animation-delay: -1s;
+    }
+
+    .bubble7 {
+      width: 31px;
+      height: 31px;
+      right: 25%;
+      bottom: 2px;
+      --speed: 5.5s;
+      animation-delay: -3s;
+    }
+
+    .bubble8 {
+      width: 18px;
+      height: 18px;
+      right: 7%;
+      bottom: 17px;
+      --speed: 4.2s;
+      animation-delay: -2s;
+    }
+
+    @keyframes bubbleMove {
+      0%,100% {
+        transform:
+          translateY(0)
+          scale(1);
+      }
+
+      50% {
+        transform:
+          translateY(-9px)
+          scale(1.08);
+      }
+    }
+
+    /* =========================================================
+       CAMERA OFFLINE / BRB SCREEN
+       ========================================================= */
+
+    .video-message {
+      position: absolute;
+      inset: 0;
+
+      z-index: 6;
+
+      display: grid;
+      place-items: center;
+
+      text-align: center;
+
+      padding: 30px;
+
+      color: white;
+
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(243,166,200,.35),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(243,166,200,.95),
+          rgba(190,79,130,.98)
+        );
+    }
+
+    .message-content {
+      max-width: 430px;
+    }
+
+    .message-axo {
+      font-size: 64px;
+
+      display: inline-block;
+
+      margin-bottom: 7px;
+
+      animation:
+        messageFloat
+        3s
+        ease-in-out
+        infinite;
+    }
+
+    @keyframes messageFloat {
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .message-title {
+      display: block;
+
+      font-size: 27px;
+      font-weight: 700;
+
+      margin-bottom: 7px;
+    }
+
+    .message-subtitle {
+      color: rgba(255,255,255,.72);
+
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .brb-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      margin-top: 18px;
+
+      padding: 9px 15px;
+
+      border-radius: 999px;
+
+      background: rgba(255,255,255,.12);
+
+      border: 1px solid rgba(255,255,255,.16);
+
+      color: #ffddeb;
+
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .message-pet-name {
+      color: #ffe48a;
+    }
+
+    /* =========================================================
+       CONNECTION
+       ========================================================= */
+
+    .connection {
+      margin-top: 16px;
+
+      padding: 12px 15px;
+
+      border-radius: 14px;
+
+      background: #fff2f8;
+
+      color: #9f7f90;
+
+      font-size: 13px;
+
+      text-align: center;
+    }
+
+    /* =========================================================
+       STATUS
+       ========================================================= */
+
+    .status-box {
+      padding: 17px;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff1f7,
+          #fff8fc
+        );
+
+      margin-bottom: 11px;
+
+      border: 1px solid #f0d7e3;
+    }
+
+    .status-label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .status-value {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .green {
+      color: #2eaa68;
+    }
+
+    .pink {
+      color: var(--yellow-dark);
+    }
+
+    /* =========================================================
+       CONTROLS
+       ========================================================= */
+
+    .controls {
+      display: grid;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .control-button {
+      width: 100%;
+
+      padding: 14px;
+
+      border-radius: 15px;
+
+      background: #fff0f7;
+
+      color: var(--yellow-dark);
+
+      font-weight: 600;
+
+      transition: .2s;
+    }
+
+    .control-button:hover {
+      transform: translateY(-1px);
+      background: #ffe0ed;
+    }
+
+    .control-button.primary {
+      background: var(--yellow);
+      color: white;
+    }
+
+    .control-button.primary:hover {
+      background: #d66f9f;
+    }
+
+    .control-button.danger {
+      background: #fff0d2;
+      color: #c85f83;
+    }
+
+    .control-button.brb-on {
+      background: #d66f9f;
+      color: white;
+
+      box-shadow:
+        0 8px 22px rgba(214,111,159,.22);
+    }
+
+    .control-button.muted {
+      background: #fff0c7;
+      color: #c85f83;
+    }
+
+    .mic-indicator {
+      padding: 10px;
+
+      border-radius: 13px;
+
+      background: #fff2f8;
+
+      color: #9f7f90;
+
+      text-align: center;
+
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       ABOUT
+       ========================================================= */
+
+    .about {
+      margin-top: 20px;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 2px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 12px 0;
+
+      border-bottom: 1px solid #f0dce6;
+
+      font-size: 14px;
+    }
+
+    .info-item:last-child {
+      border-bottom: 0;
+    }
+
+    .info-item span {
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+
+      padding-top: 25px;
+
+      color: #ad8c9e;
+
+      font-size: 12px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+
+
+    /* =========================================================
+       LOTTIE PUBLIC LANDING + HOST ACCESS
+       ========================================================= */
+
+    .host-access-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.9);
+      color: #6d5a22;
+      border: 1px solid #e7c7d7;
+      font-weight: 600;
+      font-size: 12px;
+      box-shadow: 0 8px 20px rgba(190,105,150,.08);
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .host-access-button:hover {
+      transform: translateY(-2px);
+      background: #fffdf3;
+      box-shadow: 0 12px 25px rgba(190,105,150,.14);
+    }
+    .host-access-button .lock-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 0 4px rgba(243,166,200,.14);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .login-screen {
+      position: fixed !important;
+      inset: 0;
+      z-index: 5000;
+      min-height: 100vh !important;
+      padding: 24px;
+      background: rgba(100,55,80,.16);
+      backdrop-filter: blur(13px);
+      display: none !important;
+    }
+    .login-screen.open {
+      display: grid !important;
+    }
+
+    .login-card {
+      position: relative;
+      width: min(430px, 100%);
+      padding: 34px 32px 30px;
+      border: 1px solid rgba(255,255,255,.96);
+      box-shadow: 0 30px 90px rgba(92,73,18,.22);
+      animation: hostModalIn .28s ease-out;
+    }
+
+    @keyframes hostModalIn {
+      from { opacity: 0; transform: translateY(12px) scale(.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .host-modal-close {
+      position: absolute;
+      top: 13px;
+      right: 14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #fff8dd;
+      color: #8d7734;
+      font-size: 18px;
+      display: grid;
+      place-items: center;
+      transition: .2s;
+    }
+    .host-modal-close:hover {
+      transform: rotate(8deg) scale(1.06);
+      background: #ffe0ed;
+    }
+
+    .login-axo {
+      filter: drop-shadow(0 10px 15px rgba(218,169,0,.18));
+    }
+
+    .public-note {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      align-items: center;
+      color: #9c8a55;
+      font-size: 12px;
+    }
+    .public-note span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--yellow);
+    }
+
+    /* Softer, prettier public hero while preserving the existing layout. */
+    .hero {
+      box-shadow: 0 24px 65px rgba(183,140,24,.15), inset 0 1px 0 rgba(255,255,255,.25);
+    }
+    .hero::after {
+      content: "💗";
+      position: absolute;
+      right: 28px;
+      bottom: -7px;
+      font-size: 76px;
+      opacity: .13;
+      transform: rotate(10deg);
+      pointer-events: none;
+    }
+
+    .camera-wrap {
+      box-shadow: 0 25px 70px rgba(177,136,22,.15);
+    }
+
+    @media (max-width: 700px) {
+      .header-actions {
+        gap: 6px;
+      }
+      .host-access-button {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+      .live-pill {
+        padding: 8px 10px;
+      }
+    }
+
+    .public-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 14px 0 20px;
+    }
+    .public-strip-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+      padding: 14px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(255,255,255,.95);
+      box-shadow: 0 12px 35px rgba(175,137,28,.08);
+      backdrop-filter: blur(14px);
+    }
+    .public-strip-icon {
+      width: 37px;
+      height: 37px;
+      flex: 0 0 37px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: #fff3b9;
+      font-size: 18px;
+    }
+    .public-strip strong {
+      display: block;
+      font-size: 13px;
+      color: #5d4f2a;
+    }
+    .public-strip small {
+      display: block;
+      margin-top: 2px;
+      font-size: 11px;
+      color: #a0926c;
+    }
+    @media (max-width: 760px) {
+      .public-strip { grid-template-columns: 1fr; }
+    }
+
+    /* =========================================================
+       VERSION UPDATE BANNER
+       ========================================================= */
+
+    .update-banner {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translate(-50%, 130px);
+      z-index: 9999;
+      width: min(560px, calc(100% - 24px));
+      padding: 13px 15px 13px 17px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.96);
+      border: 1px solid #ead58a;
+      box-shadow: 0 18px 50px rgba(104,82,22,.18);
+      backdrop-filter: blur(18px);
+      transition: transform .35s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .update-banner.show {
+      transform: translate(-50%, 0);
+    }
+
+    .update-icon {
+      width: 39px;
+      height: 39px;
+      flex: 0 0 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: #fff1b7;
+      font-size: 20px;
+    }
+
+    .update-copy {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .update-copy strong {
+      display: block;
+      font-size: 14px;
+      color: #514521;
+    }
+
+    .update-copy span {
+      display: block;
+      margin-top: 2px;
+      color: #9f7f90;
+      font-size: 12px;
+    }
+
+    .update-refresh {
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--yellow);
+      color: #4d4017;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: .2s;
+    }
+
+    .update-refresh:hover {
+      transform: translateY(-1px);
+      background: #edc13e;
+    }
+
+    .brb-editor {
+      display: grid;
+      gap: 9px;
+      padding: 14px;
+      margin-top: 2px;
+      border-radius: 17px;
+      background: #fffaf0;
+      border: 1px solid #eee0ad;
+    }
+
+    .brb-editor-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #7f7046;
+    }
+
+    .brb-editor input {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #e8dbaf;
+      border-radius: 12px;
+      outline: none;
+      background: #fffef9;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .brb-editor input:focus {
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 4px rgba(243,166,200,.13);
+    }
+
+    .message-version {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      color: rgba(255,255,255,.65);
+      font-size: 11px;
+    }
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 760px) {
+
+      .app {
+        width: calc(100% - 16px);
+        padding-top: 10px;
+      }
+
+      header {
+        padding: 13px;
+        border-radius: 21px;
+      }
+
+      .logo {
+        width: 44px;
+        height: 44px;
+        font-size: 24px;
+      }
+
+      .brand h1 {
+        font-size: 19px;
+      }
+
+      .brand p {
+        font-size: 10px;
+      }
+
+      .live-pill {
+        padding: 7px 10px;
+        font-size: 10px;
+      }
+
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 25px;
+      }
+
+      .hero h2 {
+        font-size: 27px;
+      }
+
+      .hero::after {
+        font-size: 90px;
+      }
+
+      .card {
+        padding: 17px;
+      }
+
+      .camera-shell {
+        padding: 10px;
+      }
+
+      .bubble {
+        transform: scale(.78);
+      }
+
+      .login-card {
+        padding: 30px 20px;
+      }
+
+      .login-axo {
+        font-size: 62px;
+      }
+
+      .login-card h2 {
+        font-size: 29px;
+      }
+
+    }
+
+  </style>
 </head>
+
 <body>
 
-<div id="publicPage">
-<div class="page">
-<nav class="nav">
-  <div class="brand"><div class="logo">🩷</div>Lottie's Little World</div>
-  <div class="navright">
-    <div id="livePill" class="live"><span class="dot"></span><span id="liveText">Offline</span></div>
-    <button class="host-button" onclick="openHostLogin()">Host Login</button>
+<div id="updateBanner" class="update-banner" role="status" aria-live="polite">
+  <div class="update-icon">✨</div>
+  <div class="update-copy">
+    <strong>A new version is available</strong>
+    <span>Refresh now to get the latest version.</span>
   </div>
-</nav>
-
-<section class="hero">
-  <div>
-    <div class="kicker">WELCOME TO LOTTIE'S LITTLE WORLD 🫧</div>
-    <h1>A little place<br><span>for Lottie.</span></h1>
-    <p>Drop in and see what Lottie is up to. Her live camera is right here, with a simple little home made just for her.</p>
-  </div>
-  <div class="profile"><div class="profile-top"><div class="avatar">💗</div><div><strong>Lottie</strong><small>little star · live camera</small></div></div></div>
-</section>
-
-<main class="layout">
-<section class="card camera">
-  <div class="screen">
-    <video id="video" autoplay playsinline controls></video>
-    <div id="overlay" class="overlay"><div><div class="bubble">💗</div><h2 id="overlayTitle">Connecting to Lottie</h2><p id="overlayText">One second...</p><span id="badge" class="badge hidden">BRB</span></div></div>
-  </div>
-  <div class="camera-foot"><div><div class="camera-name">Lottie's live camera</div><div class="sub"><span id="cameraStatus">Offline</span> · <span id="connection">Connecting...</span></div></div><div id="quality" class="green-text">● Live</div></div>
-</section>
-
-<aside class="sidebar">
-  <div class="card side"><h3>Right now 🩷</h3><div class="stats"><div class="stat"><small>Viewers</small><strong id="viewerCount">0</strong></div><div class="stat"><small>Camera</small><strong id="cameraSmall">Offline</strong></div></div></div>
-  <div class="card side"><div class="fed"><div class="fed-icon">🥣</div><div class="fed-title">Last Fed</div><div class="fed-time" id="lastFedText">11AM</div></div></div>
-  <div class="card side"><h3>A little note</h3><p style="color:var(--muted);line-height:1.55;margin:0"></p></div>
-</aside>
-</main>
-
-<section class="cards">
-  <div class="card mini"><div class="mini-icon">🫧</div><h3>Little moments</h3><p>Watch Lottie swim, explore and do her tiny Lottie things.</p></div>
-  <div class="card mini"><div class="mini-icon">🎥</div><h3>Live camera</h3><p>The stream connects directly from the host computer to viewers.</p></div>
-  <div class="card mini"><div class="mini-icon">🩷</div><h3>Made for Lottie</h3><p>A cute little corner of the internet for one very special pet.</p></div>
-</section>
-<div class="footer">Lottie's Little World · 🩷</div>
-</div>
+  <button class="update-refresh" onclick="refreshForUpdate()">Refresh now</button>
 </div>
 
-<div id="loginModal" class="modal">
-<div class="modal-box">
-  <h2>Host Login 🩷</h2><p>This opens the camera controls on the host computer.</p>
-  <input id="hostPassword" class="input" type="password" placeholder="Host password">
-  <div class="actions"><button class="secondary" onclick="closeHostLogin()">Cancel</button><button class="primary" onclick="hostLogin()">Login</button></div>
-  <div id="loginError" class="error"></div>
-</div>
-</div>
+<div class="app">
 
-<div id="hostPage">
-<div class="host-wrap">
-  <div id="hostLoginScreen" class="host-login">
-    <div class="logo-big">💗</div><h1>Lottie's Host</h1><p>Enter the host password to control Lottie's camera.</p>
-    <input id="hostPasswordDirect" class="input" type="password" placeholder="Host password">
-    <div class="actions"><button class="primary" onclick="unlockHost()">Unlock Host</button></div>
-    <div id="directError" class="error"></div>
-  </div>
-  <div id="hostControls" style="display:none">
-    <div class="host-top">
-      <div class="host-brand"><div class="host-brand-icon">💗</div><div><h1>Lottie's Host</h1><p>Camera control</p></div></div>
-      <button class="host-view" onclick="returnToSite()">View Site</button>
-    </div>
-    <div class="host-main">
-      <div class="host-preview"><video id="hostVideo" autoplay playsinline muted></video><div id="hostPreviewEmpty" class="host-preview-empty"><div><div class="host-heart">💗</div><h2>Ready for Lottie</h2><p>Start the camera below</p></div></div></div>
-      <div class="host-livebar"><div class="host-live-status"><span id="hostDot" class="host-dot"></span><span id="hostLiveText">Camera offline</span></div><div id="hostMicText" class="host-muted">Microphone on</div></div>
-      <div class="host-actions">
-        <div class="host-action main"><strong>🎥 Camera</strong><span>Start the live camera</span><button onclick="startCamera()">Start Camera</button></div>
-        <div class="host-action"><strong>⏸ Pause</strong><span>Pause the live view</span><button onclick="pauseCamera()">Pause</button></div>
-        <div class="host-action"><strong>▶ Resume</strong><span>Return to live</span><button onclick="resumeCamera()">Resume</button></div>
-        <div class="host-action"><strong>🎙 Microphone</strong><span>Mute or unmute audio</span><button id="micButton" onclick="toggleMic()">Mute Mic</button></div>
-        <div class="host-action"><strong>🫧 BRB Screen</strong><span>Show the BRB screen</span><button onclick="startBRB()">Start BRB</button></div>
-        <div class="host-action"><strong>🩷 Back Live</strong><span>Remove the BRB screen</span><button onclick="resumeCamera()">Return Live</button></div>
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+
+  <header>
+
+    <div class="brand">
+
+      <div class="logo">
+        💗
       </div>
-      <div id="hostStatus" class="host-status">Host controls ready.</div>
+
+      <div>
+
+        <h1>
+          Lottie's Little World
+        </h1>
+
+        <p>
+          A tiny window into Lottie's world 💗
+        </p>
+
+      </div>
+
     </div>
-    <div class="host-footer">Lottie's Little World · 💗</div>
-  </div>
+
+
+    <div class="header-actions">
+
+      <button
+        class="host-access-button"
+        onclick="openHostLogin()"
+        title="Host access">
+
+        <span class="lock-dot"></span>
+        Host
+
+      </button>
+
+      <div
+        id="headerLive"
+        class="live-pill">
+
+        <span class="live-dot"></span>
+
+        <span id="headerLiveText">
+          Offline
+        </span>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =======================================================
+       LOGIN
+       ======================================================= -->
+
+  <section
+    id="loginScreen"
+    class="login-screen"
+    onclick="if(event.target===this) closeHostLogin()">
+
+    <div class="login-card">
+
+      <button
+        class="host-modal-close"
+        onclick="closeHostLogin()"
+        aria-label="Close host login">
+        ×
+      </button>
+
+      <div class="login-axo">
+        💗
+      </div>
+
+      <h2>
+        Host Access
+      </h2>
+
+      <p>
+        Manage Lottie's live camera and messages.
+      </p>
+
+      <div class="login-modes">
+        <button
+          id="hostModeButton"
+          class="mode-button active"
+          onclick="setMode('host')">
+          📹 Host
+        </button>
+
+        <button
+          id="viewerModeButton"
+          class="mode-button"
+          onclick="setMode('viewer')">
+          👀 Family
+        </button>
+      </div>
+
+      <input
+        id="passwordInput"
+        class="login-input"
+        type="password"
+        placeholder="Host password"
+        autocomplete="off"
+        onkeydown="if(event.key==='Enter') login()">
+
+      <button
+        class="login-button"
+        onclick="login()">
+        Open Host Dashboard
+      </button>
+
+      <div
+        id="loginNote"
+        class="login-note">
+        Host access requires a password.
+      </div>
+
+      <div
+        id="loginError"
+        class="login-error">
+      </div>
+
+      <div class="public-note">
+        <span></span>
+        Lottie's public camera is open to viewers
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =======================================================
+       DASHBOARD
+       ======================================================= -->
+
+  <main
+    id="dashboard"
+    class="dashboard">
+
+
+    <section class="hero">
+
+      <h2 id="welcomeTitle">
+        Welcome to Lottie 💗
+      </h2>
+
+      <p id="welcomeText">
+        See what Lottie is up to right now.
+      </p>
+
+    </section>
+
+
+    <div class="public-strip">
+      <div class="public-strip-item">
+        <span class="public-strip-icon">💗</span>
+        <div>
+          <strong>Lottie's Little World</strong>
+          <small>Live from her home</small>
+        </div>
+      </div>
+      <div class="public-strip-item">
+        <span class="public-strip-icon">🫧</span>
+        <div>
+          <strong>Live viewing</strong>
+          <small>No viewer password needed</small>
+        </div>
+      </div>
+      <div class="public-strip-item">
+        <span class="public-strip-icon">✨</span>
+        <div>
+          <strong>Say hello</strong>
+          <small>Watch Lottie whenever you like</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-grid">
+
+
+      <!-- ===================================================
+           CAMERA CARD
+           =================================================== -->
+
+      <section class="card">
+
+        <div class="card-header">
+
+          <h3>
+            📹 Lottie's Camera
+          </h3>
+
+          <div
+            id="cameraStatus"
+            class="pink">
+
+            Offline
+
+          </div>
+
+        </div>
+
+
+        <div class="camera-shell">
+
+
+          <!-- BUBBLES -->
+
+          <div class="bubble bubble1"></div>
+          <div class="bubble bubble2"></div>
+          <div class="bubble bubble3"></div>
+          <div class="bubble bubble4"></div>
+          <div class="bubble bubble5"></div>
+          <div class="bubble bubble6"></div>
+          <div class="bubble bubble7"></div>
+          <div class="bubble bubble8"></div>
+
+
+          <div class="video-container">
+
+            <video
+              id="video"
+              autoplay
+              playsinline
+              muted>
+            </video>
+
+
+            <!-- OFFLINE / BRB -->
+
+            <div
+              id="videoMessage"
+              class="video-message">
+
+              <div class="message-content">
+
+                <div class="message-axo">
+                  💗
+                </div>
+
+                <span
+                  id="messageTitle"
+                  class="message-title">
+
+                  Lottie is offline
+
+                </span>
+
+                <p
+                  id="messageSubtitle"
+                  class="message-subtitle">
+
+                  The camera hasn't started yet.
+
+                </p>
+
+                <div
+                  id="brbBadge"
+                  class="brb-badge hidden">
+
+                  🫧 We'll be right back!
+
+                </div>
+                <span id="messageVersion" class="message-version">Lottie</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="connectionStatus"
+          class="connection">
+
+          Waiting for connection...
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           STATUS / CONTROLS
+           =================================================== -->
+
+      <aside class="card">
+
+        <div class="card-header">
+
+          <h3>
+            🩷 Status
+          </h3>
+
+        </div>
+
+
+        <div class="status-box">
+
+          <div class="status-label">
+            Camera
+          </div>
+
+          <div
+            id="cameraStatusBig"
+            class="status-value">
+
+            Offline
+
+          </div>
+
+        </div>
+
+
+        <div class="status-box">
+
+          <div class="status-label">
+            Viewers
+          </div>
+
+          <div
+            id="viewerCount"
+            class="status-value">
+
+            0
+
+          </div>
+
+        </div>
+
+
+        <div class="status-box">
+
+          <div class="status-label">
+            Connection
+          </div>
+
+          <div
+            id="connectionBig"
+            class="status-value">
+
+            Waiting
+
+          </div>
+
+        </div>
+
+
+        <!-- HOST CONTROLS -->
+
+        <div
+          id="hostControls"
+          class="controls hidden">
+
+
+          <button
+            id="startCameraButton"
+            class="control-button primary"
+            onclick="startCamera()">
+
+            📹 Start Camera
+
+          </button>
+
+
+          <button
+            id="stopCameraButton"
+            class="control-button danger hidden"
+            onclick="stopCamera()">
+
+            ⏹ Stop Camera
+
+          </button>
+
+
+          <button
+            id="muteMicButton"
+            class="control-button hidden"
+            onclick="toggleMicrophone()">
+
+            🎙️ Mute Microphone
+
+          </button>
+
+
+          <button
+            id="brbButton"
+            class="control-button hidden"
+            onclick="toggleBRB()">
+
+            🫧 Start "We'll Be Right Back"
+
+          </button>
+
+          <div class="brb-editor">
+            <div class="brb-editor-title">📝 BRB / offline messages</div>
+
+            <input
+              id="brbTitleInput"
+              type="text"
+              maxlength="70"
+              placeholder="BRB title"
+              value="We'll Be Right Back! 💗">
+
+            <input
+              id="brbSubtitleInput"
+              type="text"
+              maxlength="140"
+              placeholder="BRB message"
+              value="Lottie is having a little break. We'll be back soon!">
+
+            <input
+              id="offlineTitleInput"
+              type="text"
+              maxlength="70"
+              placeholder="Offline title"
+              value="OFFLINE">
+
+            <input
+              id="offlineSubtitleInput"
+              type="text"
+              maxlength="140"
+              placeholder="Offline message"
+              value="">
+          </div>
+
+
+          <div
+            id="micIndicator"
+            class="mic-indicator hidden">
+
+            🎙️ Microphone is on
+
+          </div>
+
+        </div>
+
+
+        <!-- VIEWER CONTROLS -->
+
+        <div
+          id="viewerControls"
+          class="controls hidden">
+
+
+          <button
+            class="control-button primary"
+            onclick="connectToCamera(true)">
+
+            🔄 Reconnect to Lottie
+
+          </button>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+
+    <!-- =======================================================
+         ABOUT
+         ======================================================= -->
+
+    <section
+      class="card about">
+
+      <div class="card-header">
+
+        <h3>
+          ℹ️ About Lottie
+        </h3>
+
+      </div>
+
+
+      <div class="info-list">
+
+        <div class="info-item">
+          <span>Pet</span>
+          <strong>Lottie 💗</strong>
+        </div>
+
+        <div class="info-item">
+          <span>Camera</span>
+          <strong>Live webcam</strong>
+        </div>
+
+        <div class="info-item">
+          <span>Streaming</span>
+          <strong>Live WebRTC</strong>
+        </div>
+
+        <div class="info-item">
+          <span>Family access</span>
+          <strong>No password required</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <footer>
+      Made with 💗 for Lottie · Lottie
+    </footer>
+
+  </main>
+
 </div>
-</div>
+
 
 <script>
-const HOST_PASSWORD="stempn";
-const CAMERA_PEER_ID="lotties-little-world-camera-v5";
-const LAST_FED_HOUR=11;
-const LAST_FED_MINUTE=0;
-let peer=null,localStream=null,viewerConnections=[],isPaused=false,isBRB=false,brbStream=null,micMuted=false;
 
-const $=id=>document.getElementById(id);
-function setPublicMessage(title,text,badge=""){
-  $("overlayTitle").textContent=title;$("overlayText").textContent=text;
-  $("badge").textContent=badge;$("badge").classList.toggle("hidden",!badge);
-  $("overlay").classList.remove("hidden");
-}
-function hidePublicMessage(){$("overlay").classList.add("hidden")}
-function setLive(on){
-  $("livePill").classList.toggle("on",on);$("liveText").textContent=on?"Live":"Offline";$("livePill").classList.toggle("offline-text",!on);
-  $("cameraStatus").textContent=on?"Live":"Offline";$("cameraStatus").classList.toggle("offline-text",!on);$("cameraSmall").textContent=on?"Live":"Offline";$("cameraSmall").classList.toggle("offline-text",!on);
-  $("quality").textContent=on?"● Live":"● Offline";$("quality").classList.toggle("offline-text",!on);
-}
-function updateFed(){
-  const now=new Date(), fed=new Date();
-  fed.setHours(LAST_FED_HOUR,LAST_FED_MINUTE,0,0);
-  let diff=Math.floor((now-fed)/60000);
-  if(diff<0){fed.setDate(fed.getDate()-1);diff=Math.floor((now-fed)/60000)}
-  let text="11AM";
-  if(diff<1) text="11AM (just now)";
-  else if(diff<60) text=`11AM (${diff} min ago)`;
-  else {
-    const hrs=Math.floor(diff/60), mins=diff%60;
-    text=`11AM (${hrs} hr${hrs===1?"":"s"} ago${mins?` ${mins} min${mins===1?"":"s"} ago`:""})`;
-  }
-  $("lastFedText").textContent=text;
-}
-setInterval(updateFed,30000);updateFed();
+  /* ==========================================================
+     SETTINGS
+     ========================================================== */
 
-function openHostLogin(){$("loginModal").classList.add("open");$("hostPassword").focus()}
-function closeHostLogin(){$("loginModal").classList.remove("open");$("loginError").textContent=""}
-function hostLogin(){
-  if($("hostPassword").value===HOST_PASSWORD){closeHostLogin();showHostPage()}
-  else $("loginError").textContent="Incorrect host password.";
-}
-$("hostPassword").addEventListener("keydown",e=>{if(e.key==="Enter")hostLogin()});
-$("hostPasswordDirect").addEventListener("keydown",e=>{if(e.key==="Enter")unlockHost()});
-function showHostPage(){
-  $("publicPage").style.display="none";$("hostPage").style.display="block";
-  $("hostLoginScreen").style.display="none";$("hostControls").style.display="block";
-  initialiseHost();
-}
-function unlockHost(){
-  if($("hostPasswordDirect").value===HOST_PASSWORD){
-    $("hostLoginScreen").style.display="none";$("hostControls").style.display="block";initialiseHost();
-  }else $("directError").textContent="Incorrect host password.";
-}
-function returnToSite(){location.href=location.pathname+location.search.replace("?host=1","")}
-function hostStatus(t){
-  $("hostStatus").textContent=t;
-  if($("hostLiveText")){$("hostLiveText").textContent=localStream&&!isPaused&&!isBRB?"Camera live":isBRB?"BRB screen":"Camera offline";$("hostDot").classList.toggle("live",!!localStream&&!isPaused&&!isBRB)}
-  if($('hostMicText')) $('hostMicText').textContent=micMuted?"Microphone muted":"Microphone on";
-  if($('micButton')) $('micButton').textContent=micMuted?"Unmute Mic":"Mute Mic";
-}
+  const HOST_PASSWORD = "stempn";
 
-async function initialiseHost(){
-  if(peer)return;
-  hostStatus("Connecting camera system...");
-  peer=new Peer(CAMERA_PEER_ID,{debug:1,config:{iceServers:[{urls:"stun:stun.l.google.com:19302"}]}});
-  peer.on("open",()=>{hostStatus("Camera system online. Ready.");startCamera()});
-  peer.on("error",e=>hostStatus("Peer error: "+e.type));
-  peer.on("call",call=>{
-    if(!localStream){call.close();return}
-    call.answer(isPaused?null:(isBRB?brbStream:localStream));
-    call.on("stream",()=>{});
-    viewerConnections.push(call);
-  });
-}
-async function startCamera(){
-  try{
-    if(!localStream)localStream=await navigator.mediaDevices.getUserMedia({video:true,audio:true});
-    isPaused=false;isBRB=false;
-    $("hostVideo").srcObject=localStream;$("hostPreviewEmpty").style.display="none";
-    setLocalTracks(true);
-    replaceForAll(localStream);
-    hostStatus("Camera is LIVE.");
-  }catch(e){hostStatus("Camera permission/error: "+e.message)}
-}
-function stopCamera(){
-  if(localStream)localStream.getTracks().forEach(t=>t.stop());
-  localStream=null;isPaused=false;isBRB=false;$("hostVideo").srcObject=null;$("hostPreviewEmpty").style.display="grid";replaceForAll(null);hostStatus("Camera stopped.");
-}
-function setLocalTracks(enabled){
-  if(!localStream)return;
-  localStream.getVideoTracks().forEach(t=>t.enabled=enabled);
-  if(!isBRB)localStream.getAudioTracks().forEach(t=>t.enabled=!micMuted);
-}
-function pauseCamera(){if(!localStream)return;isPaused=true;localStream.getVideoTracks().forEach(t=>t.enabled=false);replaceForAll(null);hostStatus("Camera paused for viewers.")}
-function resumeCamera(){if(!localStream){startCamera();return}isPaused=false;$("hostPreviewEmpty").style.display="none";$("hostVideo").srcObject=localStream;isBRB=false;setLocalTracks(true);replaceForAll(localStream);hostStatus("Camera is LIVE again.")}
-function toggleMic(){
-  if(!localStream)return;
-  micMuted=!micMuted;localStream.getAudioTracks().forEach(t=>t.enabled=!micMuted);
-  hostStatus(micMuted?"Microphone muted.":"Microphone unmuted.");
-}
-function startBRB(){
-  if(!localStream)return;
-  const c=document.createElement("canvas");c.width=1280;c.height=800;
-  const x=c.getContext("2d");
-  x.fillStyle="#fff4f8";x.fillRect(0,0,c.width,c.height);
-  x.fillStyle="#342a31";x.textAlign="center";x.font="700 62px Fredoka";x.fillText("Lottie will be right back 🩷",640,350);
-  x.font="400 30px Fredoka";x.fillStyle="#897b84";x.fillText("Please check back soon!",640,410);
-  brbStream=c.captureStream(12);isBRB=true;replaceForAll(brbStream);hostStatus("BRB screen is showing to viewers.");
-}
-function replaceForAll(stream){
-  viewerConnections.forEach(call=>{
-    try{
-      const sender=call.peerConnection?.getSenders?.().find(s=>s.track&&s.track.kind==="video");
-      if(sender) sender.replaceTrack(stream?.getVideoTracks?.()[0]||null);
-      const audio=call.peerConnection?.getSenders?.().find(s=>s.track&&s.track.kind==="audio");
-      if(audio&&localStream) audio.replaceTrack(localStream.getAudioTracks()[0]||null);
-    }catch(e){}
-  });
-}
-async function initialiseViewer(){
-  setPublicMessage("Connecting to Lottie","Finding the camera...");
-  $("connection").textContent="Connecting...";
-  const p=new Peer(undefined,{debug:1,config:{iceServers:[{urls:"stun:stun.l.google.com:19302"}]}});
-  p.on("open",id=>{
-    const call=p.call(CAMERA_PEER_ID,new MediaStream());
-    call.on("stream",stream=>{
-      $("video").srcObject=stream;hidePublicMessage();setLive(true);$("connection").textContent="Connected";
+  const CAMERA_PEER_ID =
+    "lotties-little-world-camera-v4";
+
+  const APP_VERSION = "3.0.0";
+
+  /*
+   * Keep a tiny version.json beside this HTML file.
+   * Example:
+   * { "version": "2.0.1" }
+   *
+   * When you publish a new version, update version.json.
+   * Older open tabs will then show the refresh banner.
+   */
+  const VERSION_URL = "./version.json";
+
+  const DEFAULT_MESSAGES = {
+    brbTitle: "We'll Be Right Back! 💗",
+    brbSubtitle: "Lottie is having a little break. We'll be back soon!",
+    offlineTitle: "OFFLINE",
+    offlineSubtitle: ""
+  };
+
+
+  /*
+   * IMPORTANT:
+   *
+   * Viewer access has NO password.
+   *
+   * Host access still uses:
+   * stemp
+   */
+
+
+  /* ==========================================================
+     PEER / WEBRTC
+     ========================================================== */
+
+  const ICE_SERVERS = [
+
+    {
+      urls:
+        "stun:stun.l.google.com:19302"
+    }
+
+  ];
+
+
+  const PEER_CONFIG = {
+
+    config: {
+
+      iceServers:
+        ICE_SERVERS,
+
+      sdpSemantics:
+        "unified-plan"
+
+    },
+
+    debug: 2
+
+  };
+
+
+  /* ==========================================================
+     VARIABLES
+     ========================================================== */
+
+  let mode = "host";
+
+  let peer = null;
+
+  let localStream = null;
+
+  let currentCall = null;
+
+  let viewerCalls = new Map();
+
+  let reconnectTimer = null;
+
+  let isConnecting = false;
+
+  let microphoneMuted = false;
+
+  let brbActive = false;
+
+  let brbCanvas = null;
+  let brbCanvasStream = null;
+  let brbCanvasAnimation = null;
+
+  let customMessages = {
+    ...DEFAULT_MESSAGES,
+    ...(JSON.parse(localStorage.getItem("lottieMessages") || "{}"))
+  };
+
+
+  /* ==========================================================
+     ELEMENTS
+     ========================================================== */
+
+  const loginScreen =
+    document.getElementById(
+      "loginScreen"
+    );
+
+  const dashboard =
+    document.getElementById(
+      "dashboard"
+    );
+
+  const passwordInput =
+    document.getElementById(
+      "passwordInput"
+    );
+
+  const loginError =
+    document.getElementById(
+      "loginError"
+    );
+
+  const loginNote =
+    document.getElementById(
+      "loginNote"
+    );
+
+  const video =
+    document.getElementById(
+      "video"
+    );
+
+  const videoMessage =
+    document.getElementById(
+      "videoMessage"
+    );
+
+  const messageTitle =
+    document.getElementById(
+      "messageTitle"
+    );
+
+  const messageSubtitle =
+    document.getElementById(
+      "messageSubtitle"
+    );
+
+  const brbBadge =
+    document.getElementById(
+      "brbBadge"
+    );
+
+  const connectionStatus =
+    document.getElementById(
+      "connectionStatus"
+    );
+
+  const cameraStatus =
+    document.getElementById(
+      "cameraStatus"
+    );
+
+  const cameraStatusBig =
+    document.getElementById(
+      "cameraStatusBig"
+    );
+
+  const connectionBig =
+    document.getElementById(
+      "connectionBig"
+    );
+
+  const viewerCount =
+    document.getElementById(
+      "viewerCount"
+    );
+
+  const headerLive =
+    document.getElementById(
+      "headerLive"
+    );
+
+  const headerLiveText =
+    document.getElementById(
+      "headerLiveText"
+    );
+
+  const hostControls =
+    document.getElementById(
+      "hostControls"
+    );
+
+  const viewerControls =
+    document.getElementById(
+      "viewerControls"
+    );
+
+  const startCameraButton =
+    document.getElementById(
+      "startCameraButton"
+    );
+
+  const stopCameraButton =
+    document.getElementById(
+      "stopCameraButton"
+    );
+
+  const muteMicButton =
+    document.getElementById(
+      "muteMicButton"
+    );
+
+  const brbButton =
+    document.getElementById(
+      "brbButton"
+    );
+
+  const micIndicator =
+    document.getElementById(
+      "micIndicator"
+    );
+
+  const brbTitleInput = document.getElementById("brbTitleInput");
+  const brbSubtitleInput = document.getElementById("brbSubtitleInput");
+  const offlineTitleInput = document.getElementById("offlineTitleInput");
+  const offlineSubtitleInput = document.getElementById("offlineSubtitleInput");
+  const updateBanner = document.getElementById("updateBanner");
+
+
+
+  /* ==========================================================
+     CUSTOM MESSAGES
+     ========================================================== */
+
+  function loadCustomMessages() {
+    brbTitleInput.value = customMessages.brbTitle;
+    brbSubtitleInput.value = customMessages.brbSubtitle;
+    offlineTitleInput.value = customMessages.offlineTitle;
+    offlineSubtitleInput.value = customMessages.offlineSubtitle;
+
+    [
+      brbTitleInput,
+      brbSubtitleInput,
+      offlineTitleInput,
+      offlineSubtitleInput
+    ].forEach(input => {
+      input.addEventListener("input", saveCustomMessages);
     });
-    call.on("close",()=>{setLive(false);$("connection").textContent="Disconnected";setPublicMessage("OFFLINE","")});
-    call.on("error",()=>{setLive(false);setPublicMessage("OFFLINE","")});
-  });
-  p.on("error",()=>{setLive(false);$("connection").textContent="Offline";setPublicMessage("OFFLINE","")});
-}
-const params=new URLSearchParams(location.search);
-if(params.get("host")==="1"){
-  $("publicPage").style.display="none";$("hostPage").style.display="block";
-}else initialiseViewer();
+  }
+
+  function saveCustomMessages() {
+    customMessages = {
+      brbTitle: brbTitleInput.value.trim() || DEFAULT_MESSAGES.brbTitle,
+      brbSubtitle: brbSubtitleInput.value.trim() || DEFAULT_MESSAGES.brbSubtitle,
+      offlineTitle: offlineTitleInput.value.trim() || DEFAULT_MESSAGES.offlineTitle,
+      offlineSubtitle: offlineSubtitleInput.value.trim() || DEFAULT_MESSAGES.offlineSubtitle
+    };
+
+    localStorage.setItem("lottieMessages", JSON.stringify(customMessages));
+
+    if (!brbActive && !localStream) {
+      messageTitle.textContent = customMessages.offlineTitle;
+      messageSubtitle.textContent = customMessages.offlineSubtitle;
+    }
+
+    if (brbActive) {
+      messageTitle.textContent = customMessages.brbTitle;
+      messageSubtitle.textContent = customMessages.brbSubtitle;
+      drawBRBFrame();
+    }
+  }
+
+
+  /* ==========================================================
+     BRB STREAM
+     ========================================================== */
+
+  function createBRBStream() {
+    if (brbCanvasStream) return brbCanvasStream;
+
+    brbCanvas = document.createElement("canvas");
+    brbCanvas.width = 1280;
+    brbCanvas.height = 720;
+
+    brbCanvasStream = brbCanvas.captureStream(30);
+    drawBRBFrame();
+
+    return brbCanvasStream;
+  }
+
+  function drawBRBFrame() {
+    if (!brbCanvas) return;
+
+    const ctx = brbCanvas.getContext("2d");
+    const w = brbCanvas.width;
+    const h = brbCanvas.height;
+
+    ctx.clearRect(0, 0, w, h);
+
+    const gradient = ctx.createLinearGradient(0, 0, w, h);
+    gradient.addColorStop(0, "#fff0f7");
+    gradient.addColorStop(1, "#f6d76c");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, w, h);
+
+    // Soft bubbles
+    const bubbles = [
+      [120,120,34],[220,590,22],[1080,125,42],[1150,560,28],
+      [900,630,18],[390,110,16],[650,590,31]
+    ];
+
+    bubbles.forEach(([x,y,r]) => {
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(243,166,200,.38)";
+      ctx.fill();
+      ctx.strokeStyle = "rgba(255,230,125,.85)";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+    });
+
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    ctx.font = "110px Arial";
+    ctx.fillText("💗", w / 2, h / 2 - 125);
+
+    ctx.fillStyle = "#573b4a";
+    ctx.font = "700 58px Fredoka, Arial, sans-serif";
+    ctx.fillText(customMessages.brbTitle, w / 2, h / 2 + 15);
+
+    ctx.fillStyle = "#74663e";
+    ctx.font = "400 30px Fredoka, Arial, sans-serif";
+
+    const words = customMessages.brbSubtitle.split(" ");
+    const lines = [];
+    let line = "";
+
+    words.forEach(word => {
+      const test = line ? line + " " + word : word;
+      if (ctx.measureText(test).width > 900 && line) {
+        lines.push(line);
+        line = word;
+      } else {
+        line = test;
+      }
+    });
+
+    if (line) lines.push(line);
+
+    lines.slice(0, 3).forEach((text, index) => {
+      ctx.fillText(text, w / 2, h / 2 + 78 + index * 42);
+    });
+
+    ctx.font = "600 20px Fredoka, Arial, sans-serif";
+    ctx.fillStyle = "#a18b42";
+    ctx.fillText("Lottie", w / 2, h - 45);
+  }
+
+  function startBRBAnimation() {
+    stopBRBAnimation();
+
+    const tick = () => {
+      drawBRBFrame();
+      brbCanvasAnimation = requestAnimationFrame(tick);
+    };
+
+    tick();
+  }
+
+  function stopBRBAnimation() {
+    if (brbCanvasAnimation) {
+      cancelAnimationFrame(brbCanvasAnimation);
+      brbCanvasAnimation = null;
+    }
+  }
+
+  function setViewerVideoTrack(stream) {
+    if (!stream) return;
+
+    viewerCalls.forEach(call => {
+      const sender = call.peerConnection
+        ?.getSenders()
+        ?.find(s => s.track?.kind === "video");
+
+      const track = stream.getVideoTracks()[0];
+
+      if (sender && track) {
+        sender.replaceTrack(track).catch(error =>
+          console.warn("Could not switch viewer video track:", error)
+        );
+      }
+    });
+  }
+
+  function restoreLiveVideoTrack() {
+    if (!localStream) return;
+
+    const liveTrack = localStream.getVideoTracks()[0];
+    if (!liveTrack) return;
+
+    viewerCalls.forEach(call => {
+      const sender = call.peerConnection
+        ?.getSenders()
+        ?.find(s => s.track?.kind === "video");
+
+      if (sender) {
+        sender.replaceTrack(liveTrack).catch(error =>
+          console.warn("Could not restore live video track:", error)
+        );
+      }
+    });
+  }
+
+
+  /* ==========================================================
+     VERSION CHECK
+     ========================================================== */
+
+  function refreshForUpdate() {
+    const url = new URL(window.location.href);
+    url.searchParams.set("refresh", Date.now().toString());
+    window.location.replace(url.toString());
+  }
+
+  async function checkForUpdates() {
+    try {
+      const response = await fetch(
+        `${VERSION_URL}?t=${Date.now()}`,
+        { cache: "no-store" }
+      );
+
+      if (!response.ok) return;
+
+      const data = await response.json();
+
+      if (data.version && data.version !== APP_VERSION) {
+        updateBanner.classList.add("show");
+      }
+    } catch (error) {
+      console.warn("Version check unavailable:", error);
+    }
+  }
+
+  setInterval(checkForUpdates, 60000);
+
+
+  /* ==========================================================
+     HOST LOGIN MODAL
+     ========================================================== */
+
+  function openHostLogin() {
+    loginScreen.style.display = "";
+    loginScreen.classList.add("open");
+    setMode("host");
+    setTimeout(() => passwordInput.focus(), 80);
+  }
+
+  function closeHostLogin() {
+    loginScreen.classList.remove("open");
+    passwordInput.value = "";
+    loginError.textContent = "";
+  }
+
+  /* ==========================================================
+     LOGIN MODE
+     ========================================================== */
+
+  function setMode(newMode) {
+
+    mode = newMode;
+
+
+    document
+      .getElementById(
+        "hostModeButton"
+      )
+      .classList.toggle(
+        "active",
+        mode === "host"
+      );
+
+
+    document
+      .getElementById(
+        "viewerModeButton"
+      )
+      .classList.toggle(
+        "active",
+        mode === "viewer"
+      );
+
+
+    loginError.textContent = "";
+
+
+    if (mode === "host") {
+
+      passwordInput.classList.remove(
+        "hidden"
+      );
+
+      passwordInput.placeholder =
+        "Host password";
+
+      loginNote.textContent =
+        "Host access requires a password.";
+
+    } else {
+
+      /*
+       * Viewer has NO password.
+       */
+
+      passwordInput.classList.add(
+        "hidden"
+      );
+
+      loginNote.textContent =
+        "Family access is open — no password needed.";
+
+    }
+
+  }
+
+
+  /* ==========================================================
+     LOGIN
+     ========================================================== */
+
+  function login() {
+
+    if (mode === "viewer") {
+
+      closeHostLogin();
+      enterDashboard("viewer");
+
+      return;
+
+    }
+
+
+    const password =
+      passwordInput.value.trim();
+
+
+    if (
+      password === HOST_PASSWORD
+    ) {
+
+      closeHostLogin();
+      enterDashboard("host");
+
+    } else {
+
+      loginError.textContent =
+        "That host password isn't correct.";
+
+    }
+
+  }
+
+
+  /* ==========================================================
+     DASHBOARD
+     ========================================================== */
+
+  function enterDashboard(
+    selectedMode
+  ) {
+
+    mode = selectedMode;
+
+    loginScreen.classList.remove("open");
+    loginScreen.style.display = "none";
+
+    dashboard.classList.add(
+      "show"
+    );
+
+
+    if (mode === "host") {
+
+      document.getElementById(
+        "welcomeTitle"
+      ).textContent =
+        "Lottie's Camera Control 💗";
+
+
+      document.getElementById(
+        "welcomeText"
+      ).textContent =
+        "Manage Lottie's camera, BRB screen and viewer messages.";
+
+
+      hostControls.classList.remove(
+        "hidden"
+      );
+
+      viewerControls.classList.add(
+        "hidden"
+      );
+
+
+      initialiseHost();
+
+    } else {
+
+      document.getElementById(
+        "welcomeTitle"
+      ).textContent =
+        "Welcome to Lottie's World 💗";
+
+
+      document.getElementById(
+        "welcomeText"
+      ).textContent =
+        "You're visiting Lottie live 💗";
+
+
+      hostControls.classList.add(
+        "hidden"
+      );
+
+      viewerControls.classList.remove(
+        "hidden"
+      );
+
+
+      initialiseViewer();
+
+    }
+
+  }
+
+
+  /* ==========================================================
+     HOST INITIALISE
+     ========================================================== */
+
+  function initialiseHost() {
+
+    setConnection(
+      "Starting camera system...",
+      "Connecting"
+    );
+
+
+    peer = new Peer(
+      CAMERA_PEER_ID,
+      PEER_CONFIG
+    );
+
+
+    peer.on(
+      "open",
+      id => {
+
+        console.log(
+          "Lottie camera online:",
+          id
+        );
+
+
+        setConnection(
+          "Camera system ready.",
+          "Ready"
+        );
+
+      }
+    );
+
+
+    /*
+     * Viewer calls host.
+     */
+
+    peer.on(
+      "call",
+      call => {
+
+        console.log(
+          "💗 FAMILY VIEWER CONNECTED:",
+          call.peer
+        );
+
+
+        if (!localStream) {
+          call.answer();
+          return;
+        }
+
+        /*
+         * Keep the WebRTC call alive during BRB.
+         * We swap the outgoing video track instead of closing
+         * the connection, so returning to live works immediately.
+         */
+        call.answer(localStream);
+
+
+        viewerCalls.set(
+          call.peer,
+          call
+        );
+
+
+        updateViewerCount();
+
+
+        call.on(
+          "close",
+          () => {
+
+            viewerCalls.delete(
+              call.peer
+            );
+
+            updateViewerCount();
+
+          }
+        );
+
+
+        call.on(
+          "error",
+          error => {
+
+            console.error(
+              "Viewer call error:",
+              error
+            );
+
+
+            viewerCalls.delete(
+              call.peer
+            );
+
+
+            updateViewerCount();
+
+          }
+        );
+
+      }
+    );
+
+
+    peer.on(
+      "error",
+      error => {
+
+        console.error(
+          "HOST PEER ERROR:",
+          error
+        );
+
+
+        if (
+          error.type ===
+          "unavailable-id"
+        ) {
+
+          setConnection(
+            "Camera ID is already in use. Close the other host tab.",
+            "Error"
+          );
+
+        } else {
+
+          setConnection(
+            "Peer error: " +
+            error.type,
+            "Error"
+          );
+
+        }
+
+      }
+    );
+
+
+    peer.on(
+      "disconnected",
+      () => {
+
+        setConnection(
+          "Reconnecting to camera service...",
+          "Reconnecting"
+        );
+
+
+        if (
+          !peer.destroyed
+        ) {
+
+          peer.reconnect();
+
+        }
+
+      }
+    );
+
+
+    setTimeout(
+      startCamera,
+      500
+    );
+
+  }
+
+
+  /* ==========================================================
+     START CAMERA
+     ========================================================== */
+
+  async function startCamera() {
+
+    if (localStream) {
+      return;
+    }
+
+
+    try {
+
+      setConnection(
+        "Requesting camera and microphone...",
+        "Starting"
+      );
+
+
+      localStream =
+        await navigator
+          .mediaDevices
+          .getUserMedia({
+
+            video: {
+
+              width: {
+                ideal: 1280
+              },
+
+              height: {
+                ideal: 720
+              },
+
+              facingMode:
+                "user"
+
+            },
+
+            audio: true
+
+          });
+
+
+      localStream
+        .getAudioTracks()
+        .forEach(
+          track => {
+            track.enabled = true;
+          }
+        );
+
+
+      microphoneMuted =
+        false;
+
+
+      brbActive =
+        false;
+
+      stopBRBAnimation();
+      if (brbCanvasStream) {
+        brbCanvasStream.getTracks().forEach(track => track.stop());
+      }
+      brbCanvasStream = null;
+      brbCanvas = null;
+
+      updateMicUI();
+
+      updateBRBUI();
+
+
+      video.srcObject =
+        localStream;
+
+      video.muted =
+        true;
+
+
+      videoMessage.classList.add(
+        "hidden"
+      );
+
+
+      setLiveState(true);
+
+
+      startCameraButton.classList.add(
+        "hidden"
+      );
+
+
+      stopCameraButton.classList.remove(
+        "hidden"
+      );
+
+
+      muteMicButton.classList.remove(
+        "hidden"
+      );
+
+
+      brbButton.classList.remove(
+        "hidden"
+      );
+
+
+      micIndicator.classList.remove(
+        "hidden"
+      );
+
+
+      setConnection(
+        "💗 Lottie is live!",
+        "Live"
+      );
+
+
+      console.log(
+        "💗 LOTTIE IS LIVE"
+      );
+
+
+    } catch (error) {
+
+      console.error(
+        "Camera error:",
+        error
+      );
+
+
+      setConnection(
+        "Camera permission was denied or unavailable.",
+        "Error"
+      );
+
+
+      alert(
+        "Lottie's camera couldn't start.\n\n" +
+        "Make sure Chrome has permission to use the camera and microphone."
+      );
+
+    }
+
+  }
+
+
+  /* ==========================================================
+     MICROPHONE
+     ========================================================== */
+
+  function toggleMicrophone() {
+
+    if (!localStream) {
+      return;
+    }
+
+
+    const tracks =
+      localStream.getAudioTracks();
+
+
+    if (
+      tracks.length === 0
+    ) {
+
+      return;
+
+    }
+
+
+    microphoneMuted =
+      !microphoneMuted;
+
+
+    tracks.forEach(
+      track => {
+
+        track.enabled =
+          !microphoneMuted;
+
+      }
+    );
+
+
+    updateMicUI();
+
+
+    console.log(
+      microphoneMuted
+        ? "🔇 Microphone MUTED"
+        : "🎙️ Microphone ON"
+    );
+
+  }
+
+
+  function updateMicUI() {
+
+    if (
+      microphoneMuted
+    ) {
+
+      muteMicButton.textContent =
+        "🔊 Unmute Microphone";
+
+
+      muteMicButton.classList.add(
+        "muted"
+      );
+
+
+      micIndicator.textContent =
+        "🔇 Microphone is muted";
+
+    } else {
+
+      muteMicButton.textContent =
+        "🎙️ Mute Microphone";
+
+
+      muteMicButton.classList.remove(
+        "muted"
+      );
+
+
+      micIndicator.textContent =
+        "🎙️ Microphone is on";
+
+    }
+
+  }
+
+
+  /* ==========================================================
+     BRB MODE
+     ========================================================== */
+
+  function toggleBRB() {
+
+    if (!localStream) {
+      return;
+    }
+
+    brbActive = !brbActive;
+
+    if (brbActive) {
+
+      customMessages.brbTitle =
+        brbTitleInput.value.trim() || DEFAULT_MESSAGES.brbTitle;
+
+      customMessages.brbSubtitle =
+        brbSubtitleInput.value.trim() || DEFAULT_MESSAGES.brbSubtitle;
+
+      localStorage.setItem(
+        "lottieMessages",
+        JSON.stringify(customMessages)
+      );
+
+      createBRBStream();
+      startBRBAnimation();
+
+      // Keep every viewer call alive and swap only the video track.
+      setViewerVideoTrack(brbCanvasStream);
+
+      videoMessage.classList.remove("hidden");
+
+      messageTitle.textContent =
+        customMessages.brbTitle;
+
+      messageSubtitle.textContent =
+        customMessages.brbSubtitle;
+
+      brbBadge.classList.remove("hidden");
+
+      setLiveState(false);
+
+      headerLiveText.textContent = "BRB";
+      headerLive.classList.remove("live");
+
+      setConnection(
+        "🫧 " + customMessages.brbTitle,
+        "BRB"
+      );
+
+      brbButton.textContent =
+        "▶️ Return to Live Camera";
+
+      brbButton.classList.add("brb-on");
+
+      console.log("🫧 BRB MODE ON");
+
+    } else {
+
+      stopBRBAnimation();
+
+      // Restore the real camera track without reconnecting viewers.
+      restoreLiveVideoTrack();
+
+      video.srcObject = localStream;
+
+      video.muted = true;
+
+      videoMessage.classList.add("hidden");
+      brbBadge.classList.add("hidden");
+
+      setLiveState(true);
+
+      setConnection(
+        "💗 Lottie is live!",
+        "Live"
+      );
+
+      brbButton.textContent =
+        "🫧 Start \"We'll Be Right Back\"";
+
+      brbButton.classList.remove("brb-on");
+
+      console.log("💗 BRB MODE OFF — LIVE RESTORED");
+
+    }
+  }
+
+
+  function updateBRBUI() {
+
+    if (
+      brbActive
+    ) {
+
+      brbButton.textContent =
+        "▶️ Return to Live Camera";
+
+      brbButton.classList.add(
+        "brb-on"
+      );
+
+    } else {
+
+      brbButton.textContent =
+        "🫧 Start \"We'll Be Right Back\"";
+
+      brbButton.classList.remove(
+        "brb-on"
+      );
+
+    }
+
+  }
+
+
+  /* ==========================================================
+     STOP CAMERA
+     ========================================================== */
+
+  function stopCamera() {
+
+    if (!localStream) {
+      return;
+    }
+
+
+    localStream
+      .getTracks()
+      .forEach(
+        track => track.stop()
+      );
+
+
+    localStream =
+      null;
+
+
+    microphoneMuted =
+      false;
+
+
+    brbActive =
+      false;
+
+
+    viewerCalls.forEach(
+      call => {
+
+        try {
+          call.close();
+        } catch (error) {}
+
+      }
+    );
+
+
+    viewerCalls.clear();
+
+
+    video.srcObject =
+      null;
+
+
+    videoMessage.classList.remove(
+      "hidden"
+    );
+
+
+    messageTitle.textContent =
+      customMessages.offlineTitle;
+
+    messageSubtitle.textContent =
+      customMessages.offlineSubtitle;
+
+
+    brbBadge.classList.add(
+      "hidden"
+    );
+
+
+    startCameraButton.classList.remove(
+      "hidden"
+    );
+
+
+    stopCameraButton.classList.add(
+      "hidden"
+    );
+
+
+    muteMicButton.classList.add(
+      "hidden"
+    );
+
+
+    brbButton.classList.add(
+      "hidden"
+    );
+
+
+    micIndicator.classList.add(
+      "hidden"
+    );
+
+
+    setLiveState(false);
+
+
+    setConnection(
+      "Camera stopped.",
+      "Offline"
+    );
+
+
+    updateViewerCount();
+
+  }
+
+
+  /* ==========================================================
+     VIEWER
+     ========================================================== */
+
+  function initialiseViewer() {
+
+    setConnection(
+      "Connecting to Lottie's camera...",
+      "Connecting"
+    );
+
+
+    peer =
+      new Peer(
+        undefined,
+        PEER_CONFIG
+      );
+
+
+    peer.on(
+      "open",
+      id => {
+
+        console.log(
+          "Viewer Peer ready:",
+          id
+        );
+
+
+        setConnection(
+          "Finding Lottie's camera...",
+          "Connecting"
+        );
+
+
+        connectToCamera();
+
+      }
+    );
+
+
+    peer.on(
+      "error",
+      error => {
+
+        console.error(
+          "VIEWER PEER ERROR:",
+          error
+        );
+
+
+        if (
+          error.type ===
+          "peer-unavailable"
+        ) {
+
+          showOffline();
+
+
+          setConnection(
+            "Lottie's camera isn't reachable right now.",
+            "Offline"
+          );
+
+
+          scheduleReconnect();
+
+        } else {
+
+          setConnection(
+            "Connection error: " +
+            error.type,
+            "Error"
+          );
+
+        }
+
+      }
+    );
+
+
+    peer.on(
+      "disconnected",
+      () => {
+
+        setConnection(
+          "Reconnecting...",
+          "Reconnecting"
+        );
+
+
+        if (
+          !peer.destroyed
+        ) {
+
+          peer.reconnect();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /* ==========================================================
+     DUMMY VIEWER STREAM
+     ========================================================== */
+
+  function createDummyStream() {
+
+    const canvas =
+      document.createElement(
+        "canvas"
+      );
+
+
+    canvas.width = 2;
+    canvas.height = 2;
+
+
+    const ctx =
+      canvas.getContext(
+        "2d"
+      );
+
+
+    ctx.fillStyle =
+      "#000";
+
+    ctx.fillRect(
+      0,
+      0,
+      2,
+      2
+    );
+
+
+    const videoStream =
+      canvas.captureStream(
+        1
+      );
+
+
+    let audioTrack =
+      null;
+
+
+    try {
+
+      const AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+
+      const audioContext =
+        new AudioContext();
+
+
+      const oscillator =
+        audioContext.createOscillator();
+
+
+      const destination =
+        audioContext
+          .createMediaStreamDestination();
+
+
+      oscillator.connect(
+        destination
+      );
+
+
+      oscillator.start();
+
+
+      audioTrack =
+        destination
+          .stream
+          .getAudioTracks()[0];
+
+    } catch (error) {
+
+      console.warn(
+        "Silent audio track unavailable:",
+        error
+      );
+
+    }
+
+
+    const stream =
+      new MediaStream();
+
+
+    videoStream
+      .getVideoTracks()
+      .forEach(
+        track => {
+
+          stream.addTrack(
+            track
+          );
+
+        }
+      );
+
+
+    if (audioTrack) {
+
+      stream.addTrack(
+        audioTrack
+      );
+
+    }
+
+
+    return stream;
+
+  }
+
+
+  /* ==========================================================
+     CONNECT VIEWER
+     ========================================================== */
+
+  function connectToCamera(
+    force = false
+  ) {
+
+    if (
+      !peer ||
+      peer.destroyed ||
+      isConnecting
+    ) {
+
+      return;
+
+    }
+
+
+    if (
+      currentCall &&
+      currentCall.open &&
+      !force
+    ) {
+
+      return;
+
+    }
+
+
+    isConnecting =
+      true;
+
+
+    if (
+      force &&
+      currentCall
+    ) {
+
+      try {
+        currentCall.close();
+      } catch (error) {}
+
+      currentCall =
+        null;
+
+    }
+
+
+    console.log(
+      "Connecting to Lottie's camera..."
+    );
+
+
+    setConnection(
+      "Connecting to Lottie's camera...",
+      "Connecting"
+    );
+
+
+    const dummyStream =
+      createDummyStream();
+
+
+    let call;
+
+
+    try {
+
+      call =
+        peer.call(
+          CAMERA_PEER_ID,
+          dummyStream
+        );
+
+    } catch (error) {
+
+      console.error(
+        "Could not create call:",
+        error
+      );
+
+
+      dummyStream
+        .getTracks()
+        .forEach(
+          track => track.stop()
+        );
+
+
+      isConnecting =
+        false;
+
+      return;
+
+    }
+
+
+    currentCall =
+      call;
+
+
+    console.log(
+      "Call created:",
+      call
+    );
+
+
+    call.on(
+      "stream",
+      remoteStream => {
+
+        console.log(
+          "💗 REMOTE LOTTIE STREAM RECEIVED",
+          remoteStream
+        );
+
+
+        isConnecting =
+          false;
+
+
+        video.srcObject =
+          remoteStream;
+
+
+        video.muted =
+          false;
+
+
+        videoMessage.classList.add(
+          "hidden"
+        );
+
+
+        setLiveState(true);
+
+
+        setConnection(
+          "💗 Live connection to Lottie",
+          "Live"
+        );
+
+
+        connectionBig.textContent =
+          "Connected";
+
+
+        video
+          .play()
+          .catch(
+            () => {}
+          );
+
+      }
+    );
+
+
+    call.on(
+      "close",
+      () => {
+
+        console.log(
+          "Lottie call closed."
+        );
+
+
+        isConnecting =
+          false;
+
+
+        currentCall =
+          null;
+
+
+        showOffline();
+
+
+        setConnection(
+          "The camera connection closed.",
+          "Offline"
+        );
+
+
+        scheduleReconnect();
+
+      }
+    );
+
+
+    call.on(
+      "error",
+      error => {
+
+        console.error(
+          "Lottie call error:",
+          error
+        );
+
+
+        isConnecting =
+          false;
+
+
+        currentCall =
+          null;
+
+
+        showOffline();
+
+
+        setConnection(
+          "Couldn't connect to Lottie's camera.",
+          "Error"
+        );
+
+
+        scheduleReconnect();
+
+      }
+    );
+
+
+    setTimeout(
+      () => {
+
+        dummyStream
+          .getTracks()
+          .forEach(
+            track => {
+
+              try {
+                track.stop();
+              } catch (error) {}
+
+            }
+          );
+
+      },
+      10000
+    );
+
+  }
+
+
+  /* ==========================================================
+     RECONNECT
+     ========================================================== */
+
+  function scheduleReconnect() {
+
+    if (
+      reconnectTimer
+    ) {
+
+      return;
+
+    }
+
+
+    reconnectTimer =
+      setTimeout(
+        () => {
+
+          reconnectTimer =
+            null;
+
+
+          if (
+            mode === "viewer" &&
+            peer &&
+            !peer.destroyed
+          ) {
+
+            connectToCamera();
+
+          }
+
+        },
+        4000
+      );
+
+  }
+
+
+  /* ==========================================================
+     OFFLINE
+     ========================================================== */
+
+  function showOffline() {
+
+    setLiveState(false);
+
+
+    video.srcObject =
+      null;
+
+
+    videoMessage.classList.remove(
+      "hidden"
+    );
+
+
+    brbBadge.classList.add(
+      "hidden"
+    );
+
+
+    messageTitle.textContent =
+      customMessages.offlineTitle;
+
+    messageSubtitle.textContent =
+      customMessages.offlineSubtitle;
+
+  }
+
+
+  /* ==========================================================
+     LIVE STATE
+     ========================================================== */
+
+  function setLiveState(
+    isLive
+  ) {
+
+    if (
+      isLive
+    ) {
+
+      headerLive.classList.add(
+        "live"
+      );
+
+
+      headerLiveText.textContent =
+        "LIVE";
+
+
+      cameraStatus.textContent =
+        "LIVE";
+
+
+      cameraStatus.className =
+        "green";
+
+
+      cameraStatusBig.textContent =
+        "LIVE";
+
+
+      cameraStatusBig.className =
+        "status-value green";
+
+    } else {
+
+      headerLive.classList.remove(
+        "live"
+      );
+
+
+      headerLiveText.textContent =
+        "Offline";
+
+
+      cameraStatus.textContent =
+        "Offline";
+
+
+      cameraStatus.className =
+        "pink";
+
+
+      cameraStatusBig.textContent =
+        "Offline";
+
+
+      cameraStatusBig.className =
+        "status-value";
+
+    }
+
+  }
+
+
+  /* ==========================================================
+     CONNECTION
+     ========================================================== */
+
+  function setConnection(
+    message,
+    state
+  ) {
+
+    connectionStatus.textContent =
+      message;
+
+
+    connectionBig.textContent =
+      state;
+
+
+    if (
+      state === "Live"
+    ) {
+
+      connectionBig.className =
+        "status-value green";
+
+    } else if (
+      state === "Error"
+    ) {
+
+      connectionBig.className =
+        "status-value pink";
+
+    } else {
+
+      connectionBig.className =
+        "status-value";
+
+    }
+
+  }
+
+
+  /* ==========================================================
+     VIEWER COUNT
+     ========================================================== */
+
+  function updateViewerCount() {
+
+    viewerCount.textContent =
+      viewerCalls.size;
+
+  }
+
+
+  /* ==========================================================
+     MOBILE VIDEO PLAY
+     ========================================================== */
+
+  video.addEventListener(
+    "click",
+    () => {
+
+      if (
+        video.srcObject
+      ) {
+
+        video
+          .play()
+          .catch(
+            () => {}
+          );
+
+      }
+
+    }
+  );
+
+
+  /* ==========================================================
+     CLEANUP
+     ========================================================== */
+
+  window.addEventListener(
+    "beforeunload",
+    () => {
+
+      if (
+        localStream
+      ) {
+
+        localStream
+          .getTracks()
+          .forEach(
+            track =>
+              track.stop()
+          );
+
+      }
+
+
+      if (
+        peer &&
+        !peer.destroyed
+      ) {
+
+        peer.destroy();
+
+      }
+
+    }
+  );
+
+
+  /* ==========================================================
+     INITIAL LOGIN STATE
+     ========================================================== */
+
+  loadCustomMessages();
+  setMode("viewer");
+
+  /*
+   * Public visitors go straight to Lottie's page.
+   * Host access is tucked into the top-right corner.
+   */
+  enterDashboard("viewer");
+
+  checkForUpdates();
+
 </script>
+
 </body>
 </html>

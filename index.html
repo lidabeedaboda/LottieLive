@@ -1858,7 +1858,7 @@
   const CAMERA_PEER_ID =
     "lotties-little-world-camera-v4";
 
-  const APP_VERSION = "3.0.0";
+  const APP_VERSION = "9.0.0";
 
   /*
    * Keep a tiny version.json beside this HTML file.
@@ -3342,6 +3342,136 @@
 
 
   /* ==========================================================
+     RELIABLE REMOTE VIDEO PLAYBACK
+     ========================================================== */
+
+  let remotePlaybackRetryTimer = null;
+
+  function attachRemoteStream(remoteStream) {
+
+    if (!remoteStream) {
+      return;
+    }
+
+    console.log(
+      "Attaching remote Lottie stream:",
+      remoteStream.id,
+      "video tracks:",
+      remoteStream.getVideoTracks().length,
+      "audio tracks:",
+      remoteStream.getAudioTracks().length
+    );
+
+    // Clear any previous retry loop.
+    if (remotePlaybackRetryTimer) {
+      clearInterval(remotePlaybackRetryTimer);
+      remotePlaybackRetryTimer = null;
+    }
+
+    video.pause();
+    video.srcObject = remoteStream;
+
+    /*
+     * Browsers can block autoplay when a remote WebRTC stream
+     * contains audio. Start muted so the video is allowed to play.
+     * The viewer can still use the browser/player controls if needed.
+     */
+    video.muted = true;
+    video.autoplay = true;
+    video.playsInline = true;
+
+    const tryPlay = () => {
+
+      if (!video.srcObject || video.srcObject !== remoteStream) {
+        return;
+      }
+
+      const videoTracks = remoteStream.getVideoTracks();
+
+      if (!videoTracks.length) {
+        return;
+      }
+
+      const track = videoTracks[0];
+
+      if (track.readyState === "ended") {
+        return;
+      }
+
+      video.play().then(() => {
+
+        console.log("Remote Lottie video playback started.");
+
+        if (remotePlaybackRetryTimer) {
+          clearInterval(remotePlaybackRetryTimer);
+          remotePlaybackRetryTimer = null;
+        }
+
+      }).catch(error => {
+
+        console.warn(
+          "Remote video play waiting for browser permission/state:",
+          error
+        );
+
+      });
+
+    };
+
+    const onReady = () => {
+      tryPlay();
+    };
+
+    video.onloadedmetadata = onReady;
+    video.oncanplay = onReady;
+    video.onloadeddata = onReady;
+
+    // WebRTC tracks can arrive a moment after the stream event.
+    remoteStream.onaddtrack = () => {
+      console.log("Remote WebRTC track added.");
+      setTimeout(tryPlay, 100);
+      setTimeout(tryPlay, 500);
+      setTimeout(tryPlay, 1200);
+    };
+
+    tryPlay();
+
+    // A short retry window fixes devices where metadata/track readiness
+    // happens after PeerJS fires the stream event.
+    let attempts = 0;
+
+    remotePlaybackRetryTimer = setInterval(() => {
+
+      attempts += 1;
+
+      tryPlay();
+
+      if (
+        video.readyState >= 3 ||
+        attempts >= 20
+      ) {
+
+        clearInterval(remotePlaybackRetryTimer);
+        remotePlaybackRetryTimer = null;
+
+      }
+
+    }, 500);
+
+    videoMessage.classList.add("hidden");
+
+    setLiveState(true);
+
+    setConnection(
+      "💗 Live connection to Lottie",
+      "Live"
+    );
+
+    connectionBig.textContent = "Connected";
+  }
+
+
+  /* ==========================================================
      CONNECT VIEWER
      ========================================================== */
 
@@ -3463,37 +3593,7 @@
           false;
 
 
-        video.srcObject =
-          remoteStream;
-
-
-        video.muted =
-          false;
-
-
-        videoMessage.classList.add(
-          "hidden"
-        );
-
-
-        setLiveState(true);
-
-
-        setConnection(
-          "💗 Live connection to Lottie",
-          "Live"
-        );
-
-
-        connectionBig.textContent =
-          "Connected";
-
-
-        video
-          .play()
-          .catch(
-            () => {}
-          );
+        attachRemoteStream(remoteStream);
 
       }
     );
@@ -3515,6 +3615,12 @@
         currentCall =
           null;
 
+        if (remotePlaybackRetryTimer) {
+          clearInterval(remotePlaybackRetryTimer);
+          remotePlaybackRetryTimer = null;
+        }
+
+        video.srcObject = null;
 
         showOffline();
 
@@ -3584,6 +3690,19 @@
     );
 
   }
+
+
+  video.addEventListener("error", () => {
+
+    console.warn("Viewer video element reported an error; retrying playback.");
+
+    if (video.srcObject) {
+      setTimeout(() => {
+        video.play().catch(() => {});
+      }, 250);
+    }
+
+  });
 
 
   /* ==========================================================

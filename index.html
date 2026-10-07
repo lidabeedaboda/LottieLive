@@ -1,238 +1,243 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Lottie's Little World 🩷</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩷</text></svg>">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lottie's Little World</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --pink:#f58bb5;--pink2:#ffb5d0;--pink3:#ffe4ee;--pink4:#fff5f9;
-  --ink:#25212a;--muted:#8c8290;--white:#fff;--green:#43b978;--red:#dc647f;
-  --shadow:0 24px 70px rgba(180,92,128,.13)
-}
-html{scroll-behavior:smooth}
-body{min-height:100vh;font-family:Fredoka,sans-serif;color:var(--ink);background:#fff9fc;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;background-image:radial-gradient(circle,rgba(245,139,181,.18) 1px,transparent 1px);background-size:30px 30px}
-button,input{font:inherit}button{border:0;cursor:pointer}
-.app{width:min(1180px,calc(100% - 28px));margin:auto;padding:18px 0 45px;position:relative;z-index:2}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:13px 16px;background:rgba(255,255,255,.9);border:1px solid #fff;border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(18px);position:sticky;top:12px;z-index:20}
-.brand{display:flex;align-items:center;gap:12px}.logo{width:50px;height:50px;border-radius:17px;display:grid;place-items:center;background:var(--pink3);font-size:27px}
-.brand h1{font-size:23px;line-height:1}.brand p{font-size:12px;color:var(--muted);margin-top:4px}
-.top-actions{display:flex;align-items:center;gap:8px}.live-pill,.live-pill{background:#f4edf1;color:#897d86}.live-pill.live{background:#eaf9f0;color:#269b5d}.dot{width:8px;height:8px;border-radius:50%;display:inline-block;background:#aaa;margin-right:6px}.live .dot{background:var(--green);animation:pulse 1.7s infinite}@keyframes pulse{70%{box-shadow:0 0 0 7px rgba(67,185,120,0)}}
-.layout{display:grid;grid-template-columns:1.55fr .75fr;gap:18px;margin-top:18px}
-.hero{grid-column:1/-1;padding:31px;border-radius:32px;background:linear-gradient(135deg,#fff,#ffe9f2);border:1px solid #fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
-.hero:after{content:"🩷";position:absolute;right:35px;bottom:-28px;font-size:120px;opacity:.18}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:700;color:#c55b87}.hero h2{font-size:39px;margin-top:6px}.hero p{color:var(--muted);margin-top:7px}
-.camera-card,.side-card,.info-card{background:rgba(255,255,255,.92);border:1px solid #fff;border-radius:28px;box-shadow:var(--shadow);padding:20px}
-.card-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.card-title h3{font-size:19px}.status-text{font-size:12px;color:#c05b84;font-weight:600}
-.camera-frame{position:relative;padding:10px;border-radius:24px;background:#fff0f6}
-.video-wrap{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:20px;background:#211c21;box-shadow:0 10px 35px rgba(120,60,90,.12)}
-video{width:100%;height:100%;object-fit:cover;display:block;background:#211c21}.frame-line{position:absolute;inset:0;border:2px solid rgba(255,255,255,.25);border-radius:20px;pointer-events:none}
-.bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,.72);border:1px solid #fff;box-shadow:0 4px 12px rgba(245,139,181,.15);z-index:4;animation:float 4s ease-in-out infinite}.b1{width:25px;height:25px;left:4%;top:-3px}.b2{width:14px;height:14px;left:22%;top:8px;animation-delay:-1s}.b3{width:31px;height:31px;right:17%;top:-7px;animation-delay:-2s}.b4{width:17px;height:17px;right:4%;top:15px;animation-delay:-.5s}.b5{width:21px;height:21px;left:12%;bottom:-4px;animation-delay:-2s}.b6{width:14px;height:14px;right:31%;bottom:-2px;animation-delay:-1s}@keyframes float{50%{transform:translateY(-7px) scale(1.08)}}
-.message{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:25px;color:#fff;background:linear-gradient(135deg,rgba(245,139,181,.97),rgba(204,89,132,.98));z-index:3}.message.hidden{display:none}.message-icon{font-size:62px}.message h3{font-size:27px;margin:5px 0}.message p{color:rgba(255,255,255,.8);font-size:14px;max-width:430px;line-height:1.45}.badge{display:inline-block;margin-top:14px;padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.14);font-size:12px}
-.connection{margin-top:12px;padding:11px 13px;border-radius:13px;background:#fff7fa;color:var(--muted);font-size:12px;text-align:center}
-.side-card{display:flex;flex-direction:column;gap:11px}.stat{padding:15px;border-radius:18px;background:#fff7fa;border:1px solid #f8e8ef}.stat small{display:block;color:var(--muted);font-size:11px;margin-bottom:3px}.stat strong{font-size:19px}.green{color:var(--green)!important}.pink{color:#c05b84!important}
-.control-group{margin-top:2px;padding-top:12px;border-top:1px solid #f1e3e9}.control-group h4{font-size:12px;color:#8f7d87;margin-bottom:8px}.controls{display:grid;gap:8px}.btn{width:100%;padding:12px;border-radius:14px;background:#fff0f6;color:#a94d73;font-weight:600;font-size:13px;transition:.18s}.btn:hover{transform:translateY(-1px)}.btn.primary{background:var(--pink);color:#fff;box-shadow:0 9px 22px rgba(245,139,181,.2)}.btn.dark{background:#2b2630;color:#fff}.btn.red{background:#fff0f2;color:#bd536d}.btn.active{background:#d96791;color:#fff}
-.info-card{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px}.info-item{padding:16px;border-radius:18px;background:#fff8fb}.info-item span{display:block;color:var(--muted);font-size:11px}.info-item strong{display:block;margin-top:4px}
-footer{text-align:center;color:#aaa0a7;font-size:11px;margin-top:22px}
-.hidden{display:none!important}
-.modal-icon{font-size:55px;text-align:center}.modal h2{text-align:center;font-size:27px}.modal p{text-align:center;color:var(--muted);font-size:13px;margin:5px 0 20px}.input:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(245,139,181,.12)}.admin-tile h4{font-size:15px}.admin-tile p{font-size:11px;color:var(--muted);margin:4px 0 10px}.admin-status{padding:10px;border-radius:12px;background:#f4edf1;font-size:11px;color:#7d727a;margin-top:10px}
-@media(max-width:800px){.layout{grid-template-columns:1fr}.info-card{grid-template-columns:1fr}.hero h2{font-size:29px}.hero{padding:24px}.topbar{position:relative;top:0}.brand p{display:none}}
+:root{--pink:#f38caf;--pink2:#ffd7e5;--pale:#fff4f8;--ink:#30262d;--muted:#897b84;--line:#f0dce4;--green:#3db875;--shadow:0 20px 60px rgba(83,42,61,.10)}
+*{box-sizing:border-box}body{margin:0;background:#fffafd;color:var(--ink);font-family:Fredoka,system-ui,sans-serif}
+button,input{font:inherit}button{cursor:pointer}.page{max-width:1180px;margin:auto;padding:20px}
+.nav{height:70px;border:1px solid var(--line);background:#fff;border-radius:22px;padding:0 14px 0 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow)}
+.brand{display:flex;gap:11px;align-items:center;font-weight:700;font-size:19px}.logo{width:43px;height:43px;border-radius:14px;background:var(--pale);display:grid;place-items:center;font-size:24px}
+.navright{display:flex;gap:8px;align-items:center}.live{font-size:12px;font-weight:600;padding:9px 12px;border-radius:999px;background:#f3edf0;color:#887b83}.live.on{background:#eaf9f0;color:#299a5c}.live.offline-text{background:#fff0f2;color:#d94b5f}.dot{width:7px;height:7px;border-radius:50%;display:inline-block;background:#aaa;margin-right:6px}.on .dot{background:var(--green)}
+.host-button{border:0;background:var(--ink);color:#fff;border-radius:12px;padding:10px 14px;font-weight:600}
+.hero{padding:48px 6px 28px;display:grid;grid-template-columns:1fr 330px;gap:25px;align-items:center}.kicker{color:#c75d86;font-weight:600;font-size:13px}.hero h1{font-size:clamp(43px,6vw,72px);line-height:.98;letter-spacing:-2px;margin:10px 0 16px}.hero h1 span{color:var(--pink)}.hero p{max-width:650px;color:var(--muted);font-size:17px;line-height:1.55;margin:0}
+.profile{background:#fff;border:1px solid var(--line);border-radius:25px;padding:22px;box-shadow:var(--shadow)}.profile-top{display:flex;align-items:center;gap:13px}.avatar{width:52px;height:52px;border-radius:18px;background:var(--pale);display:grid;place-items:center;font-size:28px}.profile strong{display:block;font-size:21px}.profile small{color:var(--muted)}
+.layout{display:grid;grid-template-columns:minmax(0,1.5fr) 330px;gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:27px;box-shadow:var(--shadow)}
+.camera{padding:11px}.screen{position:relative;aspect-ratio:16/10;background:#211b20;border-radius:20px;overflow:hidden}video{width:100%;height:100%;object-fit:cover;display:block}.overlay{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:25px;background:rgba(34,23,29,.38);color:#fff}.overlay.hidden{display:none}.overlay h2{margin:8px 0 4px;font-size:29px}.overlay p{margin:0;opacity:.85}.bubble{font-size:42px}.badge{display:inline-block;background:#fff;color:#b64d78;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700}.badge.hidden{display:none}
+.camera-foot{display:flex;justify-content:space-between;gap:15px;padding:17px 7px 6px}.camera-name{font-size:21px;font-weight:700}.sub{font-size:13px;color:var(--muted);margin-top:4px}.green-text{color:var(--green);font-weight:600}.offline-text{color:#d94b5f!important;font-weight:700}
+.sidebar{display:flex;flex-direction:column;gap:14px}.side{padding:21px}.side h3{margin:0 0 15px;font-size:19px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{background:#fff6f9;border:1px solid #f5e0e8;border-radius:16px;padding:13px}.stat small{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}.stat strong{font-size:18px}.fed{background:var(--pale);border:1px solid var(--line);border-radius:18px;padding:17px}.fed-icon{font-size:29px}.fed-title{font-weight:700;font-size:18px;margin-top:6px}.fed-time{color:#bd567f;font-size:14px;margin-top:3px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.mini{padding:20px}.mini-icon{font-size:25px}.mini h3{margin:8px 0 5px}.mini p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}.footer{text-align:center;color:#9c8e96;font-size:12px;padding:27px 0 8px}
+.modal{position:fixed;inset:0;background:rgba(43,29,37,.45);display:none;place-items:center;padding:18px;z-index:50;backdrop-filter:blur(8px)}.modal.open{display:grid}.modal-box{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;padding:26px;box-shadow:0 25px 80px rgba(40,25,34,.2)}.modal-box h2{margin:0 0 6px;font-size:28px}.modal-box p{color:var(--muted);margin:0 0 18px}.input{width:100%;padding:14px;border:1px solid var(--line);border-radius:14px;outline:0}.input:focus{border-color:var(--pink);box-shadow:0 0 0 4px #fff0f6}.actions{display:flex;gap:9px;margin-top:11px}.primary,.secondary{border:0;border-radius:13px;padding:12px 15px;font-weight:600}.primary{background:var(--pink);color:#fff;flex:1}.secondary{background:#f4eef1;color:var(--ink)}.error{color:#c14d73;font-size:13px;min-height:18px;margin-top:9px}
+#hostPage{display:none;min-height:100vh;background:#fffafd;padding:25px}.host-wrap{max-width:850px;margin:auto}.host-head{background:#fff;border:1px solid var(--line);border-radius:27px;padding:23px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow);gap:15px}.host-head h1{margin:0;font-size:28px}.host-head p{margin:4px 0 0;color:var(--muted)}.host-card{margin-top:15px;background:#fff;border:1px solid var(--line);border-radius:27px;padding:22px;box-shadow:var(--shadow)}.host-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.control{border:1px solid var(--line);background:#fff7fa;border-radius:19px;padding:16px}.control h3{margin:0 0 5px}.control p{font-size:12px;color:var(--muted);margin:0 0 12px}.control button{width:100%;border:0;background:#fff;border-radius:12px;padding:11px;font-weight:600;box-shadow:0 3px 12px rgba(80,40,60,.06)}.host-status{margin-top:13px;padding:13px 15px;border-radius:15px;background:#f6f1f3;color:var(--muted);font-size:13px}.host-login{max-width:420px;margin:90px auto;background:#fff;border:1px solid var(--line);border-radius:30px;padding:29px;text-align:center;box-shadow:var(--shadow)}.host-login .logo-big{font-size:48px}.host-login h1{margin:8px 0 5px}.host-login p{color:var(--muted);margin:0 0 20px}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}}
+@media(max-width:550px){.page{padding:12px}.nav{height:auto;min-height:64px}.brand{font-size:15px}.host-button{padding:9px}.hero{padding-top:35px}.hero h1{font-size:46px}.sidebar{display:flex}.host-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="app">
-<header class="topbar">
-  <div class="brand"><div class="logo">🩷</div><div><h1>Lottie's Little World</h1><p>A tiny window into Lottie's world</p></div></div>
-  <div class="top-actions"><div id="livePill" class="live-pill"><span class="dot"></span><span id="liveText">Offline</span></div></div>
-</header>
+
+<div id="publicPage">
+<div class="page">
+<nav class="nav">
+  <div class="brand"><div class="logo">🩷</div>Lottie's Little World</div>
+  <div class="navright">
+    <div id="livePill" class="live"><span class="dot"></span><span id="liveText">Offline</span></div>
+    <button class="host-button" onclick="openHostLogin()">Host Login</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="kicker">WELCOME TO LOTTIE'S LITTLE WORLD 🫧</div>
+    <h1>A little place<br><span>for Lottie.</span></h1>
+    <p>Drop in and see what Lottie is up to. Her live camera is right here, with a simple little home made just for her.</p>
+  </div>
+  <div class="profile"><div class="profile-top"><div class="avatar">💗</div><div><strong>Lottie</strong><small>little star · live camera</small></div></div></div>
+</section>
 
 <main class="layout">
-<section class="hero">
-  <div class="eyebrow">Welcome to Lottie's Little World</div>
-  <h2>Come see what Lottie is up to. 🩷</h2>
-  <p>Live from Lottie's home. 🩷</p>
-</section>
-
-<section class="camera-card">
-  <div class="card-title"><h3>📹 Lottie's live camera</h3><span id="cameraStatus" class="status-text">Offline</span></div>
-  <div class="camera-frame">
-    <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div><div class="bubble b4"></div><div class="bubble b5"></div><div class="bubble b6"></div>
-    <div class="video-wrap">
-      <video id="video" autoplay playsinline></video>
-      <div id="message" class="message">
-        <div><div class="message-icon">🩷</div><h3 id="messageTitle">Lottie is offline</h3><p id="messageSubtitle">Lottie's camera isn't live right now.</p><span id="messageBadge" class="badge hidden">🫧 We'll be right back!</span></div>
-      </div>
-      <div class="frame-line"></div>
-    </div>
+<section class="card camera">
+  <div class="screen">
+    <video id="video" autoplay playsinline controls></video>
+    <div id="overlay" class="overlay"><div><div class="bubble">💗</div><h2 id="overlayTitle">Connecting to Lottie</h2><p id="overlayText">One second...</p><span id="badge" class="badge hidden">BRB</span></div></div>
   </div>
-  <div id="connection" class="connection">Connecting to Lottie's camera...</div>
+  <div class="camera-foot"><div><div class="camera-name">Lottie's live camera</div><div class="sub"><span id="cameraStatus">Offline</span> · <span id="connection">Connecting...</span></div></div><div id="quality" class="green-text">● Live</div></div>
 </section>
 
-<aside class="side-card">
-  <div class="card-title"><h3>✨ Live status</h3></div>
-  <div class="stat"><small>Camera</small><strong id="bigCamera">Offline</strong></div>
-  <div class="stat"><small>Connection</small><strong id="bigConnection">Waiting</strong></div>
-  <div class="stat"><small>Viewers</small><strong id="viewerCount">0</strong></div>
-  <div class="stat"><small>Last fed</small><strong>11:00 AM</strong></div>
-  <div class="control-group"><h4>Viewer controls</h4><div class="controls"><button class="btn primary" onclick="connectViewer(true)">🔄 Reconnect to Lottie</button></div></div>
-  <div class="control-group"><h4>About Lottie</h4><div class="stat"><small>Pet</small><strong>Lottie 🩷</strong></div><div class="stat"><small>Streaming</small><strong>Live WebRTC</strong></div></div>
+<aside class="sidebar">
+  <div class="card side"><h3>Right now 🩷</h3><div class="stats"><div class="stat"><small>Viewers</small><strong id="viewerCount">0</strong></div><div class="stat"><small>Camera</small><strong id="cameraSmall">Offline</strong></div></div></div>
+  <div class="card side"><div class="fed"><div class="fed-icon">🥣</div><div class="fed-title">Last Fed</div><div class="fed-time" id="lastFedText">11AM</div></div></div>
+  <div class="card side"><h3>A little note</h3><p style="color:var(--muted);line-height:1.55;margin:0"></p></div>
 </aside>
-
-<section class="info-card">
-  <div class="info-item"><span>Watching</span><strong>👀 Family viewing is open</strong></div>
-  <div class="info-item"><span>Powered by</span><strong>⚡ Peer-to-peer WebRTC</strong></div>
-</section>
 </main>
-<footer>Made with 🩷 for Lottie · Lottie's Little World</footer>
+
+<section class="cards">
+  <div class="card mini"><div class="mini-icon">🫧</div><h3>Little moments</h3><p>Watch Lottie swim, explore and do her tiny Lottie things.</p></div>
+  <div class="card mini"><div class="mini-icon">🎥</div><h3>Live camera</h3><p>The stream connects directly from the host computer to viewers.</p></div>
+  <div class="card mini"><div class="mini-icon">🩷</div><h3>Made for Lottie</h3><p>A cute little corner of the internet for one very special pet.</p></div>
+</section>
+<div class="footer">Lottie's Little World · 🩷</div>
+</div>
+</div>
+
+<div id="loginModal" class="modal">
+<div class="modal-box">
+  <h2>Host Login 🩷</h2><p>This opens the camera controls on the host computer.</p>
+  <input id="hostPassword" class="input" type="password" placeholder="Host password">
+  <div class="actions"><button class="secondary" onclick="closeHostLogin()">Cancel</button><button class="primary" onclick="hostLogin()">Login</button></div>
+  <div id="loginError" class="error"></div>
+</div>
+</div>
+
+<div id="hostPage">
+<div class="host-wrap">
+  <div id="hostLoginScreen" class="host-login">
+    <div class="logo-big">💗</div><h1>Lottie's Host</h1><p>Enter the host password to control Lottie's camera.</p>
+    <input id="hostPasswordDirect" class="input" type="password" placeholder="Host password">
+    <div class="actions"><button class="primary" onclick="unlockHost()">Unlock Host</button></div>
+    <div id="directError" class="error"></div>
+  </div>
+  <div id="hostControls" style="display:none">
+    <div class="host-head"><div><h1>Lottie's Host Controls 🫧</h1><p>Camera controls for this computer</p></div><button class="secondary" onclick="returnToSite()">View Site</button></div>
+    <div class="host-card"><div class="host-grid">
+      <div class="control"><h3>🎥 Camera</h3><p>Start or stop the camera stream.</p><button onclick="startCamera()">Start Camera</button></div>
+      <div class="control"><h3>⏸ Pause</h3><p>Temporarily pause what viewers see.</p><button onclick="pauseCamera()">Pause Camera</button></div>
+      <div class="control"><h3>▶ Resume</h3><p>Return the live camera to viewers.</p><button onclick="resumeCamera()">Resume Camera</button></div>
+      <div class="control"><h3>🔇 Microphone</h3><p>Mute or unmute the camera microphone.</p><button onclick="toggleMic()">Toggle Microphone</button></div>
+      <div class="control"><h3>🙈 BRB Screen</h3><p>Show a cute temporary screen to viewers.</p><button onclick="startBRB()">Start BRB</button></div>
+      <div class="control"><h3>🟢 Back Live</h3><p>Remove the BRB screen and return to live.</p><button onclick="resumeCamera()">Return Live</button></div>
+    </div><div id="hostStatus" class="host-status">Host controls ready.</div></div>
+  </div>
+</div>
 </div>
 
 <script>
+const HOST_PASSWORD="stempn";
 const CAMERA_PEER_ID="lotties-little-world-camera-v5";
-const PEER_CONFIG={config:{iceServers:[{urls:"stun:stun.l.google.com:19302"}],sdpSemantics:"unified-plan"},debug:2};
-
-let mode="viewer",peer=null,currentCall=null,localStream=null;
-let viewerCalls=new Map(),reconnectTimer=null,connecting=false;
-let microphoneMuted=false,brbActive=false,remotePaused=false;
-let brbCanvas=null,brbStream=null,brbAnimation=null,adminConn=null;
+const LAST_FED_HOUR=11;
+const LAST_FED_MINUTE=0;
+let peer=null,localStream=null,viewerConnections=[],isPaused=false,isBRB=false,brbStream=null,micMuted=false;
 
 const $=id=>document.getElementById(id);
-const video=$("video"),message=$("message");
+function setPublicMessage(title,text,badge=""){
+  $("overlayTitle").textContent=title;$("overlayText").textContent=text;
+  $("badge").textContent=badge;$("badge").classList.toggle("hidden",!badge);
+  $("overlay").classList.remove("hidden");
+}
+function hidePublicMessage(){$("overlay").classList.add("hidden")}
+function setLive(on){
+  $("livePill").classList.toggle("on",on);$("liveText").textContent=on?"Live":"Offline";$("livePill").classList.toggle("offline-text",!on);
+  $("cameraStatus").textContent=on?"Live":"Offline";$("cameraStatus").classList.toggle("offline-text",!on);$("cameraSmall").textContent=on?"Live":"Offline";$("cameraSmall").classList.toggle("offline-text",!on);
+  $("quality").textContent=on?"● Live":"● Offline";$("quality").classList.toggle("offline-text",!on);
+}
+function updateFed(){
+  const now=new Date(), fed=new Date();
+  fed.setHours(LAST_FED_HOUR,LAST_FED_MINUTE,0,0);
+  let diff=Math.floor((now-fed)/60000);
+  if(diff<0){fed.setDate(fed.getDate()-1);diff=Math.floor((now-fed)/60000)}
+  let text="11AM";
+  if(diff<1) text="11AM (just now)";
+  else if(diff<60) text=`11AM (${diff} min ago)`;
+  else {
+    const hrs=Math.floor(diff/60), mins=diff%60;
+    text=`11AM (${hrs} hr${hrs===1?"":"s"} ago${mins?` ${mins} min${mins===1?"":"s"} ago`:""})`;
+  }
+  $("lastFedText").textContent=text;
+}
+setInterval(updateFed,30000);updateFed();
 
-function setConnection(text,state){
-  $("connection").textContent=text;$("bigConnection").textContent=state;
-  $("bigConnection").className=state==="Live"?"green":state==="Error"?"pink":"";
+function openHostLogin(){$("loginModal").classList.add("open");$("hostPassword").focus()}
+function closeHostLogin(){$("loginModal").classList.remove("open");$("loginError").textContent=""}
+function hostLogin(){
+  if($("hostPassword").value===HOST_PASSWORD){closeHostLogin();showHostPage()}
+  else $("loginError").textContent="Incorrect host password.";
 }
-function setLive(live){
-  $("livePill").classList.toggle("live",live);
-  $("liveText").textContent=live?"LIVE":"Offline";
-  $("cameraStatus").textContent=live?"LIVE":"Offline";
-  $("cameraStatus").className="status-text "+(live?"green":"");
-  $("bigCamera").textContent=live?"LIVE":"Offline";
-  $("bigCamera").className=live?"green":"";
+$("hostPassword").addEventListener("keydown",e=>{if(e.key==="Enter")hostLogin()});
+$("hostPasswordDirect").addEventListener("keydown",e=>{if(e.key==="Enter")unlockHost()});
+function showHostPage(){
+  $("publicPage").style.display="none";$("hostPage").style.display="block";
+  $("hostLoginScreen").style.display="none";$("hostControls").style.display="block";
+  initialiseHost();
 }
-function showMessage(title,subtitle,brb=false){
-  $("messageTitle").textContent=title;$("messageSubtitle").textContent=subtitle;
-  $("messageBadge").classList.toggle("hidden",!brb);message.classList.remove("hidden");
+function unlockHost(){
+  if($("hostPasswordDirect").value===HOST_PASSWORD){
+    $("hostLoginScreen").style.display="none";$("hostControls").style.display="block";initialiseHost();
+  }else $("directError").textContent="Incorrect host password.";
 }
-function hideMessage(){message.classList.add("hidden")}
+function returnToSite(){location.href=location.pathname+location.search.replace("?host=1","")}
+function hostStatus(t){$("hostStatus").textContent=t}
 
-function createDummyStream(){
-  const c=document.createElement("canvas");c.width=2;c.height=2;
-  c.getContext("2d").fillRect(0,0,2,2);
-  const s=c.captureStream(1);return new MediaStream(s.getVideoTracks());
-}
-function connectViewer(force=false){
-  if(!peer||peer.destroyed||connecting)return;
-  if(currentCall&&currentCall.open&&!force)return;
-  connecting=true;
-  if(force&&currentCall){try{currentCall.close()}catch(e){}currentCall=null}
-  const dummy=createDummyStream();
-  let call;
-  try{call=peer.call(CAMERA_PEER_ID,dummy)}catch(e){connecting=false;return}
-  currentCall=call;
-  call.on("stream",remote=>{
-    connecting=false;video.srcObject=remote;video.muted=false;hideMessage();setLive(true);setConnection("🩷 Live connection to Lottie","Live");video.play().catch(()=>{});
-  });
-  call.on("close",()=>{connecting=false;currentCall=null;showMessage("Lottie is offline","The camera connection closed.");setLive(false);setConnection("Camera connection closed.","Offline");scheduleReconnect()});
-  call.on("error",()=>{connecting=false;currentCall=null;showMessage("Lottie is offline","Couldn't connect to the camera.");setLive(false);setConnection("Couldn't connect to Lottie's camera.","Error");scheduleReconnect()});
-  setTimeout(()=>dummy.getTracks().forEach(t=>t.stop()),10000);
-}
-function scheduleReconnect(){
-  if(reconnectTimer)return;
-  reconnectTimer=setTimeout(()=>{reconnectTimer=null;if(mode==="viewer"&&peer&&!peer.destroyed)connectViewer()},4000);
-}
-
-function initialiseHost(){
-  mode="host";peer=new Peer(CAMERA_PEER_ID,PEER_CONFIG);
-  peer.on("open",()=>{setConnection("Camera system ready.","Ready");startCamera()});
+async function initialiseHost(){
+  if(peer)return;
+  hostStatus("Connecting camera system...");
+  peer=new Peer(CAMERA_PEER_ID,{debug:1,config:{iceServers:[{urls:"stun:stun.l.google.com:19302"}]}});
+  peer.on("open",()=>{hostStatus("Camera system online. Ready.");startCamera()});
+  peer.on("error",e=>hostStatus("Peer error: "+e.type));
   peer.on("call",call=>{
-    if(!localStream){call.answer();return}
-    call.answer(localStream);viewerCalls.set(call.peer,call);updateViewerCount();
-    call.on("close",()=>{viewerCalls.delete(call.peer);updateViewerCount()});
-    call.on("error",()=>{viewerCalls.delete(call.peer);updateViewerCount()});
+    if(!localStream){call.close();return}
+    call.answer(isPaused?null:(isBRB?brbStream:localStream));
+    call.on("stream",()=>{});
+    viewerConnections.push(call);
   });
-  peer.on("error",e=>setConnection("Peer error: "+e.type,"Error"));
-  peer.on("disconnected",()=>{if(!peer.destroyed)peer.reconnect()});
 }
-function startCamera(){
-  if(localStream)return;
-  navigator.mediaDevices.getUserMedia({video:{width:{ideal:1280},height:{ideal:720}},audio:true}).then(stream=>{
-    localStream=stream;microphoneMuted=false;remotePaused=false;video.srcObject=stream;video.muted=true;
-    hideMessage();setLive(true);setConnection("🩷 Lottie is live!","Live");
-  }).catch(()=>setConnection("Camera permission was denied or unavailable.","Error"));
+async function startCamera(){
+  try{
+    if(!localStream)localStream=await navigator.mediaDevices.getUserMedia({video:true,audio:true});
+    isPaused=false;isBRB=false;
+    setLocalTracks(true);
+    replaceForAll(localStream);
+    hostStatus("Camera is LIVE.");
+  }catch(e){hostStatus("Camera permission/error: "+e.message)}
 }
 function stopCamera(){
+  if(localStream)localStream.getTracks().forEach(t=>t.stop());
+  localStream=null;isPaused=false;isBRB=false;replaceForAll(null);hostStatus("Camera stopped.");
+}
+function setLocalTracks(enabled){
   if(!localStream)return;
-  localStream.getTracks().forEach(t=>t.stop());localStream=null;remotePaused=false;brbActive=false;
-  viewerCalls.forEach(c=>{try{c.close()}catch(e){}});viewerCalls.clear();
-  video.srcObject=null;showMessage("Lottie is offline","Lottie's camera isn't live right now.");setLive(false);setConnection("Camera stopped.","Offline");updateViewerCount();
+  localStream.getVideoTracks().forEach(t=>t.enabled=enabled);
+  if(!isBRB)localStream.getAudioTracks().forEach(t=>t.enabled=!micMuted);
 }
-function setMic(muted){
+function pauseCamera(){if(!localStream)return;isPaused=true;localStream.getVideoTracks().forEach(t=>t.enabled=false);replaceForAll(null);hostStatus("Camera paused for viewers.")}
+function resumeCamera(){if(!localStream){startCamera();return}isPaused=false;isBRB=false;setLocalTracks(true);replaceForAll(localStream);hostStatus("Camera is LIVE again.")}
+function toggleMic(){
   if(!localStream)return;
-  microphoneMuted=muted;localStream.getAudioTracks().forEach(t=>t.enabled=!muted);
-}
-function pauseCamera(){
-  if(!localStream)return;
-  remotePaused=true;localStream.getVideoTracks().forEach(t=>t.enabled=false);
-  showMessage("Lottie is taking a little break","The live camera has been paused by the host.",true);
-  $("messageBadge").textContent="⏸ Camera paused";
-  setConnection("Camera paused remotely.","Paused");setLive(false);
-}
-function resumeCamera(){
-  if(!localStream)return;
-  remotePaused=false;
-  if(brbActive){stopBRB();return}
-  localStream.getVideoTracks().forEach(t=>t.enabled=true);hideMessage();setLive(true);setConnection("🩷 Lottie is live!","Live");
-}
-function makeBRBStream(){
-  if(brbStream)return brbStream;
-  brbCanvas=document.createElement("canvas");brbCanvas.width=1280;brbCanvas.height=720;brbStream=brbCanvas.captureStream(30);drawBRB();return brbStream;
-}
-function drawBRB(){
-  if(!brbCanvas)return;
-  const x=brbCanvas.getContext("2d"),w=brbCanvas.width,h=brbCanvas.height;
-  x.fillStyle="#fff0f6";x.fillRect(0,0,w,h);
-  [[100,100,35],[1120,120,45],[180,590,25],[1030,590,30],[650,100,18]].forEach(([a,b,r])=>{x.beginPath();x.arc(a,b,r,0,Math.PI*2);x.fillStyle="#ffc7dc";x.fill()});
-  x.textAlign="center";x.font="110px Arial";x.fillText("🩷",w/2,h/2-120);
-  x.fillStyle="#25212a";x.font="700 58px Fredoka";x.fillText("We'll be right back!",w/2,h/2+10);
-  x.fillStyle="#8c8290";x.font="30px Fredoka";x.fillText("Lottie is having a little break.",w/2,h/2+70);
-  x.font="600 21px Fredoka";x.fillStyle="#c05b84";x.fillText("Lottie's Little World",w/2,h-42);
+  micMuted=!micMuted;localStream.getAudioTracks().forEach(t=>t.enabled=!micMuted);
+  hostStatus(micMuted?"Microphone muted.":"Microphone unmuted.");
 }
 function startBRB(){
   if(!localStream)return;
-  brbActive=true;remotePaused=false;const s=makeBRBStream();
-  const track=s.getVideoTracks()[0];
-  viewerCalls.forEach(call=>{const sender=call.peerConnection?.getSenders()?.find(v=>v.track?.kind==="video");if(sender&&track)sender.replaceTrack(track).catch(()=>{})});
-  showMessage("We'll be right back!","Lottie is having a little break.",true);setLive(false);setConnection("🫧 BRB mode is active.","BRB");
-  if(brbAnimation)cancelAnimationFrame(brbAnimation);
-  const tick=()=>{drawBRB();brbAnimation=requestAnimationFrame(tick)};tick();
+  const c=document.createElement("canvas");c.width=1280;c.height=800;
+  const x=c.getContext("2d");
+  x.fillStyle="#fff4f8";x.fillRect(0,0,c.width,c.height);
+  x.fillStyle="#342a31";x.textAlign="center";x.font="700 62px Fredoka";x.fillText("Lottie will be right back 🩷",640,350);
+  x.font="400 30px Fredoka";x.fillStyle="#897b84";x.fillText("Please check back soon!",640,410);
+  brbStream=c.captureStream(12);isBRB=true;replaceForAll(brbStream);hostStatus("BRB screen is showing to viewers.");
 }
-function stopBRB(){
-  brbActive=false;if(brbAnimation)cancelAnimationFrame(brbAnimation);
-  const live=localStream?.getVideoTracks()[0];
-  viewerCalls.forEach(call=>{const sender=call.peerConnection?.getSenders()?.find(v=>v.track?.kind==="video");if(sender&&live)sender.replaceTrack(live).catch(()=>{})});
-  if(localStream){localStream.getVideoTracks().forEach(t=>t.enabled=true);video.srcObject=localStream}
-  hideMessage();setLive(true);setConnection("🩷 Lottie is live!","Live");
+function replaceForAll(stream){
+  viewerConnections.forEach(call=>{
+    try{
+      const sender=call.peerConnection?.getSenders?.().find(s=>s.track&&s.track.kind==="video");
+      if(sender) sender.replaceTrack(stream?.getVideoTracks?.()[0]||null);
+      const audio=call.peerConnection?.getSenders?.().find(s=>s.track&&s.track.kind==="audio");
+      if(audio&&localStream) audio.replaceTrack(localStream.getAudioTracks()[0]||null);
+    }catch(e){}
+  });
 }
-function updateViewerCount(){
-  $("viewerCount").textContent=viewerCalls.size;
-  // Admin connections are intentionally not stored; the host can report count to any open admin.
+async function initialiseViewer(){
+  setPublicMessage("Connecting to Lottie","Finding the camera...");
+  $("connection").textContent="Connecting...";
+  const p=new Peer(undefined,{debug:1,config:{iceServers:[{urls:"stun:stun.l.google.com:19302"}]}});
+  p.on("open",id=>{
+    const call=p.call(CAMERA_PEER_ID,new MediaStream());
+    call.on("stream",stream=>{
+      $("video").srcObject=stream;hidePublicMessage();setLive(true);$("connection").textContent="Connected";
+    });
+    call.on("close",()=>{setLive(false);$("connection").textContent="Disconnected";setPublicMessage("OFFLINE","")});
+    call.on("error",()=>{setLive(false);setPublicMessage("OFFLINE","")});
+  });
+  p.on("error",()=>{setLive(false);$("connection").textContent="Offline";setPublicMessage("OFFLINE","")});
 }
-
-video.addEventListener("click",()=>video.play().catch(()=>{}));
-
-/* Camera computer: add ?host=1 to the URL on the computer that owns the webcam. */
-if(new URLSearchParams(location.search).get("host")==="1"){
-  setTimeout(()=>{document.querySelector(".layout").style.display="none";initialiseHost()},200);
-}else{
-  initialiseViewer();
-}
+const params=new URLSearchParams(location.search);
+if(params.get("host")==="1"){
+  $("publicPage").style.display="none";$("hostPage").style.display="block";
+}else initialiseViewer();
 </script>
 </body>
 </html>

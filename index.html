@@ -25,9 +25,8 @@ button,input{font:inherit}button{cursor:pointer}.page{max-width:1180px;margin:au
 .sidebar{display:flex;flex-direction:column;gap:14px}.side{padding:21px}.side h3{margin:0 0 15px;font-size:19px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{background:#fff6f9;border:1px solid #f5e0e8;border-radius:16px;padding:13px}.stat small{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}.stat strong{font-size:18px}.fed{background:var(--pale);border:1px solid var(--line);border-radius:18px;padding:17px}.fed-icon{font-size:29px}.fed-title{font-weight:700;font-size:18px;margin-top:6px}.fed-time{color:#bd567f;font-size:14px;margin-top:3px}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.mini{padding:20px}.mini-icon{font-size:25px}.mini h3{margin:8px 0 5px}.mini p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}.footer{text-align:center;color:#9c8e96;font-size:12px;padding:27px 0 8px}
 .modal{position:fixed;inset:0;background:rgba(43,29,37,.45);display:none;place-items:center;padding:18px;z-index:50;backdrop-filter:blur(8px)}.modal.open{display:grid}.modal-box{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;padding:26px;box-shadow:0 25px 80px rgba(40,25,34,.2)}.modal-box h2{margin:0 0 6px;font-size:28px}.modal-box p{color:var(--muted);margin:0 0 18px}.input{width:100%;padding:14px;border:1px solid var(--line);border-radius:14px;outline:0}.input:focus{border-color:var(--pink);box-shadow:0 0 0 4px #fff0f6}.actions{display:flex;gap:9px;margin-top:11px}.primary,.secondary{border:0;border-radius:13px;padding:12px 15px;font-weight:600}.primary{background:var(--pink);color:#fff;flex:1}.secondary{background:#f4eef1;color:var(--ink)}.error{color:#c14d73;font-size:13px;min-height:18px;margin-top:9px}
-#hostPage{display:none;min-height:100vh;background:#fffafd;padding:25px}.host-wrap{max-width:850px;margin:auto}.host-head{background:#fff;border:1px solid var(--line);border-radius:27px;padding:23px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow);gap:15px}.host-head h1{margin:0;font-size:28px}.host-head p{margin:4px 0 0;color:var(--muted)}.host-card{margin-top:15px;background:#fff;border:1px solid var(--line);border-radius:27px;padding:22px;box-shadow:var(--shadow)}.host-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.control{border:1px solid var(--line);background:#fff7fa;border-radius:19px;padding:16px}.control h3{margin:0 0 5px}.control p{font-size:12px;color:var(--muted);margin:0 0 12px}.control button{width:100%;border:0;background:#fff;border-radius:12px;padding:11px;font-weight:600;box-shadow:0 3px 12px rgba(80,40,60,.06)}.host-status{margin-top:13px;padding:13px 15px;border-radius:15px;background:#f6f1f3;color:var(--muted);font-size:13px}.host-login{max-width:420px;margin:90px auto;background:#fff;border:1px solid var(--line);border-radius:30px;padding:29px;text-align:center;box-shadow:var(--shadow)}.host-login .logo-big{font-size:48px}.host-login h1{margin:8px 0 5px}.host-login p{color:var(--muted);margin:0 0 20px}
-@media(max-width:850px){.hero{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}}
-@media(max-width:550px){.page{padding:12px}.nav{height:auto;min-height:64px}.brand{font-size:15px}.host-button{padding:9px}.hero{padding-top:35px}.hero h1{font-size:46px}.sidebar{display:flex}.host-grid{grid-template-columns:1fr}}
+#hostPage{display:none;min-height:100vh;background:radial-gradient(circle at 15% 15%,#ffe5ee 0,transparent 28%),radial-gradient(circle at 85% 20%,#ffd8e7 0,transparent 25%),#fff8fb;padding:22px;overflow:hidden}.host-wrap{max-width:900px;margin:auto}.host-login{max-width:420px;margin:90px auto;background:#fff;border:1px solid var(--line);border-radius:30px;padding:29px;text-align:center;box-shadow:var(--shadow)}.host-login .logo-big{font-size:48px}.host-login h1{margin:8px 0 5px}.host-login p{color:var(--muted);margin:0 0 20px}.host-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 3px 18px}.host-brand{display:flex;align-items:center;gap:12px}.host-brand-icon{width:50px;height:50px;border-radius:18px;background:#fff;display:grid;place-items:center;font-size:27px;box-shadow:0 8px 25px rgba(83,42,61,.08);border:1px solid var(--line)}.host-brand h1{margin:0;font-size:27px}.host-brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.host-view{border:0;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:13px;padding:10px 14px;font-weight:600}.host-main{background:#fff;border:1px solid var(--line);border-radius:30px;padding:13px;box-shadow:0 24px 70px rgba(83,42,61,.12)}.host-preview{position:relative;aspect-ratio:16/9;background:#241d22;border-radius:23px;overflow:hidden}.host-preview video{width:100%;height:100%;object-fit:cover}.host-preview-empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(135deg,#49323d,#241d22)}.host-preview-empty div{padding:25px}.host-heart{font-size:58px}.host-preview-empty h2{font-size:28px;margin:8px 0 4px}.host-preview-empty p{margin:0;color:#dbcfd4}.host-livebar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 8px 8px}.host-live-status{display:flex;align-items:center;gap:8px;font-weight:600}.host-dot{width:9px;height:9px;border-radius:50%;background:#bbb}.host-dot.live{background:var(--green)}.host-muted{color:var(--muted);font-size:13px}.host-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:9px 2px 2px}.host-action{border:1px solid var(--line);background:#fff8fa;border-radius:17px;padding:14px 12px;text-align:left;transition:.15s}.host-action:hover{transform:translateY(-1px);background:#fff3f7}.host-action strong{display:block;font-size:15px}.host-action span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.host-action button{margin-top:10px;width:100%;border:0;border-radius:11px;padding:10px;background:#fff;font-weight:600;color:var(--ink);box-shadow:0 3px 10px rgba(80,40,60,.06)}.host-action.main button{background:var(--pink);color:#fff}.host-status{margin:12px 2px 2px;padding:11px 13px;border-radius:13px;background:#f7f0f3;color:var(--muted);font-size:12px;text-align:center}.host-footer{text-align:center;color:#aa9aa2;font-size:11px;padding:17px}.error{color:#c14d73;font-size:13px;min-height:18px;margin-top:9px}.input{width:100%;padding:14px;border:1px solid var(--line);border-radius:14px;outline:0}.input:focus{border-color:var(--pink);box-shadow:0 0 0 4px #fff0f6}.actions{display:flex;gap:9px;margin-top:11px}.primary,.secondary{border:0;border-radius:13px;padding:12px 15px;font-weight:600}.primary{background:var(--pink);color:#fff;flex:1}.secondary{background:#f4eef1;color:var(--ink)}
+@media(max-width:700px){.host-actions{grid-template-columns:1fr 1fr}.host-top{align-items:flex-start}.host-brand h1{font-size:23px}}@media(max-width:480px){#hostPage{padding:12px}.host-top{padding-bottom:12px}.host-brand-icon{width:43px;height:43px}.host-brand h1{font-size:20px}.host-brand p{font-size:11px}.host-actions{grid-template-columns:1fr}.host-livebar{align-items:flex-start;flex-direction:column;gap:4px}.host-main{border-radius:23px}.host-preview{border-radius:17px}}
 </style>
 </head>
 <body>
@@ -94,15 +93,24 @@ button,input{font:inherit}button{cursor:pointer}.page{max-width:1180px;margin:au
     <div id="directError" class="error"></div>
   </div>
   <div id="hostControls" style="display:none">
-    <div class="host-head"><div><h1>Lottie's Host Controls 🫧</h1><p>Camera controls for this computer</p></div><button class="secondary" onclick="returnToSite()">View Site</button></div>
-    <div class="host-card"><div class="host-grid">
-      <div class="control"><h3>🎥 Camera</h3><p>Start or stop the camera stream.</p><button onclick="startCamera()">Start Camera</button></div>
-      <div class="control"><h3>⏸ Pause</h3><p>Temporarily pause what viewers see.</p><button onclick="pauseCamera()">Pause Camera</button></div>
-      <div class="control"><h3>▶ Resume</h3><p>Return the live camera to viewers.</p><button onclick="resumeCamera()">Resume Camera</button></div>
-      <div class="control"><h3>🔇 Microphone</h3><p>Mute or unmute the camera microphone.</p><button onclick="toggleMic()">Toggle Microphone</button></div>
-      <div class="control"><h3>🙈 BRB Screen</h3><p>Show a cute temporary screen to viewers.</p><button onclick="startBRB()">Start BRB</button></div>
-      <div class="control"><h3>🟢 Back Live</h3><p>Remove the BRB screen and return to live.</p><button onclick="resumeCamera()">Return Live</button></div>
-    </div><div id="hostStatus" class="host-status">Host controls ready.</div></div>
+    <div class="host-top">
+      <div class="host-brand"><div class="host-brand-icon">💗</div><div><h1>Lottie's Host</h1><p>Camera control</p></div></div>
+      <button class="host-view" onclick="returnToSite()">View Site</button>
+    </div>
+    <div class="host-main">
+      <div class="host-preview"><video id="hostVideo" autoplay playsinline muted></video><div id="hostPreviewEmpty" class="host-preview-empty"><div><div class="host-heart">💗</div><h2>Ready for Lottie</h2><p>Start the camera below</p></div></div></div>
+      <div class="host-livebar"><div class="host-live-status"><span id="hostDot" class="host-dot"></span><span id="hostLiveText">Camera offline</span></div><div id="hostMicText" class="host-muted">Microphone on</div></div>
+      <div class="host-actions">
+        <div class="host-action main"><strong>🎥 Camera</strong><span>Start the live camera</span><button onclick="startCamera()">Start Camera</button></div>
+        <div class="host-action"><strong>⏸ Pause</strong><span>Pause the live view</span><button onclick="pauseCamera()">Pause</button></div>
+        <div class="host-action"><strong>▶ Resume</strong><span>Return to live</span><button onclick="resumeCamera()">Resume</button></div>
+        <div class="host-action"><strong>🎙 Microphone</strong><span>Mute or unmute audio</span><button id="micButton" onclick="toggleMic()">Mute Mic</button></div>
+        <div class="host-action"><strong>🫧 BRB Screen</strong><span>Show the BRB screen</span><button onclick="startBRB()">Start BRB</button></div>
+        <div class="host-action"><strong>🩷 Back Live</strong><span>Remove the BRB screen</span><button onclick="resumeCamera()">Return Live</button></div>
+      </div>
+      <div id="hostStatus" class="host-status">Host controls ready.</div>
+    </div>
+    <div class="host-footer">Lottie's Little World · 💗</div>
   </div>
 </div>
 </div>
@@ -161,7 +169,12 @@ function unlockHost(){
   }else $("directError").textContent="Incorrect host password.";
 }
 function returnToSite(){location.href=location.pathname+location.search.replace("?host=1","")}
-function hostStatus(t){$("hostStatus").textContent=t}
+function hostStatus(t){
+  $("hostStatus").textContent=t;
+  if($("hostLiveText")){$("hostLiveText").textContent=localStream&&!isPaused&&!isBRB?"Camera live":isBRB?"BRB screen":"Camera offline";$("hostDot").classList.toggle("live",!!localStream&&!isPaused&&!isBRB)}
+  if($('hostMicText')) $('hostMicText').textContent=micMuted?"Microphone muted":"Microphone on";
+  if($('micButton')) $('micButton').textContent=micMuted?"Unmute Mic":"Mute Mic";
+}
 
 async function initialiseHost(){
   if(peer)return;
@@ -180,6 +193,7 @@ async function startCamera(){
   try{
     if(!localStream)localStream=await navigator.mediaDevices.getUserMedia({video:true,audio:true});
     isPaused=false;isBRB=false;
+    $("hostVideo").srcObject=localStream;$("hostPreviewEmpty").style.display="none";
     setLocalTracks(true);
     replaceForAll(localStream);
     hostStatus("Camera is LIVE.");
@@ -187,7 +201,7 @@ async function startCamera(){
 }
 function stopCamera(){
   if(localStream)localStream.getTracks().forEach(t=>t.stop());
-  localStream=null;isPaused=false;isBRB=false;replaceForAll(null);hostStatus("Camera stopped.");
+  localStream=null;isPaused=false;isBRB=false;$("hostVideo").srcObject=null;$("hostPreviewEmpty").style.display="grid";replaceForAll(null);hostStatus("Camera stopped.");
 }
 function setLocalTracks(enabled){
   if(!localStream)return;
@@ -195,7 +209,7 @@ function setLocalTracks(enabled){
   if(!isBRB)localStream.getAudioTracks().forEach(t=>t.enabled=!micMuted);
 }
 function pauseCamera(){if(!localStream)return;isPaused=true;localStream.getVideoTracks().forEach(t=>t.enabled=false);replaceForAll(null);hostStatus("Camera paused for viewers.")}
-function resumeCamera(){if(!localStream){startCamera();return}isPaused=false;isBRB=false;setLocalTracks(true);replaceForAll(localStream);hostStatus("Camera is LIVE again.")}
+function resumeCamera(){if(!localStream){startCamera();return}isPaused=false;$("hostPreviewEmpty").style.display="none";$("hostVideo").srcObject=localStream;isBRB=false;setLocalTracks(true);replaceForAll(localStream);hostStatus("Camera is LIVE again.")}
 function toggleMic(){
   if(!localStream)return;
   micMuted=!micMuted;localStream.getAudioTracks().forEach(t=>t.enabled=!micMuted);

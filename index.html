@@ -1311,7 +1311,287 @@
 
     }
 
-  </style>
+  
+    /* =========================================================
+       LIGHT / DARK MODE
+       ========================================================= */
+
+    :root {
+      --bg-main: #fff8fc;
+      --bg-card: rgba(255,255,255,.85);
+      --bg-card-solid: #ffffff;
+      --border-soft: rgba(255,255,255,.95);
+      --text-main: #573b4a;
+      --text-muted: #9f7f90;
+      --soft-panel: #fff2f8;
+      --soft-panel-2: #fff0f7;
+      --line: #f0dce6;
+      --shadow-main: 0 24px 70px rgba(190, 105, 150, .16);
+    }
+
+    body.dark-mode {
+      --bg-main: #171219;
+      --bg-card: rgba(34,27,35,.88);
+      --bg-card-solid: #241b25;
+      --border-soft: rgba(255,255,255,.09);
+      --text-main: #f9eaf2;
+      --text-muted: #b99fac;
+      --soft-panel: #2c202b;
+      --soft-panel-2: #30222e;
+      --line: #443440;
+      --shadow-main: 0 24px 70px rgba(0,0,0,.35);
+
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(214,111,159,.13), transparent 25%),
+        radial-gradient(circle at 92% 12%, rgba(243,166,200,.08), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(185,79,130,.10), transparent 34%),
+        #171219;
+    }
+
+    body.dark-mode::before {
+      background-image: radial-gradient(circle, rgba(243,166,200,.10) 1px, transparent 1px);
+    }
+
+    body.dark-mode header,
+    body.dark-mode .card,
+    body.dark-mode .public-strip-item,
+    body.dark-mode .login-card {
+      background: var(--bg-card);
+      border-color: var(--border-soft);
+      box-shadow: var(--shadow-main);
+    }
+
+    body.dark-mode .brand h1,
+    body.dark-mode .card-header h3,
+    body.dark-mode .status-value,
+    body.dark-mode .info-item strong,
+    body.dark-mode .public-strip strong {
+      color: var(--text-main);
+    }
+
+    body.dark-mode .login-input,
+    body.dark-mode .brb-editor,
+    body.dark-mode .brb-editor input,
+    body.dark-mode .connection,
+    body.dark-mode .status-box,
+    body.dark-mode .control-button,
+    body.dark-mode .mode-button {
+      background: var(--soft-panel);
+      border-color: var(--line);
+      color: var(--text-main);
+    }
+
+    body.dark-mode .control-button:hover {
+      background: #392934;
+    }
+
+    body.dark-mode .public-strip small,
+    body.dark-mode .info-item span,
+    body.dark-mode footer {
+      color: var(--text-muted);
+    }
+
+    body.dark-mode .host-access-button {
+      background: #2c202b;
+      color: #f7c4da;
+      border-color: #4b3744;
+    }
+
+    body.dark-mode .host-access-button:hover {
+      background: #382832;
+    }
+
+    body.dark-mode .update-banner {
+      background: rgba(36,27,37,.97);
+      border-color: #a94d79;
+    }
+
+    body.dark-mode .update-copy strong {
+      color: #f9eaf2;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-width: 42px;
+      height: 38px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+      color: #8c4966;
+      border: 1px solid rgba(232,199,215,.95);
+      box-shadow: 0 8px 20px rgba(190,105,150,.08);
+      font-size: 15px;
+      transition: .2s;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      background: #fff1f7;
+    }
+
+    body.dark-mode .theme-toggle {
+      background: #2c202b;
+      color: #ffd0e2;
+      border-color: #4b3744;
+    }
+
+    .last-fed-box {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .last-fed-box::after {
+      content: "💗";
+      position: absolute;
+      right: 13px;
+      bottom: -10px;
+      font-size: 50px;
+      opacity: .08;
+      pointer-events: none;
+    }
+
+    .last-fed-time {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .last-fed-time strong {
+      font-size: 18px;
+      color: var(--text-main);
+    }
+
+    .last-fed-time span {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .theme-toggle {
+        width: 36px;
+        min-width: 36px;
+        padding: 0;
+      }
+    }
+
+  
+/* Polished Lottie's Little World dark mode */
+body.dark-mode {
+  --bg: #080a12;
+  --bg-soft: #101321;
+  --card: rgba(20, 24, 40, 0.90);
+  --card-solid: #141827;
+  --text: #f8f5ff;
+  --muted: #b9b5c9;
+  --border: rgba(255, 255, 255, 0.10);
+  --shadow: 0 18px 55px rgba(0, 0, 0, 0.42);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 105, 180, 0.14), transparent 30%),
+    radial-gradient(circle at 88% 18%, rgba(150, 125, 255, 0.13), transparent 32%),
+    radial-gradient(circle at 50% 100%, rgba(255, 190, 90, 0.07), transparent 36%),
+    linear-gradient(145deg, #080a12 0%, #0d1020 48%, #090b14 100%);
+  color: var(--text);
+}
+
+body.dark-mode header,
+body.dark-mode .card,
+body.dark-mode .panel,
+body.dark-mode .status-card,
+body.dark-mode .chat-panel,
+body.dark-mode .info-card,
+body.dark-mode .hero-card,
+body.dark-mode .modal-content {
+  background: linear-gradient(145deg, rgba(25, 29, 48, 0.95), rgba(12, 15, 27, 0.95));
+  border-color: rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 18px 55px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(18px);
+}
+
+body.dark-mode header {
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.38),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+}
+
+body.dark-mode .live-pill {
+  background: rgba(255, 105, 180, 0.12);
+  border-color: rgba(255, 105, 180, 0.30);
+  box-shadow: 0 0 24px rgba(255, 105, 180, 0.10);
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background: rgba(5, 7, 15, 0.58);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+  border-color: rgba(255, 125, 190, 0.65);
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.10);
+}
+
+body.dark-mode .theme-toggle {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.28);
+}
+
+body.dark-mode .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 150, 205, 0.35);
+  transform: translateY(-1px);
+}
+
+body.dark-mode .update-banner {
+  background: linear-gradient(90deg, rgba(255, 105, 180, 0.13), rgba(154, 125, 255, 0.11));
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+body.dark-mode .video-wrap {
+  background: #05060b;
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.46);
+}
+
+body.dark-mode .video-message {
+  background: linear-gradient(145deg, rgba(18, 21, 35, 0.96), rgba(8, 10, 18, 0.98));
+}
+
+body.dark-mode .chat-messages {
+  background: rgba(4, 6, 12, 0.42);
+}
+
+body.dark-mode .chat-message {
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+body.dark-mode .chat-message:hover {
+  background: rgba(255, 255, 255, 0.065);
+}
+
+body.dark-mode .bubble {
+  filter: brightness(0.82) saturate(0.9);
+  opacity: 0.72;
+}
+
+body.dark-mode .footer {
+  color: #aaa6ba;
+}
+
+</style>
 </head>
 
 <body>
@@ -1346,7 +1626,6 @@
         </h1>
 
         <p>
-          A tiny window into Lottie's world 💗
         </p>
 
       </div>
@@ -1355,6 +1634,15 @@
 
 
     <div class="header-actions">
+
+      <button
+        id="themeToggle"
+        class="theme-toggle"
+        onclick="toggleTheme()"
+        title="Toggle dark mode"
+        aria-label="Toggle dark mode">
+        🌙
+      </button>
 
       <button
         class="host-access-button"
@@ -1595,7 +1883,7 @@
                   🫧 We'll be right back!
 
                 </div>
-                <span id="messageVersion" class="message-version">Lottie</span>
+                <span id="messageVersion" class="message-version">Lotties Little World 💗</span>
 
               </div>
 
@@ -1663,6 +1951,17 @@
 
           </div>
 
+        </div>
+
+
+        <div class="status-box last-fed-box">
+          <div class="status-label">
+            Last Fed
+          </div>
+          <div class="last-fed-time">
+            <strong>11 AM</strong>
+            <span id="lastFedAgo">(calculating...)</span>
+          </div>
         </div>
 
 
@@ -1829,6 +2128,11 @@
         </div>
 
         <div class="info-item">
+          <span>Last Fed</span>
+          <strong>11 AM <span id="lastFedInfoAgo">(calculating...)</span></strong>
+        </div>
+
+        <div class="info-item">
           <span>Family access</span>
           <strong>No password required</strong>
         </div>
@@ -1839,7 +2143,7 @@
 
 
     <footer>
-      Made with 💗 for Lottie · Lottie
+      Made with 💗 for Lottie · Lottie's Little World
     </footer>
 
   </main>
@@ -1858,7 +2162,7 @@
   const CAMERA_PEER_ID =
     "lotties-little-world-camera-v4";
 
-  const APP_VERSION = "9.0.0";
+  const APP_VERSION = "9.2.0";
 
   /*
    * Keep a tiny version.json beside this HTML file.
@@ -1932,6 +2236,9 @@
   let currentCall = null;
 
   let viewerCalls = new Map();
+  let viewerDataConnections = new Map();
+  let viewerReportedCount = 0;
+  let viewerDataConnection = null;
 
   let reconnectTimer = null;
 
@@ -2081,6 +2388,83 @@
   const offlineSubtitleInput = document.getElementById("offlineSubtitleInput");
   const updateBanner = document.getElementById("updateBanner");
 
+
+
+
+  /* ==========================================================
+     THEME
+     ========================================================== */
+
+  function applyTheme(theme) {
+    const dark = theme === "dark";
+    document.body.classList.toggle("dark-mode", dark);
+
+    const button = document.getElementById("themeToggle");
+
+    if (button) {
+      button.textContent = dark ? "☀️" : "🌙";
+      button.title = dark ? "Switch to light mode" : "Switch to dark mode";
+      button.setAttribute(
+        "aria-label",
+        dark ? "Switch to light mode" : "Switch to dark mode"
+      );
+    }
+
+    localStorage.setItem("lottieTheme", dark ? "dark" : "light");
+  }
+
+  function toggleTheme() {
+    applyTheme(
+      document.body.classList.contains("dark-mode")
+        ? "light"
+        : "dark"
+    );
+  }
+
+  function initialiseTheme() {
+    applyTheme(localStorage.getItem("lottieTheme") || "light");
+  }
+
+
+  /* ==========================================================
+     LAST FED
+     ========================================================== */
+
+  function updateLastFed() {
+    const now = new Date();
+    const fed = new Date(now);
+    fed.setHours(11, 0, 0, 0);
+
+    if (now < fed) fed.setDate(fed.getDate() - 1);
+
+    const minutesAgo = Math.max(
+      0,
+      Math.floor((now.getTime() - fed.getTime()) / 60000)
+    );
+
+    let text;
+
+    if (minutesAgo < 60) {
+      text = `(${minutesAgo} mins ago)`;
+    } else {
+      const hoursAgo = Math.floor(minutesAgo / 60);
+      const remainingMinutes = minutesAgo % 60;
+
+      if (remainingMinutes === 0) {
+        text = hoursAgo === 1
+          ? "(1 hour ago)"
+          : `(${hoursAgo} hours ago)`;
+      } else {
+        text = hoursAgo === 1
+          ? `(1 hour ${remainingMinutes} mins ago)`
+          : `(${hoursAgo} hours ${remainingMinutes} mins ago)`;
+      }
+    }
+
+    document.querySelectorAll("#lastFedAgo").forEach(el => {
+      el.textContent = text;
+    });
+  }
 
 
   /* ==========================================================
@@ -2470,7 +2854,7 @@
       document.getElementById(
         "welcomeText"
       ).textContent =
-        "You're visiting Lottie live 💗";
+        "You're visiting Lotties Little World 💗";
 
 
       hostControls.classList.add(
@@ -2525,6 +2909,40 @@
       }
     );
 
+
+    /*
+     * Viewer data connections are used only for live viewer-count
+     * synchronisation. Media stays on the normal WebRTC call.
+     */
+    peer.on("connection", connection => {
+      console.log("Viewer count channel connected:", connection.peer);
+
+      viewerDataConnections.set(connection.peer, connection);
+
+      const sendCount = () => {
+        try {
+          connection.send({
+            type: "viewer-count",
+            count: viewerDataConnections.size
+          });
+        } catch (error) {}
+      };
+
+      connection.on("open", sendCount);
+
+      connection.on("close", () => {
+        viewerDataConnections.delete(connection.peer);
+        broadcastViewerCount();
+      });
+
+      connection.on("error", () => {
+        viewerDataConnections.delete(connection.peer);
+        broadcastViewerCount();
+      });
+
+      sendCount();
+      broadcastViewerCount();
+    });
 
     /*
      * Viewer calls host.
@@ -2592,6 +3010,7 @@
 
 
             updateViewerCount();
+            broadcastViewerCount();
 
           }
         );
@@ -3155,6 +3574,36 @@
 
 
         connectToCamera();
+
+        // Separate reliable data channel for the shared viewer count.
+        viewerDataConnection = peer.connect(
+          CAMERA_PEER_ID,
+          { reliable: true }
+        );
+
+        viewerDataConnection.on("open", () => {
+          console.log("Viewer count channel ready.");
+        });
+
+        viewerDataConnection.on("data", message => {
+          if (
+            message &&
+            message.type === "viewer-count" &&
+            Number.isFinite(Number(message.count))
+          ) {
+            viewerReportedCount = Number(message.count);
+            updateViewerCount();
+          }
+        });
+
+        viewerDataConnection.on("close", () => {
+          viewerReportedCount = 0;
+          updateViewerCount();
+        });
+
+        viewerDataConnection.on("error", error => {
+          console.warn("Viewer count channel error:", error);
+        });
 
       }
     );
@@ -3890,10 +4339,30 @@
      ========================================================== */
 
   function updateViewerCount() {
+    const count =
+      mode === "host"
+        ? viewerCalls.size
+        : viewerReportedCount;
 
-    viewerCount.textContent =
-      viewerCalls.size;
+    viewerCount.textContent = count;
+  }
 
+  function broadcastViewerCount() {
+    const count = viewerDataConnections.size;
+
+    viewerDataConnections.forEach(connection => {
+      try {
+        if (connection.open) {
+          connection.send({
+            type: "viewer-count",
+            count
+          });
+        }
+      } catch (error) {}
+    });
+
+    // Keep the host display itself accurate too.
+    viewerCount.textContent = count;
   }
 
 
@@ -3943,6 +4412,13 @@
       }
 
 
+      if (viewerDataConnection) {
+        try {
+          viewerDataConnection.close();
+        } catch (error) {}
+        viewerDataConnection = null;
+      }
+
       if (
         peer &&
         !peer.destroyed
@@ -3961,6 +4437,9 @@
      ========================================================== */
 
   loadCustomMessages();
+  initialiseTheme();
+  updateLastFed();
+  setInterval(updateLastFed, 30000);
   setMode("viewer");
 
   /*
